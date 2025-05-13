@@ -1,0 +1,30 @@
+# Java
+*.class
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# NetBeans
+nbproject/private
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+*.orig
+
+# Sistema Operacional
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Outros
+/dependencies/
+*.jar
