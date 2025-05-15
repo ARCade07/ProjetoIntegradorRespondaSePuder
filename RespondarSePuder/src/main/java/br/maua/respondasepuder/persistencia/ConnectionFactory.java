@@ -7,5 +7,12 @@ public class ConnectionFactory {
     private String port = "27979";
     private String db = "defaultdb";
     private String user = "avnadmin";
-    private String password = "senha";  
+    private String password = "senha"; 
+    
+    public Connection obterConexao() throws Exception {
+        var s = String.format("jdbc:mysql://%s:%s/%s", host, port, db);
+        Connection conexao = DriverManager.getConnection(s, user, password);
+        return conexao;
+    }
+
 }
