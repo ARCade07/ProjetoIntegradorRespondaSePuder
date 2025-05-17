@@ -26,7 +26,6 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pesquisarAlunoButton = new javax.swing.JTextField();
         emailAlunoTextField = new javax.swing.JTextField();
         senhaAlunoTextField = new javax.swing.JTextField();
         nomeAlunoTextField = new javax.swing.JTextField();
@@ -36,20 +35,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         atualizarAlunoButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         consultarAlunosTable = new javax.swing.JTable();
+        pesquisarAlunoTextField = new javax.swing.JTextField();
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        pesquisarAlunoButton.setBackground(new java.awt.Color(242, 92, 84));
-        pesquisarAlunoButton.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        pesquisarAlunoButton.setBorder(null);
-        pesquisarAlunoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarAlunoButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(pesquisarAlunoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 70, 880, 60));
 
         emailAlunoTextField.setBackground(new java.awt.Color(0, 176, 185));
         emailAlunoTextField.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -111,6 +101,16 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 1050, 680));
 
+        pesquisarAlunoTextField.setBackground(new java.awt.Color(242, 92, 84));
+        pesquisarAlunoTextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        pesquisarAlunoTextField.setBorder(null);
+        pesquisarAlunoTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarAlunoTextFieldActionPerformed(evt);
+            }
+        });
+        getContentPane().add(pesquisarAlunoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 80, 890, 40));
+
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela consultar aluno .png"))); // NOI18N
         getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, -1, -1));
 
@@ -125,13 +125,13 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_atualizarAlunoButton1ActionPerformed
 
-    private void pesquisarAlunoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarAlunoButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesquisarAlunoButtonActionPerformed
-
     private void senhaAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaAlunoTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_senhaAlunoTextFieldActionPerformed
+
+    private void pesquisarAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarAlunoTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisarAlunoTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,7 +179,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     private javax.swing.JLabel imageLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nomeAlunoTextField;
-    private javax.swing.JTextField pesquisarAlunoButton;
+    private javax.swing.JTextField pesquisarAlunoTextField;
     private javax.swing.JButton removerAlunoButton;
     private javax.swing.JTextField senhaAlunoTextField;
     private javax.swing.JButton voltarConsultarAlunoButton;
