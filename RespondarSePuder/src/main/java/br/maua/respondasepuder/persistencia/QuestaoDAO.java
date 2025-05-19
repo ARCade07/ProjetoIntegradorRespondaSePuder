@@ -15,5 +15,17 @@ public class QuestaoDAO {
             ps.execute();
         }
     }
-
+    public boolean removerQuestao(Questao questao) throws Exception {
+        var sql = "DELETE FROM Questao WHERE id = ?";
+        try(
+            var conexao = new ConnectionFactory().obterConexao();
+            var ps = conexao.prepareStatement(sql)
+        ){
+            ps.setInt(1, questao.getIdentificador());
+            ps.execute();
+            int linhaRemovida = ps.executeUpdate();
+            return linhaRemovida > 0;
+        }
+        
+    }
 }
