@@ -18,7 +18,7 @@ public class QuestaoDAO {
         }
     }
     public boolean removerQuestao(Questao questao) throws Exception {
-        var sql = "DELETE FROM Questao WHERE id = ?";
+        var sql = "DELETE FROM Questao WHERE id_questao = ?";
         try(
             var conexao = new ConnectionFactory().obterConexao();
             var ps = conexao.prepareStatement(sql)
@@ -58,7 +58,7 @@ public class QuestaoDAO {
             ){
                 while (rs.next()) {
                     var questao = Questao.builder()
-                        .identificador(rs.getInt("identificador"))
+                        .identificador(rs.getInt("id_questao"))
                         .enunciado(rs.getString("enunciado"))
                         .materia(rs.getString("materia"))
                         .nivel(rs.getString("nivel"))
