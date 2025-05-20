@@ -69,4 +69,41 @@ public class QuestaoDAO {
         }  
         return listaQuestaoConsulta;
     }
+    public void atualizarQuestao(int identificador, String enunciado, String materia, String nivel) throws Exception {
+        var sql = new StringBuilder("UPDATE Questao SET ");
+        List<String> camposParaAtualizar = new ArrayList<>();
+        List<Object> valores = new ArrayList<>();
+        if (enunciado != null && !enunciado.isEmpty()) {
+            camposParaAtualizar.add("enunciado = ?");
+            valores.add(enunciado);
+        }
+        
+        if (materia != null && !materia.isEmpty()) {
+            camposParaAtualizar.add("materia = ?");
+            valores.add(materia);
+        }
+        
+        if (nivel != null && !nivel.isEmpty()) {
+            camposParaAtualizar.add("nivel = ?");
+            valores.add(nivel);
+        }
+        
+        if (camposParaAtualizar.isEmpty()) {
+            return;
+        }
+        
+        sql.append(String.join(", ", camposParaAtualizar));
+        sql.append(" WHERE id_questao = ?");
+        valores.add(identificador);
+        
+        try (
+            var conexao = new ConnectionFactory().obterConexao();
+            var ps = conexao.prepareStatement(sql.toString());
+        ){
+            for (int i = 0; i < valores.size(); i++){
+                ps.setObject(i + 1, valores.get(i));
+            }
+            ps.executeUpdate();
+        }
+    }
 }
