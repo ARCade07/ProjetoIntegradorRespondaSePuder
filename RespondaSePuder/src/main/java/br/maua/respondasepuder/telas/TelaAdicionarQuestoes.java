@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.maua.respondarsepuder.telas;
+package br.maua.respondasepuder.telas;
+
+import br.maua.respondasepuder.modelo.Alternativa;
+import br.maua.respondasepuder.modelo.Questao;
+import br.maua.respondasepuder.modelo.QuestaoAlternativa;
 
 /**
  *
@@ -27,12 +31,12 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        perguntaTextField5 = new javax.swing.JTextField();
+        enunciadoTextField = new javax.swing.JTextField();
         alternativa1TextField = new javax.swing.JTextField();
-        alternativa2TextField1 = new javax.swing.JTextField();
-        alternativa3TextField2 = new javax.swing.JTextField();
-        alterntiva4TextField3 = new javax.swing.JTextField();
-        alternativa5TextField4 = new javax.swing.JTextField();
+        alternativa2TextField = new javax.swing.JTextField();
+        alternativa3TextField = new javax.swing.JTextField();
+        alternativa4TextField = new javax.swing.JTextField();
+        alternativa5TextField = new javax.swing.JTextField();
         materiaComboBox = new javax.swing.JComboBox<>();
         questaoDificilButton = new javax.swing.JButton();
         questaoMedioButton1 = new javax.swing.JButton();
@@ -47,62 +51,54 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        perguntaTextField5.setBackground(new java.awt.Color(0, 176, 185));
-        perguntaTextField5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        perguntaTextField5.setBorder(null);
-        getContentPane().add(perguntaTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 92, 1100, 100));
+        enunciadoTextField.setBackground(new java.awt.Color(0, 176, 185));
+        enunciadoTextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        enunciadoTextField.setBorder(null);
 
         alternativa1TextField.setBackground(new java.awt.Color(0, 176, 185));
         alternativa1TextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         alternativa1TextField.setBorder(null);
-        getContentPane().add(alternativa1TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 1080, 40));
 
-        alternativa2TextField1.setBackground(new java.awt.Color(0, 176, 185));
-        alternativa2TextField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        alternativa2TextField1.setBorder(null);
-        getContentPane().add(alternativa2TextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, 1080, 40));
+        alternativa2TextField.setBackground(new java.awt.Color(0, 176, 185));
+        alternativa2TextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        alternativa2TextField.setBorder(null);
 
-        alternativa3TextField2.setBackground(new java.awt.Color(0, 176, 185));
-        alternativa3TextField2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        alternativa3TextField2.setBorder(null);
-        getContentPane().add(alternativa3TextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 1080, 40));
+        alternativa3TextField.setBackground(new java.awt.Color(0, 176, 185));
+        alternativa3TextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        alternativa3TextField.setBorder(null);
 
-        alterntiva4TextField3.setBackground(new java.awt.Color(0, 176, 185));
-        alterntiva4TextField3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        alterntiva4TextField3.setBorder(null);
-        getContentPane().add(alterntiva4TextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 580, 1080, 40));
+        alternativa4TextField.setBackground(new java.awt.Color(0, 176, 185));
+        alternativa4TextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        alternativa4TextField.setBorder(null);
 
-        alternativa5TextField4.setBackground(new java.awt.Color(0, 176, 185));
-        alternativa5TextField4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        alternativa5TextField4.setBorder(null);
-        getContentPane().add(alternativa5TextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 670, 1080, 40));
+        alternativa5TextField.setBackground(new java.awt.Color(0, 176, 185));
+        alternativa5TextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        alternativa5TextField.setBorder(null);
 
         materiaComboBox.setBackground(new java.awt.Color(0, 176, 185));
         materiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matemática", "Português", "História", "Geografia" }));
         materiaComboBox.setBorder(null);
-        getContentPane().add(materiaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 820, 430, 50));
 
         questaoDificilButton.setContentAreaFilled(false);
-        questaoDificilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(questaoDificilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 830, 230, 40));
+        questaoDificilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         questaoMedioButton1.setContentAreaFilled(false);
-        questaoMedioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(questaoMedioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 830, 220, 40));
+        questaoMedioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         questaoFacilButton2.setContentAreaFilled(false);
-        questaoFacilButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(questaoFacilButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 830, 230, 40));
+        questaoFacilButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         adicionarQuestaoButton.setContentAreaFilled(false);
-        adicionarQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(adicionarQuestaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 910, 480, 100));
+        adicionarQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        adicionarQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarQuestaoButtonActionPerformed(evt);
+            }
+        });
 
         voltarConsultarQuestoesButton.setContentAreaFilled(false);
-        voltarConsultarQuestoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(voltarConsultarQuestoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 110, 110));
+        voltarConsultarQuestoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         buttonGroup1.add(alternativa1RadioButton);
         alternativa1RadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +106,6 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 alternativa1RadioButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(alternativa1RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 30, 100));
 
         buttonGroup1.add(alternativa2RadioButton);
         alternativa2RadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +113,6 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 alternativa2RadioButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(alternativa2RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 30, 90));
 
         buttonGroup1.add(alternativa5RadioButton);
         alternativa5RadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +120,6 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 alternativa5RadioButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(alternativa5RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 660, 30, 30));
 
         buttonGroup1.add(alternativa3RadioButton);
         alternativa3RadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +127,6 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 alternativa3RadioButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(alternativa3RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, 30, 30));
 
         buttonGroup1.add(alternativa4RadioButton);
         alternativa4RadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -142,10 +134,121 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 alternativa4RadioButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(alternativa4RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 570, 30, 30));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela AddPerguntas.png"))); // NOI18N
-        getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(740, 740, 740)
+                .addComponent(adicionarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(voltarConsultarQuestoesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(450, 450, 450)
+                .addComponent(alternativa4TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(450, 450, 450)
+                .addComponent(enunciadoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(1420, 1420, 1420)
+                .addComponent(questaoDificilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(alternativa2RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(450, 450, 450)
+                .addComponent(alternativa1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(450, 450, 450)
+                .addComponent(alternativa2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(1170, 1170, 1170)
+                .addComponent(questaoMedioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(materiaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(alternativa1RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(alternativa3RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(920, 920, 920)
+                .addComponent(questaoFacilButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(450, 450, 450)
+                .addComponent(alternativa5TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(alternativa5RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(alternativa4RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(imageLabel)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(450, 450, 450)
+                .addComponent(alternativa3TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(940, 940, 940)
+                .addComponent(adicionarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(voltarConsultarQuestoesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(610, 610, 610)
+                .addComponent(alternativa4TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addComponent(enunciadoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(860, 860, 860)
+                .addComponent(questaoDificilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(alternativa2RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(alternativa1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(420, 420, 420)
+                .addComponent(alternativa2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(860, 860, 860)
+                .addComponent(questaoMedioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(850, 850, 850)
+                .addComponent(materiaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(alternativa1RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(510, 510, 510)
+                .addComponent(alternativa3RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(860, 860, 860)
+                .addComponent(questaoFacilButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(700, 700, 700)
+                .addComponent(alternativa5TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(690, 690, 690)
+                .addComponent(alternativa5RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(600, 600, 600)
+                .addComponent(alternativa4RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(imageLabel)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(520, 520, 520)
+                .addComponent(alternativa3TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,6 +272,35 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
     private void alternativa4RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativa4RadioButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_alternativa4RadioButtonActionPerformed
+
+    private void adicionarQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarQuestaoButtonActionPerformed
+        // Pegar o texto do enunciado
+        var enunciado = enunciadoTextField.getText();
+        // Pegar os textos das alternativas
+        var alternativa1 = alternativa1TextField.getText();
+        var alternativa2 = alternativa2TextField.getText();
+        var alternativa3 = alternativa3TextField.getText();
+        var alternativa4 = alternativa4TextField.getText();
+        var alternativa5 = alternativa5TextField.getText();
+        // Pegar a informação se cada alternativa está correta
+        var alternativa1EhCorreta = alternativa1RadioButton.isSelected();
+        var alternativa2EhCorreta = alternativa2RadioButton.isSelected();
+        var alternativa3EhCorreta = alternativa3RadioButton.isSelected();
+        var alternativa4EhCorreta = alternativa4RadioButton.isSelected();
+        var alternativa5EhCorreta = alternativa5RadioButton.isSelected();
+        // Modelo de objetos para cadastro na base
+        var questao = Questao.builder()
+                .enunciado(enunciado)
+                .build();
+        var qa1 = new QuestaoAlternativa(
+                questao,
+                Alternativa.builder()
+                    .texto (alternativa1)
+                    .build(),
+                alternativa1EhCorreta
+        );
+        
+    }//GEN-LAST:event_adicionarQuestaoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,17 +342,17 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
     private javax.swing.JRadioButton alternativa1RadioButton;
     private javax.swing.JTextField alternativa1TextField;
     private javax.swing.JRadioButton alternativa2RadioButton;
-    private javax.swing.JTextField alternativa2TextField1;
+    private javax.swing.JTextField alternativa2TextField;
     private javax.swing.JRadioButton alternativa3RadioButton;
-    private javax.swing.JTextField alternativa3TextField2;
+    private javax.swing.JTextField alternativa3TextField;
     private javax.swing.JRadioButton alternativa4RadioButton;
+    private javax.swing.JTextField alternativa4TextField;
     private javax.swing.JRadioButton alternativa5RadioButton;
-    private javax.swing.JTextField alternativa5TextField4;
-    private javax.swing.JTextField alterntiva4TextField3;
+    private javax.swing.JTextField alternativa5TextField;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField enunciadoTextField;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JComboBox<String> materiaComboBox;
-    private javax.swing.JTextField perguntaTextField5;
     private javax.swing.JButton questaoDificilButton;
     private javax.swing.JButton questaoFacilButton2;
     private javax.swing.JButton questaoMedioButton1;
