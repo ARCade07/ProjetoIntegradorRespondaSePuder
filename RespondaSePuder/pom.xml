@@ -30,4 +30,5 @@
         <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>br.maua.respondarsepuder.RespondarSePuder</exec.mainClass>
     </properties>
+    <name>RespondaSePuder</name>
 </project>
