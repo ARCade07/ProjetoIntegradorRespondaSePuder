@@ -18,7 +18,9 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
      * Creates new form TelaAdicionarQuestoes
      */
     public TelaAdicionarQuestoes() {
+        super("Responda Se Puder");
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -51,43 +53,54 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         enunciadoTextField.setBackground(new java.awt.Color(0, 176, 185));
         enunciadoTextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         enunciadoTextField.setBorder(null);
+        getContentPane().add(enunciadoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 122, 1100, 100));
 
         alternativa1TextField.setBackground(new java.awt.Color(0, 176, 185));
         alternativa1TextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         alternativa1TextField.setBorder(null);
+        getContentPane().add(alternativa1TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 1080, 40));
 
         alternativa2TextField.setBackground(new java.awt.Color(0, 176, 185));
         alternativa2TextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         alternativa2TextField.setBorder(null);
+        getContentPane().add(alternativa2TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 420, 1080, 40));
 
         alternativa3TextField.setBackground(new java.awt.Color(0, 176, 185));
         alternativa3TextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         alternativa3TextField.setBorder(null);
+        getContentPane().add(alternativa3TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, 1080, 40));
 
         alternativa4TextField.setBackground(new java.awt.Color(0, 176, 185));
         alternativa4TextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         alternativa4TextField.setBorder(null);
+        getContentPane().add(alternativa4TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 1080, 40));
 
         alternativa5TextField.setBackground(new java.awt.Color(0, 176, 185));
         alternativa5TextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         alternativa5TextField.setBorder(null);
+        getContentPane().add(alternativa5TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 700, 1080, 40));
 
         materiaComboBox.setBackground(new java.awt.Color(0, 176, 185));
         materiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matemática", "Português", "História", "Geografia" }));
         materiaComboBox.setBorder(null);
+        getContentPane().add(materiaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 850, 430, 50));
 
         questaoDificilButton.setContentAreaFilled(false);
         questaoDificilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(questaoDificilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 860, 230, 40));
 
         questaoMedioButton1.setContentAreaFilled(false);
         questaoMedioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(questaoMedioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 860, 220, 40));
 
         questaoFacilButton2.setContentAreaFilled(false);
         questaoFacilButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(questaoFacilButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 860, 230, 40));
 
         adicionarQuestaoButton.setContentAreaFilled(false);
         adicionarQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -96,9 +109,11 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 adicionarQuestaoButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(adicionarQuestaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 940, 480, 100));
 
         voltarConsultarQuestoesButton.setContentAreaFilled(false);
         voltarConsultarQuestoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(voltarConsultarQuestoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 110, 110));
 
         buttonGroup1.add(alternativa1RadioButton);
         alternativa1RadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +121,7 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 alternativa1RadioButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(alternativa1RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 30, 100));
 
         buttonGroup1.add(alternativa2RadioButton);
         alternativa2RadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +129,7 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 alternativa2RadioButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(alternativa2RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 30, 90));
 
         buttonGroup1.add(alternativa5RadioButton);
         alternativa5RadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +137,7 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 alternativa5RadioButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(alternativa5RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 690, 30, 30));
 
         buttonGroup1.add(alternativa3RadioButton);
         alternativa3RadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +145,7 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 alternativa3RadioButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(alternativa3RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, 30, 30));
 
         buttonGroup1.add(alternativa4RadioButton);
         alternativa4RadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -134,121 +153,10 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 alternativa4RadioButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(alternativa4RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 600, 30, 30));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela AddPerguntas.png"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(740, 740, 740)
-                .addComponent(adicionarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(voltarConsultarQuestoesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(450, 450, 450)
-                .addComponent(alternativa4TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(450, 450, 450)
-                .addComponent(enunciadoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(1420, 1420, 1420)
-                .addComponent(questaoDificilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(alternativa2RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(450, 450, 450)
-                .addComponent(alternativa1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(450, 450, 450)
-                .addComponent(alternativa2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(1170, 1170, 1170)
-                .addComponent(questaoMedioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(materiaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(alternativa1RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(alternativa3RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(920, 920, 920)
-                .addComponent(questaoFacilButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(450, 450, 450)
-                .addComponent(alternativa5TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(alternativa5RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(alternativa4RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(imageLabel)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(450, 450, 450)
-                .addComponent(alternativa3TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(940, 940, 940)
-                .addComponent(adicionarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(voltarConsultarQuestoesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(610, 610, 610)
-                .addComponent(alternativa4TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(enunciadoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(860, 860, 860)
-                .addComponent(questaoDificilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(alternativa2RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(alternativa1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(420, 420, 420)
-                .addComponent(alternativa2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(860, 860, 860)
-                .addComponent(questaoMedioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(850, 850, 850)
-                .addComponent(materiaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(alternativa1RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(510, 510, 510)
-                .addComponent(alternativa3RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(860, 860, 860)
-                .addComponent(questaoFacilButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(700, 700, 700)
-                .addComponent(alternativa5TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(690, 690, 690)
-                .addComponent(alternativa5RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(600, 600, 600)
-                .addComponent(alternativa4RadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(imageLabel)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(520, 520, 520)
-                .addComponent(alternativa3TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -299,7 +207,39 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                     .build(),
                 alternativa1EhCorreta
         );
-        
+        var qa2 = new QuestaoAlternativa(
+                questao,
+                Alternativa.builder()
+                    .texto (alternativa2)
+                    .build(),
+                alternativa2EhCorreta
+        );
+        var qa3 = new QuestaoAlternativa(
+                questao,
+                Alternativa.builder()
+                    .texto (alternativa3)
+                    .build(),
+                alternativa3EhCorreta
+        );
+        var qa4 = new QuestaoAlternativa(
+                questao,
+                Alternativa.builder()
+                    .texto (alternativa4)
+                    .build(),
+                alternativa4EhCorreta
+        );
+        var qa5 = new QuestaoAlternativa(
+                questao,
+                Alternativa.builder()
+                    .texto (alternativa5)
+                    .build(),
+                alternativa5EhCorreta
+        );
+        questao.getAlternativas().add(qa1);
+        questao.getAlternativas().add(qa2);
+        questao.getAlternativas().add(qa3);
+        questao.getAlternativas().add(qa4);
+        questao.getAlternativas().add(qa5);
     }//GEN-LAST:event_adicionarQuestaoButtonActionPerformed
 
     /**
