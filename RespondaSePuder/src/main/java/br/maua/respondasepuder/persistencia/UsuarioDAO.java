@@ -15,6 +15,18 @@ public class UsuarioDAO {
             ps.setString(3, usuario.getSenha());
             ps.execute();
         }
-               
     }
+    public boolean removerUsuario(Usuario usuario) throws Exception {
+        var sql = "DELETE FROM Usuario WHERE id_usuario = ?";
+        try(
+                var conexao = new ConnectionFactory().obterConexao();
+                var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setInt(1, usuario.getIdentificador());
+            int linhaRemovida = ps.executeUpdate();
+            return linhaRemovida > 0;
+        }
+        
+    }
+    
 }
