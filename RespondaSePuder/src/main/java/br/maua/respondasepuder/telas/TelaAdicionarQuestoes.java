@@ -7,6 +7,10 @@ package br.maua.respondasepuder.telas;
 import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.modelo.QuestaoAlternativa;
+import br.maua.respondasepuder.persistencia.QuestaoDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -197,49 +201,56 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         var alternativa4EhCorreta = alternativa4RadioButton.isSelected();
         var alternativa5EhCorreta = alternativa5RadioButton.isSelected();
         // Modelo de objetos para cadastro na base
-        var questao = Questao.builder()
+        try{
+            var questao = Questao.builder()
                 .enunciado(enunciado)
                 .build();
-        var qa1 = new QuestaoAlternativa(
+            var qa1 = new QuestaoAlternativa(
                 questao,
                 Alternativa.builder()
                     .texto (alternativa1)
                     .build(),
                 alternativa1EhCorreta
-        );
-        var qa2 = new QuestaoAlternativa(
+            );
+            var qa2 = new QuestaoAlternativa(
                 questao,
                 Alternativa.builder()
                     .texto (alternativa2)
                     .build(),
                 alternativa2EhCorreta
-        );
-        var qa3 = new QuestaoAlternativa(
+            );
+            var qa3 = new QuestaoAlternativa(
                 questao,
                 Alternativa.builder()
                     .texto (alternativa3)
                     .build(),
                 alternativa3EhCorreta
-        );
-        var qa4 = new QuestaoAlternativa(
+            );
+            var qa4 = new QuestaoAlternativa(
                 questao,
                 Alternativa.builder()
                     .texto (alternativa4)
                     .build(),
                 alternativa4EhCorreta
-        );
-        var qa5 = new QuestaoAlternativa(
+            );
+            var qa5 = new QuestaoAlternativa(
                 questao,
                 Alternativa.builder()
                     .texto (alternativa5)
                     .build(),
                 alternativa5EhCorreta
-        );
-        questao.getAlternativas().add(qa1);
-        questao.getAlternativas().add(qa2);
-        questao.getAlternativas().add(qa3);
-        questao.getAlternativas().add(qa4);
-        questao.getAlternativas().add(qa5);
+            );
+            questao.getAlternativas().add(qa1);
+            questao.getAlternativas().add(qa2);
+            questao.getAlternativas().add(qa3);
+            questao.getAlternativas().add(qa4);
+            questao.getAlternativas().add(qa5);
+        
+            var queDAO = new QuestaoDAO();
+            queDAO.adicionarQuestao(questao);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar questão: " + ex.getMessage());
+        }
     }//GEN-LAST:event_adicionarQuestaoButtonActionPerformed
 
     /**
