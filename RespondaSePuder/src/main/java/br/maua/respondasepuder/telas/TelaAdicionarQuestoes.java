@@ -7,6 +7,7 @@ package br.maua.respondasepuder.telas;
 import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.modelo.QuestaoAlternativa;
+import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.awt.Color;
 import java.util.logging.Level;
@@ -244,6 +245,21 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 .materia(materia)
                 .nivel(nivel)
                 .build();
+            var alter1 = Alternativa.builder()
+                    .texto(alternativa1)
+                    .build();
+            var alter2 = Alternativa.builder()
+                    .texto(alternativa2)
+                    .build();
+            var alter3 = Alternativa.builder()
+                    .texto(alternativa3)
+                    .build();
+            var alter4 = Alternativa.builder()
+                    .texto(alternativa4)
+                    .build();
+            var alter5 = Alternativa.builder()
+                    .texto(alternativa5)
+                    .build();
             var qa1 = new QuestaoAlternativa(
                 questao,
                 Alternativa.builder()
@@ -287,6 +303,12 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         
             var queDAO = new QuestaoDAO();
             queDAO.adicionarQuestao(questao);
+            var altDAO = new AlternativaDAO();
+            altDAO.adicionarAlternativa(alter1);
+            altDAO.adicionarAlternativa(alter2);
+            altDAO.adicionarAlternativa(alter3);
+            altDAO.adicionarAlternativa(alter4);
+            altDAO.adicionarAlternativa(alter5);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Erro ao adicionar questão: " + ex.getMessage());
         }
