@@ -8,6 +8,7 @@ import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.modelo.QuestaoAlternativa;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -35,6 +36,8 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
     private String materia;
     // Cria a variável nível
     private String nivel;
+    // Cria variável clicado
+    private boolean clicado = false;
     /**
      * Creates new form TelaAdicionarQuestoes
      */
@@ -61,9 +64,9 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         alternativa4TextField = new javax.swing.JTextField();
         alternativa5TextField = new javax.swing.JTextField();
         materiaComboBox = new javax.swing.JComboBox<>();
-        questaoDificilButton = new javax.swing.JButton();
-        questaoMedioButton = new javax.swing.JButton();
         questaoFacilButton = new javax.swing.JButton();
+        questaoMedioButton = new javax.swing.JButton();
+        questaoDificilButton = new javax.swing.JButton();
         adicionarQuestaoButton = new javax.swing.JButton();
         voltarConsultarQuestoesButton = new javax.swing.JButton();
         alternativa1RadioButton = new javax.swing.JRadioButton();
@@ -111,14 +114,14 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         materiaComboBox.setBorder(null);
         getContentPane().add(materiaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 850, 430, 50));
 
-        questaoDificilButton.setContentAreaFilled(false);
-        questaoDificilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        questaoDificilButton.addActionListener(new java.awt.event.ActionListener() {
+        questaoFacilButton.setContentAreaFilled(false);
+        questaoFacilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        questaoFacilButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                questaoDificilButtonActionPerformed(evt);
+                questaoFacilButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(questaoDificilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 860, 230, 40));
+        getContentPane().add(questaoFacilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 860, 230, 40));
 
         questaoMedioButton.setContentAreaFilled(false);
         questaoMedioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -129,14 +132,14 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         });
         getContentPane().add(questaoMedioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 860, 220, 40));
 
-        questaoFacilButton.setContentAreaFilled(false);
-        questaoFacilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        questaoFacilButton.addActionListener(new java.awt.event.ActionListener() {
+        questaoDificilButton.setContentAreaFilled(false);
+        questaoDificilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        questaoDificilButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                questaoFacilButtonActionPerformed(evt);
+                questaoDificilButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(questaoFacilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 860, 230, 40));
+        getContentPane().add(questaoDificilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 860, 230, 40));
 
         adicionarQuestaoButton.setContentAreaFilled(false);
         adicionarQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -289,12 +292,34 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_adicionarQuestaoButtonActionPerformed
     private void questaoFacilButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (!clicado) {
+            questaoFacilButton.setContentAreaFilled(true);
+            questaoFacilButton.setBackground(Color.BLUE);
+        }
+        else {
+            questaoFacilButton.setContentAreaFilled(false);
+        }
+        clicado = !clicado;
         this.nivel = "Fácil";
     } 
     private void questaoMedioButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (!clicado) {
+            questaoMedioButton.setContentAreaFilled(true);
+            questaoMedioButton.setBackground(Color.BLUE);
+        } else {
+            questaoMedioButton.setContentAreaFilled(false);
+        }
+        clicado = !clicado;
         this.nivel = "Médio";
     }
     private void questaoDificilButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (!clicado) {
+            questaoDificilButton.setContentAreaFilled(true);
+            questaoDificilButton.setBackground(Color.BLUE);
+        } else {
+            questaoDificilButton.setContentAreaFilled(false);
+        }
+        clicado = !clicado;
         this.nivel = "Difícil";
     }
     /**
