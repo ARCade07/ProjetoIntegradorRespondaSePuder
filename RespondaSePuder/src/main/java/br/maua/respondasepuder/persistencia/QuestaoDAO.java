@@ -5,8 +5,7 @@ import java.util.*;
 
 public class QuestaoDAO {
     public void adicionarQuestao(Questao questao) throws Exception {
-        var sql = "INSERT INTO Questao(enunciado, nivel, materia)"
-                + " VALUES (?, ?, ?)";
+        var sql = "INSERT INTO questao(enunciado, nivel, materia) VALUES (?, ?, ?)";
         try(
             var conexao = new ConnectionFactory().obterConexao();
             var ps = conexao.prepareStatement(sql);
@@ -14,6 +13,17 @@ public class QuestaoDAO {
             ps.setString(1, questao.getEnunciado());
             ps.setString(2, questao.getNivel());
             ps.setString(3, questao.getMateria());
+            ps.execute();
+        }
+    }
+    public void alterarQuestao(Questao questao) throws Exception {
+        var sql = "UPDATE Questao SET enunciado = ? WHERE id = ?";
+        try(
+            var conexao = new ConnectionFactory().obterConexao();
+            var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setString(1, questao.getEnunciado());
+            ps.setInt(2, questao.getIdentificador());
             ps.execute();
         }
     }
