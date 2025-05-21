@@ -17,7 +17,24 @@ import javax.swing.JOptionPane;
  * @author Arthur
  */
 public class TelaAdicionarQuestoes extends javax.swing.JFrame {
-
+    // Cria a variável enunciado
+    private String enunciado;
+    // Cria as variáveis alternativas
+    private String alternativa1;
+    private String alternativa2;
+    private String alternativa3;
+    private String alternativa4;
+    private String alternativa5;
+    // Cria as variáveis booleanas de alternativas corretas
+    private boolean alternativa1EhCorreta;
+    private boolean alternativa2EhCorreta;
+    private boolean alternativa3EhCorreta;
+    private boolean alternativa4EhCorreta;
+    private boolean alternativa5EhCorreta;
+    // Cria a variável matéria
+    private String materia;
+    // Cria a variável nível
+    private String nivel;
     /**
      * Creates new form TelaAdicionarQuestoes
      */
@@ -45,8 +62,8 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         alternativa5TextField = new javax.swing.JTextField();
         materiaComboBox = new javax.swing.JComboBox<>();
         questaoDificilButton = new javax.swing.JButton();
-        questaoMedioButton1 = new javax.swing.JButton();
-        questaoFacilButton2 = new javax.swing.JButton();
+        questaoMedioButton = new javax.swing.JButton();
+        questaoFacilButton = new javax.swing.JButton();
         adicionarQuestaoButton = new javax.swing.JButton();
         voltarConsultarQuestoesButton = new javax.swing.JButton();
         alternativa1RadioButton = new javax.swing.JRadioButton();
@@ -96,15 +113,30 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
 
         questaoDificilButton.setContentAreaFilled(false);
         questaoDificilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        questaoDificilButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                questaoDificilButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(questaoDificilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 860, 230, 40));
 
-        questaoMedioButton1.setContentAreaFilled(false);
-        questaoMedioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(questaoMedioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 860, 220, 40));
+        questaoMedioButton.setContentAreaFilled(false);
+        questaoMedioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        questaoMedioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                questaoMedioButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(questaoMedioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 860, 220, 40));
 
-        questaoFacilButton2.setContentAreaFilled(false);
-        questaoFacilButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(questaoFacilButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 860, 230, 40));
+        questaoFacilButton.setContentAreaFilled(false);
+        questaoFacilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        questaoFacilButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                questaoFacilButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(questaoFacilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 860, 230, 40));
 
         adicionarQuestaoButton.setContentAreaFilled(false);
         adicionarQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -187,23 +219,27 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
 
     private void adicionarQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarQuestaoButtonActionPerformed
         // Pegar o texto do enunciado
-        var enunciado = enunciadoTextField.getText();
+        this.enunciado = enunciadoTextField.getText();
         // Pegar os textos das alternativas
-        var alternativa1 = alternativa1TextField.getText();
-        var alternativa2 = alternativa2TextField.getText();
-        var alternativa3 = alternativa3TextField.getText();
-        var alternativa4 = alternativa4TextField.getText();
-        var alternativa5 = alternativa5TextField.getText();
+        this.alternativa1 = alternativa1TextField.getText();
+        this.alternativa2 = alternativa2TextField.getText();
+        this.alternativa3 = alternativa3TextField.getText();
+        this.alternativa4 = alternativa4TextField.getText();
+        this.alternativa5 = alternativa5TextField.getText();
         // Pegar a informação se cada alternativa está correta
-        var alternativa1EhCorreta = alternativa1RadioButton.isSelected();
-        var alternativa2EhCorreta = alternativa2RadioButton.isSelected();
-        var alternativa3EhCorreta = alternativa3RadioButton.isSelected();
-        var alternativa4EhCorreta = alternativa4RadioButton.isSelected();
-        var alternativa5EhCorreta = alternativa5RadioButton.isSelected();
+        this.alternativa1EhCorreta = alternativa1RadioButton.isSelected();
+        this.alternativa2EhCorreta = alternativa2RadioButton.isSelected();
+        this.alternativa3EhCorreta = alternativa3RadioButton.isSelected();
+        this.alternativa4EhCorreta = alternativa4RadioButton.isSelected();
+        this.alternativa5EhCorreta = alternativa5RadioButton.isSelected();
+        // Pegar a matéria
+        this.materia = (String) materiaComboBox.getSelectedItem();
         // Modelo de objetos para cadastro na base
         try{
             var questao = Questao.builder()
                 .enunciado(enunciado)
+                .materia(materia)
+                .nivel(nivel)
                 .build();
             var qa1 = new QuestaoAlternativa(
                 questao,
@@ -252,7 +288,15 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao adicionar questão: " + ex.getMessage());
         }
     }//GEN-LAST:event_adicionarQuestaoButtonActionPerformed
-
+    private void questaoFacilButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.nivel = "Fácil";
+    } 
+    private void questaoMedioButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.nivel = "Médio";
+    }
+    private void questaoDificilButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.nivel = "Difícil";
+    }
     /**
      * @param args the command line arguments
      */
@@ -305,8 +349,8 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
     private javax.swing.JLabel imageLabel;
     private javax.swing.JComboBox<String> materiaComboBox;
     private javax.swing.JButton questaoDificilButton;
-    private javax.swing.JButton questaoFacilButton2;
-    private javax.swing.JButton questaoMedioButton1;
+    private javax.swing.JButton questaoFacilButton;
+    private javax.swing.JButton questaoMedioButton;
     private javax.swing.JButton voltarConsultarQuestoesButton;
     // End of variables declaration//GEN-END:variables
 }
