@@ -43,7 +43,7 @@ public class AlternativaDAO {
         var sql = new StringBuilder("SELECT * FROM alternativa WHERE 1=1");
         List<String> parametrosConsulta = new ArrayList<>();
         if (texto != null && !texto.isEmpty()) {
-            sql.append(" AND enunciado LIKE ?");
+            sql.append(" AND texto LIKE ?");
             parametrosConsulta.add("%" + texto + "%");
         }
         try(
