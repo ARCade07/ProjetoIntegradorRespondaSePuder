@@ -1,6 +1,7 @@
 package br.maua.respondasepuder.persistencia;
 
 import br.maua.respondasepuder.modelo.Alternativa;
+import br.maua.respondasepuder.modelo.Questao;
 import java.util.*;
 
 public class AlternativaDAO {
@@ -38,21 +39,14 @@ public class AlternativaDAO {
             return linhaRemovida > 0;
         }
     }
-    public List<Alternativa> consultarAlternativa(String texto) throws Exception{
+    public List<Alternativa> consultarAlternativa(Questao questao) throws Exception{
         List<Alternativa> listaAlternativaConsulta = new ArrayList<>();
-        var sql = new StringBuilder("SELECT * FROM alternativa WHERE 1=1");
-        List<String> parametrosConsulta = new ArrayList<>();
-        if (texto != null && !texto.isEmpty()) {
-            sql.append(" AND texto LIKE ?");
-            parametrosConsulta.add("%" + texto + "%");
-        }
+        var sql = "SELECT * FROM alternativa WHERE id_questao = ?";
         try(
             var conexao = new ConnectionFactory().obterConexao();
-            var ps = conexao.prepareStatement(sql.toString());
+            var ps = conexao.prepareStatement(sql);
         ){
-            for (int i = 0; i < parametrosConsulta.size(); i++) {
-                ps.setString(i + 1, parametrosConsulta.get(i));
-            }
+            ps.setInt(1, questao.getIdentificador());
             try(
                 var rs = ps.executeQuery();
             ){
