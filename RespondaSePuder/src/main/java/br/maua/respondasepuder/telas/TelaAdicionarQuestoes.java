@@ -65,9 +65,9 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         alternativa4TextField = new javax.swing.JTextField();
         alternativa5TextField = new javax.swing.JTextField();
         materiaComboBox = new javax.swing.JComboBox<>();
-        questaoFacilButton = new javax.swing.JButton();
-        questaoMedioButton = new javax.swing.JButton();
         questaoDificilButton = new javax.swing.JButton();
+        questaoMedioButton = new javax.swing.JButton();
+        questaoFacilButton = new javax.swing.JButton();
         adicionarQuestaoButton = new javax.swing.JButton();
         voltarConsultarQuestoesButton = new javax.swing.JButton();
         alternativa1RadioButton = new javax.swing.JRadioButton();
@@ -115,26 +115,8 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         materiaComboBox.setBorder(null);
         getContentPane().add(materiaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 850, 430, 50));
 
-        questaoFacilButton.setContentAreaFilled(false);
-        questaoFacilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        questaoFacilButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                questaoFacilButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(questaoFacilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 860, 230, 40));
-
-        questaoMedioButton.setContentAreaFilled(false);
-        questaoMedioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        questaoMedioButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                questaoMedioButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(questaoMedioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 860, 220, 40));
-
         questaoDificilButton.setContentAreaFilled(false);
-        questaoDificilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        questaoDificilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         questaoDificilButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 questaoDificilButtonActionPerformed(evt);
@@ -142,8 +124,26 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         });
         getContentPane().add(questaoDificilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 860, 230, 40));
 
+        questaoMedioButton.setContentAreaFilled(false);
+        questaoMedioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        questaoMedioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                questaoMedioButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(questaoMedioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 860, 220, 40));
+
+        questaoFacilButton.setContentAreaFilled(false);
+        questaoFacilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        questaoFacilButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                questaoFacilButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(questaoFacilButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 860, 230, 40));
+
         adicionarQuestaoButton.setContentAreaFilled(false);
-        adicionarQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        adicionarQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         adicionarQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarQuestaoButtonActionPerformed(evt);
@@ -152,7 +152,7 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         getContentPane().add(adicionarQuestaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 940, 480, 100));
 
         voltarConsultarQuestoesButton.setContentAreaFilled(false);
-        voltarConsultarQuestoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        voltarConsultarQuestoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(voltarConsultarQuestoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 110, 110));
 
         buttonGroup1.add(alternativa1RadioButton);
