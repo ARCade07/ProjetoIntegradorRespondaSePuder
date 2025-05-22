@@ -79,4 +79,25 @@ public class QuestaoDAO {
         }  
         return listaQuestaoConsulta;
     }
+    public Questao buscarPorId(int id, Questao questao) throws Exception {       
+        var sql = "SELECT * FROM questoes WHERE id = ?";
+        try(
+            var conexao = new ConnectionFactory().obterConexao();
+            var ps = conexao.prepareStatement(sql);  
+            
+        ){
+            ps.setInt(1, id);
+            try(
+                var rs = ps.executeQuery();  
+            ){
+                if (rs.next()) {
+                    questao.setIdentificador(rs.getInt("id_questao"));
+                    questao.setEnunciado(rs.getString("enunciado"));
+                    return questao;
+                }
+            }
+        }
+        return null;
+    }
+
 }

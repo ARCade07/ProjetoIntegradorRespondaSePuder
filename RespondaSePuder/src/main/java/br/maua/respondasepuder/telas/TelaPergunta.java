@@ -7,6 +7,7 @@ package br.maua.respondasepuder.telas;
 import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.persistencia.AlternativaDAO;
+import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.util.*;
 
 /**
@@ -18,7 +19,9 @@ public class TelaPergunta extends javax.swing.JFrame {
     public void montarTela(Questao questao) {
         AlternativaDAO dao = new AlternativaDAO();
         List<Alternativa> listaAlternativaConsulta;
+        QuestaoDAO questaoDAO = new QuestaoDAO();
         try {
+            Questao q = questaoDAO.buscarPorId(1, questao);
             enunciadoPerguntaLabel.setText(questao.getEnunciado());
             listaAlternativaConsulta = (ArrayList<Alternativa>) dao.consultarAlternativa(questao);
             String alternativaA = listaAlternativaConsulta.get(0).getTexto();
@@ -37,9 +40,10 @@ public class TelaPergunta extends javax.swing.JFrame {
     /**
      * Creates new form TelaPergunta
      */
-    public TelaPergunta() {
+    public TelaPergunta(Questao questaoSelecionada) {
+        this.questao = questaoSelecionada;
         initComponents();
-        montarTela(questao);
+        montarTela(this.questao);
     }
 
     /**
@@ -200,7 +204,7 @@ public class TelaPergunta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPergunta().setVisible(true);
+                new TelaPergunta(q).setVisible(true);
             }
         });
     }
