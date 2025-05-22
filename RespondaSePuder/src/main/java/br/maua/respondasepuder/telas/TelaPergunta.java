@@ -2,19 +2,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.maua.respondarsepuder.telas;
+package br.maua.respondasepuder.telas;
+
+import br.maua.respondasepuder.modelo.Alternativa;
+import br.maua.respondasepuder.modelo.Questao;
+import br.maua.respondasepuder.persistencia.AlternativaDAO;
+import java.util.*;
 
 /**
  *
  * @author Arthur
  */
 public class TelaPergunta extends javax.swing.JFrame {
-
+    private Questao questao;
+    public void montarTela(Questao questao) {
+        AlternativaDAO dao = new AlternativaDAO();
+        List<Alternativa> listaAlternativaConsulta;
+        try {
+            enunciadoPerguntaLabel.setText(questao.getEnunciado());
+            listaAlternativaConsulta = (ArrayList<Alternativa>) dao.consultarAlternativa(questao);
+            String alternativaA = listaAlternativaConsulta.get(0).getTexto();
+            alternativaALabel.setText(alternativaA);
+            String alternativaB = listaAlternativaConsulta.get(1).getTexto();
+            alternativaBLabel.setText(alternativaB);
+            String alternativaC = listaAlternativaConsulta.get(2).getTexto();
+            alternativaCLabel.setText(alternativaC);
+            String alternativaD = listaAlternativaConsulta.get(3).getTexto();
+            alternativaDLabel.setText(alternativaD);
+            String alternativaE = listaAlternativaConsulta.get(4).getTexto();
+            alternativaELabel.setText(alternativaE);
+        } catch (Exception exception) {
+        }
+    }
     /**
      * Creates new form TelaPergunta
      */
     public TelaPergunta() {
         initComponents();
+        montarTela(questao);
     }
 
     /**
