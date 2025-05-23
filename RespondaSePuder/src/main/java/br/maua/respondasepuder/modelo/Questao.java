@@ -14,9 +14,9 @@ public class Questao {
     private int identificador;
     private String enunciado;
     private String nivel;
-    private String materia;
+    private Materia materia;
     private List <QuestaoAlternativa> alternativas;
   
     
-    
+  
 }
