@@ -20,8 +20,39 @@
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
   </AuxValues>
 
-  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-    <Property name="useNullLayout" type="boolean" value="false"/>
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
+              <Component id="voltarContaButton" min="-2" pref="120" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="850" pref="850" max="-2" attributes="0"/>
+              <Component id="ususrioLabel" min="-2" pref="320" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="850" pref="850" max="-2" attributes="0"/>
+              <Component id="senhaLabel" min="-2" pref="320" max="-2" attributes="0"/>
+          </Group>
+          <Component id="imageLabel" min="-2" max="-2" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="63" pref="63" max="-2" attributes="0"/>
+              <Component id="voltarContaButton" min="-2" pref="120" max="-2" attributes="0"/>
+              <EmptySpace min="317" pref="317" max="-2" attributes="0"/>
+              <Component id="ususrioLabel" min="-2" pref="60" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="650" pref="650" max="-2" attributes="0"/>
+              <Component id="senhaLabel" min="-2" pref="60" max="-2" attributes="0"/>
+          </Group>
+          <Component id="imageLabel" min="-2" max="-2" attributes="0"/>
+      </Group>
+    </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JLabel" name="ususrioLabel">
@@ -33,11 +64,6 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="850" y="460" width="320" height="60"/>
-        </Constraint>
-      </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="senhaLabel">
       <Properties>
@@ -48,11 +74,6 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="850" y="610" width="320" height="60"/>
-        </Constraint>
-      </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="voltarContaButton">
       <Properties>
@@ -61,11 +82,6 @@
           <Color id="Cursor em Forma de M&#xe3;o"/>
         </Property>
       </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="90" y="23" width="120" height="120"/>
-        </Constraint>
-      </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="imageLabel">
       <Properties>
@@ -73,11 +89,6 @@
           <Image iconType="3" name="/images/Tela Conta.png"/>
         </Property>
       </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="-40" width="-1" height="-1"/>
-        </Constraint>
-      </Constraints>
     </Component>
   </SubComponents>
 </Form>

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.maua.respondarsepuder.telas;
+package br.maua.respondasepuder.telas;
 
 /**
  *
@@ -14,8 +14,9 @@ public class TelaConta extends javax.swing.JFrame {
      * Creates new form TelaConta
      */
     public TelaConta() {
+        super("Responda se puder");
         initComponents();
-    }
+        setLocationRelativeTo(null);    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,22 +33,45 @@ public class TelaConta extends javax.swing.JFrame {
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ususrioLabel.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         ususrioLabel.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(ususrioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 460, 320, 60));
 
         senhaLabel.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         senhaLabel.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(senhaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 610, 320, 60));
 
         voltarContaButton.setContentAreaFilled(false);
         voltarContaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(voltarContaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 23, 120, 120));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela Conta.png"))); // NOI18N
-        getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(voltarContaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(850, 850, 850)
+                .addComponent(ususrioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(850, 850, 850)
+                .addComponent(senhaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(imageLabel)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(voltarContaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(317, 317, 317)
+                .addComponent(ususrioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(650, 650, 650)
+                .addComponent(senhaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(imageLabel)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
