@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.maua.respondarsepuder.telas;
+package br.maua.respondasepuder.telas;
 
 /**
  *
@@ -34,6 +34,11 @@ public class TelaEsqueciASenha extends javax.swing.JFrame {
 
         lebrouSenhaButton.setContentAreaFilled(false);
         lebrouSenhaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lebrouSenhaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lebrouSenhaButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(lebrouSenhaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 640, 270, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela Esqueci a senha.png"))); // NOI18N
@@ -41,6 +46,11 @@ public class TelaEsqueciASenha extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lebrouSenhaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lebrouSenhaButtonActionPerformed
+        this.dispose();
+        new TelaAutenticarUsuario().setVisible(true);
+    }//GEN-LAST:event_lebrouSenhaButtonActionPerformed
 
     /**
      * @param args the command line arguments
