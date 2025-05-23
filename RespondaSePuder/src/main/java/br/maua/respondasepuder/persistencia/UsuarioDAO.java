@@ -1,6 +1,7 @@
 package br.maua.respondasepuder.persistencia;
 
 import br.maua.respondasepuder.modelo.Usuario;
+import java.sql.PreparedStatement;
 import java.util.*;
 
 public class UsuarioDAO {
@@ -67,6 +68,20 @@ public class UsuarioDAO {
             }
         }
         return listaUsuarioConsulta;
+    }
+    public boolean autenticarUsuario(Usuario usuario) throws Exception {
+        var sql = "SELECT email, senha FROM Usuario WHERE email = ? AND senha = ?";
+        try (
+            var conexao = new ConnectionFactory().obterConexao();
+            var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setString(1, usuario.getEmail());
+            ps.setString(2, usuario.getSenha());
+            try (var rs = ps.executeQuery()){
+                return rs.next();
+            }
+                
+        }
     }
     
 }
