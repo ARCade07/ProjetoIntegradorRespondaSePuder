@@ -21,7 +21,7 @@ public class TelaPergunta extends javax.swing.JFrame {
         List<Alternativa> listaAlternativaConsulta;
         QuestaoDAO questaoDAO = new QuestaoDAO();
         try {
-            Questao q = questaoDAO.buscarPorId(1, questao);
+            Questao q = questaoDAO.buscarPorId(questao.getIdentificador(), questao);
             enunciadoPerguntaLabel.setText(questao.getEnunciado());
             listaAlternativaConsulta = (ArrayList<Alternativa>) dao.consultarAlternativa(questao);
             String alternativaA = listaAlternativaConsulta.get(0).getTexto();
@@ -80,7 +80,7 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         numeroPerguntaLabel.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        getContentPane().add(numeroPerguntaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 10, -1, 50));
+        getContentPane().add(numeroPerguntaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 10, 10, 50));
 
         alternativaALabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         alternativaALabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -204,6 +204,7 @@ public class TelaPergunta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Questao q = Questao.builder().build();
                 new TelaPergunta(q).setVisible(true);
             }
         });
