@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.maua.respondarsepuder.telas;
+package br.maua.respondasepuder.telas;
 
 /**
  *
@@ -14,8 +14,9 @@ public class TelaRanque extends javax.swing.JFrame {
      * Creates new form TelaRanque
      */
     public TelaRanque() {
+        super("Responda se puder");
         initComponents();
-    }
+        setLocationRelativeTo(null);    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +53,11 @@ public class TelaRanque extends javax.swing.JFrame {
 
         voltarRanqueButton.setContentAreaFilled(false);
         voltarRanqueButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarRanqueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarRanqueButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(voltarRanqueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 120, 110));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela de ver ranque.png"))); // NOI18N
@@ -59,6 +65,11 @@ public class TelaRanque extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void voltarRanqueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarRanqueButtonActionPerformed
+        this.dispose();
+        new TelaDeADM().setVisible(true);
+    }//GEN-LAST:event_voltarRanqueButtonActionPerformed
 
     /**
      * @param args the command line arguments
