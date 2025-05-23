@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.maua.respondarsepuder.telas;
+package br.maua.respondasepuder.telas;
 
 /**
  *
@@ -14,7 +14,9 @@ public class TelaDeADM extends javax.swing.JFrame {
      * Creates new form TelaDeADM
      */
     public TelaDeADM() {
+        super("Responda se puder");
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -47,18 +49,38 @@ public class TelaDeADM extends javax.swing.JFrame {
 
         consultarAlunosButton.setContentAreaFilled(false);
         consultarAlunosButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        consultarAlunosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarAlunosButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(consultarAlunosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 493, 980, 120));
 
         ranqueButton.setContentAreaFilled(false);
         ranqueButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ranqueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ranqueButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(ranqueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 653, 700, 100));
 
         acessarInformacoesADMButton.setContentAreaFilled(false);
         acessarInformacoesADMButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        acessarInformacoesADMButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acessarInformacoesADMButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(acessarInformacoesADMButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 13, 150, 150));
 
         sairDoJogoADMButton.setContentAreaFilled(false);
         sairDoJogoADMButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sairDoJogoADMButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairDoJogoADMButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(sairDoJogoADMButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1765, 23, 120, 120));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela de ADM.png"))); // NOI18N
@@ -68,8 +90,28 @@ public class TelaDeADM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultarQuestoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarQuestoesButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        new TelaConsultarPergunta().setVisible(true);
     }//GEN-LAST:event_consultarQuestoesButtonActionPerformed
+
+    private void sairDoJogoADMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairDoJogoADMButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_sairDoJogoADMButtonActionPerformed
+
+    private void consultarAlunosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAlunosButtonActionPerformed
+        this.dispose();
+        new TelaConsultarAluno().setVisible(true);
+    }//GEN-LAST:event_consultarAlunosButtonActionPerformed
+
+    private void acessarInformacoesADMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessarInformacoesADMButtonActionPerformed
+        this.dispose();
+        new TelaConta().setVisible(true);
+    }//GEN-LAST:event_acessarInformacoesADMButtonActionPerformed
+
+    private void ranqueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ranqueButtonActionPerformed
+        this.dispose();
+        new TelaRanque().setVisible(true);
+    }//GEN-LAST:event_ranqueButtonActionPerformed
 
     /**
      * @param args the command line arguments
