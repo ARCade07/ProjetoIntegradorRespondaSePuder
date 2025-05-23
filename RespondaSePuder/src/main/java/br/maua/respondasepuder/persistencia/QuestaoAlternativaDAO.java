@@ -55,8 +55,8 @@ public class QuestaoAlternativaDAO {
                 var rs = ps.executeQuery();
             ) {
                 while (rs.next()) {
-                    var questaoAlternativa = QuestaoAlternativa;
-                    listaQuestaoAlternativaConsulta.add(ehCorreta);
+                    var questaoAlternativa = new QuestaoAlternativa();
+                    listaQuestaoAlternativaConsulta.add(questaoAlternativa);
                 }
             }
         }
