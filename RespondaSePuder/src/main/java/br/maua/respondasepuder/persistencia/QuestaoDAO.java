@@ -69,7 +69,7 @@ public class QuestaoDAO {
         }  
         return listaQuestaoConsulta;
     }
-    public void atualizarQuestao(int identificador, String enunciado, String materia, String nivel) throws Exception {
+    public boolean atualizarQuestao(int identificador, String enunciado, String materia, String nivel) throws Exception {
         var sql = new StringBuilder("UPDATE Questao SET ");
         List<String> camposParaAtualizar = new ArrayList<>();
         List<Object> valores = new ArrayList<>();
@@ -89,7 +89,7 @@ public class QuestaoDAO {
         }
         
         if (camposParaAtualizar.isEmpty()) {
-            return;
+            return false;
         }
         
         sql.append(String.join(", ", camposParaAtualizar));
@@ -103,7 +103,7 @@ public class QuestaoDAO {
             for (int i = 0; i < valores.size(); i++){
                 ps.setObject(i + 1, valores.get(i));
             }
-            ps.executeUpdate();
+            return ps.executeUpdate() > 0;
         }
     }
 }
