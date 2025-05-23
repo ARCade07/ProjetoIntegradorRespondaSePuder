@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.maua.respondarsepuder.telas;
+package br.maua.respondasepuder.telas;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,7 +16,9 @@ public class TelaAutenticarUsuario extends javax.swing.JFrame {
      * Creates new form TelaAutenticarUsuario
      */
     public TelaAutenticarUsuario() {
+        super("Responda se puder");
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -52,10 +56,20 @@ public class TelaAutenticarUsuario extends javax.swing.JFrame {
 
         entrarButton.setContentAreaFilled(false);
         entrarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        entrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entrarButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 630, 460, 100));
 
         esqueceuSenhaButton.setContentAreaFilled(false);
         esqueceuSenhaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        esqueceuSenhaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esqueceuSenhaButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(esqueceuSenhaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 770, 330, 40));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela autenticar usuário.png"))); // NOI18N
@@ -67,6 +81,23 @@ public class TelaAutenticarUsuario extends javax.swing.JFrame {
     private void emailLoginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailLoginTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailLoginTextFieldActionPerformed
+
+    private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
+        var email = emailLoginTextField.getText();
+        var senha = senhaLoginPasswordField.getText();
+        if (email.length() > 0 && senha.length() > 0){
+            this.dispose();
+            new TelaDeADM().setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Insira e-mail e senha");
+        }
+    }//GEN-LAST:event_entrarButtonActionPerformed
+
+    private void esqueceuSenhaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esqueceuSenhaButtonActionPerformed
+        this.dispose();
+        new TelaEsqueciASenha().setVisible(true);
+    }//GEN-LAST:event_esqueceuSenhaButtonActionPerformed
 
     /**
      * @param args the command line arguments
