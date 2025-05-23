@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.maua.respondarsepuder.telas;
+package br.maua.respondasepuder.telas;
 
 /**
  *
@@ -14,8 +14,9 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
      * Creates new form TelaAdicionarAluno
      */
     public TelaConsultarAluno() {
+        super("Responda se puder");
         initComponents();
-    }
+        setLocationRelativeTo(null);    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,6 +65,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         voltarConsultarAlunoButton.setText("jButton1");
         voltarConsultarAlunoButton.setContentAreaFilled(false);
         voltarConsultarAlunoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarConsultarAlunoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarConsultarAlunoButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(voltarConsultarAlunoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 13, 130, 120));
 
         removerAlunoButton.setContentAreaFilled(false);
@@ -132,6 +138,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     private void pesquisarAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarAlunoTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pesquisarAlunoTextFieldActionPerformed
+
+    private void voltarConsultarAlunoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarConsultarAlunoButtonActionPerformed
+        this.dispose();
+        new TelaDeADM().setVisible(true);
+    }//GEN-LAST:event_voltarConsultarAlunoButtonActionPerformed
 
     /**
      * @param args the command line arguments
