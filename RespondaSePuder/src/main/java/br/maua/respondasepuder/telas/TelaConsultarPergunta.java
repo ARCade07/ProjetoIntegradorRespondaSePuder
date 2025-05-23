@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.maua.respondarsepuder.telas;
+package br.maua.respondasepuder.telas;
 
 /**
  *
@@ -90,6 +90,11 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
 
         voltarPerguntaQuestaoButton.setContentAreaFilled(false);
         voltarPerguntaQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarPerguntaQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarPerguntaQuestaoButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(voltarPerguntaQuestaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 23, 120, 120));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela consultar pergunta.png"))); // NOI18N
@@ -101,6 +106,11 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
     private void filtrarDificuldadeComboButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarDificuldadeComboButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_filtrarDificuldadeComboButtonActionPerformed
+
+    private void voltarPerguntaQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarPerguntaQuestaoButtonActionPerformed
+        this.dispose();
+        new TelaDeADM().setVisible(true);
+    }//GEN-LAST:event_voltarPerguntaQuestaoButtonActionPerformed
 
     /**
      * @param args the command line arguments
