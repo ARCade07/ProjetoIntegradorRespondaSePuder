@@ -45,7 +45,8 @@ public class UsuarioDAO {
         }
 
         try (
-                var conexao = new ConnectionFactory().obterConexao(); var ps = conexao.prepareStatement(sql.toString());
+                var conexao = new ConnectionFactory().obterConexao(); 
+                var ps = conexao.prepareStatement(sql.toString());
             ){
                 for (int i = 0; i < parametrosConsulta.size(); i++) {
                 ps.setString(i + 1, parametrosConsulta.get(i));
