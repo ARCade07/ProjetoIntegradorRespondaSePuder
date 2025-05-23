@@ -80,8 +80,50 @@ public class UsuarioDAO {
             try (var rs = ps.executeQuery()){
                 return rs.next();
             }
-                
+    
+    
         }
+    }
+    public boolean atualizarUsuario(int identificador, String nome, String email, String senha) throws Exception{
+        var sql = new StringBuilder("UPDATE Usuario SET ");
+        List<String> camposParaAtualizar = new ArrayList<>();
+        List<Object> valores = new ArrayList<>();
+        if (nome != null && !nome.isEmpty()) {
+            camposParaAtualizar.add("nome = ?");
+            valores.add(nome);
+        }
+        
+        if (email != null && !email.isEmpty()) {
+            camposParaAtualizar.add("email = ?");
+            valores.add(email);
+        }
+        
+        if (senha != null && !senha.isEmpty()) {
+            camposParaAtualizar.add("senha = ?");
+            valores.add(senha);
+        }
+        
+        if (camposParaAtualizar.isEmpty()) {
+            return false;
+        }
+        
+        sql.append(String.join(", ", camposParaAtualizar));
+        sql.append(" WHERE id_usuario = ?");
+        valores.add(identificador);
+        
+        try (
+            var conexao = new ConnectionFactory().obterConexao();
+            var ps = conexao.prepareStatement(sql.toString());
+        ){
+            for(int i = 0; i < valores.size(); i++) {
+                ps.setObject(i + 1, valores.get(i));
+            }
+            return ps.executeUpdate() > 0;
+        
+        }
+           
+        
+        
     }
     
 }
