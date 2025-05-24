@@ -14,4 +14,8 @@ public class Usuario {
     private String senha;
     private Papel papel;
     private static int usuarioLogado;
+    
+    public static void setUsuarioLogado(int id) {
+        usuarioLogado = id;
+    }
 }
