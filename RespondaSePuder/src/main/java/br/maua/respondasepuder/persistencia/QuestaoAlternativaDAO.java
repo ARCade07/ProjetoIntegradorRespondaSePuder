@@ -1,5 +1,7 @@
 package br.maua.respondasepuder.persistencia;
 
+import br.maua.respondasepuder.modelo.Alternativa;
+import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.modelo.QuestaoAlternativa;
 import java.util.*;
 
@@ -61,5 +63,26 @@ public class QuestaoAlternativaDAO {
             }
         }
         return listaQuestaoAlternativaConsulta;
+    }
+    public boolean consultarQuestaoAlternativaID(Questao questao, Alternativa alternativa) throws Exception {
+        boolean alternativaCorreta = false; // variável de retorno
+
+        var sql = "SELECT ehCorreta FROM Questao_Alternativa WHERE id_questao = ? AND id_alternativa = ?";
+
+        try (
+                var conexao = new ConnectionFactory().obterConexao(); var ps = conexao.prepareStatement(sql);) {
+            ps.setInt(1, questao.getIdentificador());
+            ps.setInt(2, alternativa.getIdentificador());
+
+            try (
+                var rs = ps.executeQuery()
+            ){
+                if (rs.next()) {
+                    alternativaCorreta = rs.getBoolean("ehCorreta");
+                }
+            }
+        }
+
+        return alternativaCorreta;
     }
 }
