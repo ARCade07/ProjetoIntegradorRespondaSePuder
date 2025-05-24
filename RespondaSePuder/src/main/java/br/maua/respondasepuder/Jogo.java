@@ -36,7 +36,13 @@ public class Jogo {
         }
     }
     
-    
-
-
+    private boolean verificarResposta(Questao questao, Alternativa alternativaEscolhida) throws Exception {
+        var dao = new QuestaoAlternativaDAO();
+        if (dao.consultarQuestaoAlternativaID(questao, alternativaEscolhida)) {
+            pergunta += 1; 
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
