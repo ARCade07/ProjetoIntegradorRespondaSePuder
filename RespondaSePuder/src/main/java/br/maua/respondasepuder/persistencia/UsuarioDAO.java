@@ -78,7 +78,12 @@ public class UsuarioDAO {
             ps.setString(1, usuario.getEmail());
             ps.setString(2, usuario.getSenha());
             try (var rs = ps.executeQuery()){
-                return rs.next();
+                if (rs.next()) {
+                    int id = rs.getInt("id_usuario");
+                    Usuario.setUsuarioLogado(id);
+                    return true;
+                }
+                return false;
             }
     
     
