@@ -1,5 +1,6 @@
 package br.maua.respondasepuder.persistencia;
 
+import br.maua.respondasepuder.modelo.Materia;
 import br.maua.respondasepuder.modelo.Questao;
 import java.util.*;
 
@@ -42,7 +43,7 @@ public class QuestaoDAO {
     }
     public List<Questao> consultarQuestao(String enunciado, String materia, String nivel) throws Exception{
         List<Questao> listaQuestaoConsulta = new ArrayList<>();
-        var sql = new StringBuilder("SELECT * FROM Questao WHERE 1=1");
+        var sql = new StringBuilder("SELECT * FROM Questao JOIN Materia USING (id_materia) WHERE 1=1");
         List<String> parametrosConsulta = new ArrayList<>();
         if (enunciado != null && !enunciado.isEmpty()) {
             sql.append(" AND enunciado LIKE ?");
