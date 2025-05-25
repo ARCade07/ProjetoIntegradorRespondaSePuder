@@ -14,9 +14,9 @@ public class MateriaDAO {
                 var rs = ps.executeQuery();
         ){
             while(rs.next()) {
-                var codigo = rs.getInt("id_materia");
-                var nome = rs.getString("nome");
-                var materia = new Materia(codigo, nome);
+                var materia = Materia.builder()
+                        .nome(rs.getString("nome"))
+                        .build();
                 materias.add(materia);
             }
         }
