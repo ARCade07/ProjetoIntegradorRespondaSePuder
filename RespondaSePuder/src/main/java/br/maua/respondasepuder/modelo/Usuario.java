@@ -12,4 +12,10 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
+    private Papel papel;
+    private static int usuarioLogado;
+    
+    public static void setUsuarioLogado(int id) {
+        usuarioLogado = id;
+    }
 }
