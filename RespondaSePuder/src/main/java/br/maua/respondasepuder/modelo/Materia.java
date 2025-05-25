@@ -12,4 +12,8 @@ import lombok.Setter;
 public class Materia {
     private int identificador;
     private String nome;
+    
+    public String toString(){
+        return String.format("%s", nome);
+    }
 }
