@@ -1,5 +1,6 @@
 package br.maua.respondasepuder.persistencia;
 
+import br.maua.respondasepuder.modelo.Papel;
 import br.maua.respondasepuder.modelo.Usuario;
 import java.sql.PreparedStatement;
 import java.util.*;
@@ -70,7 +71,7 @@ public class UsuarioDAO {
         return listaUsuarioConsulta;
     }
     public boolean autenticarUsuario(Usuario usuario) throws Exception {
-        var sql = "SELECT email, senha FROM Usuario WHERE email = ? AND senha = ?";
+        var sql = "SELECT id_usuario, id_papel, email, senha FROM Usuario JOIN Papel USING (id_papel) WHERE email = ? AND senha = ?";
         try (
             var conexao = new ConnectionFactory().obterConexao();
             var ps = conexao.prepareStatement(sql);
@@ -80,12 +81,13 @@ public class UsuarioDAO {
             try (var rs = ps.executeQuery()){
                 if (rs.next()) {
                     int id = rs.getInt("id_usuario");
+                    int id_papel = rs.getInt("id_papel");
                     Usuario.setUsuarioLogado(id);
+                    Papel.setIdentificador(id_papel);
                     return true;
                 }
                 return false;
             }
-    
     
         }
     }
