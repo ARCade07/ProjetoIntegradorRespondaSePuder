@@ -7,7 +7,7 @@ import java.util.List;
 public class MateriaDAO {
     public List <Materia> obterMateria() throws Exception {
         var materias = new ArrayList <Materia>();
-        var sql = "SELECT * FROM materia";
+        var sql = "SELECT * FROM Materia";
         try (
                 var conexao = new ConnectionFactory().obterConexao();
                 var ps = conexao.prepareStatement(sql);
