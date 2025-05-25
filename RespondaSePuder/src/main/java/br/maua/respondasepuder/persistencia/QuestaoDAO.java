@@ -45,14 +45,14 @@ public class QuestaoDAO {
     }
     public List<Questao> consultarQuestao(String enunciado, String materia, String nivel) throws Exception{
         List<Questao> listaQuestaoConsulta = new ArrayList<>();
-        var sql = new StringBuilder("SELECT * FROM Questao JOIN Materia USING (id_materia) WHERE 1=1");
+        var sql = new StringBuilder("SELECT * FROM Questao JOIN Materia m USING (id_materia) WHERE 1=1");
         List<String> parametrosConsulta = new ArrayList<>();
         if (enunciado != null && !enunciado.isEmpty()) {
             sql.append(" AND enunciado LIKE ?");
             parametrosConsulta.add("%" + enunciado + "%");
         }
         if (materia != null && !materia.isEmpty()) {
-            sql.append(" AND materia = ?");
+            sql.append(" AND m.nome = ?");
             parametrosConsulta.add(materia);
         }
         if (nivel != null && !nivel.isEmpty()) {
