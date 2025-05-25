@@ -20,4 +20,9 @@ public class Usuario {
     public static void setUsuarioLogado(int id) {
         usuarioLogado = id;
     }
+
+    public static int getUsuarioLogado() {
+        return usuarioLogado;
+    }
+    
 }
