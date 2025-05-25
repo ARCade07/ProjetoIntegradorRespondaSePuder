@@ -101,6 +101,11 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
 
         adicionarPerguntaTextField2.setContentAreaFilled(false);
         adicionarPerguntaTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adicionarPerguntaTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarPerguntaTextField2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(adicionarPerguntaTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 880, 380, 100));
 
         voltarPerguntaQuestaoButton.setContentAreaFilled(false);
@@ -126,6 +131,12 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         this.dispose();
         new TelaDeADM().setVisible(true);
     }//GEN-LAST:event_voltarPerguntaQuestaoButtonActionPerformed
+
+    private void adicionarPerguntaTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarPerguntaTextField2ActionPerformed
+        var TelaAddQuestoes = new TelaAdicionarQuestoes();
+        TelaAddQuestoes.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_adicionarPerguntaTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
