@@ -13,7 +13,7 @@ public class QuestaoDAO {
         ){
             ps.setString(1, questao.getEnunciado());
             ps.setString(2, questao.getNivel());
-            ps.setString(3, questao.getMateria());
+            ps.setObject(3, questao.getMateria());
             ps.execute();
         }
     }
@@ -71,7 +71,7 @@ public class QuestaoDAO {
                     var questao = Questao.builder()
                         .identificador(rs.getInt("id_questao"))
                         .enunciado(rs.getString("enunciado"))
-                        .materia(rs.getString("materia"))
+                        .materia(rs.getObject("nome", Materia.class))
                         .nivel(rs.getString("nivel"))
                         .build();
                     listaQuestaoConsulta.add(questao);
