@@ -5,13 +5,16 @@
 package br.maua.respondasepuder.telas;
 
 import br.maua.respondasepuder.modelo.Alternativa;
+import br.maua.respondasepuder.modelo.Materia;
 import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.modelo.QuestaoAlternativa;
 import br.maua.respondasepuder.persistencia.AlternativaDAO;
+import br.maua.respondasepuder.persistencia.MateriaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +22,20 @@ import javax.swing.JOptionPane;
  * @author Arthur
  */
 public class TelaAdicionarQuestoes extends javax.swing.JFrame {
+    
+    private void obterMateriaComboBox() {
+        try {
+            var dao = new MateriaDAO();
+            var materias = dao.obterMateria();
+            materiaComboBox.setModel(
+                    new DefaultComboBoxModel<Materia>(materias.toArray(new Materia[]{}))
+            );
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lista de matérias");
+        }
+    }
     // Cria a variável enunciado
     private String enunciado;
     // Cria as variáveis alternativas
@@ -46,6 +63,7 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         super("Responda Se Puder");
         initComponents();
         setLocationRelativeTo(null);
+        obterMateriaComboBox();
     }
 
     /**
@@ -111,8 +129,12 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         getContentPane().add(alternativa5TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 700, 1080, 40));
 
         materiaComboBox.setBackground(new java.awt.Color(0, 176, 185));
-        materiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matemática", "Português", "História", "Geografia" }));
         materiaComboBox.setBorder(null);
+        materiaComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materiaComboBoxActionPerformed(evt);
+            }
+        });
         getContentPane().add(materiaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 850, 430, 50));
 
         questaoDificilButton.setContentAreaFilled(false);
@@ -242,7 +264,7 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         try{
             var questao = Questao.builder()
                 .enunciado(enunciado)
-                .materia(materia)
+                //.materia(materia)
                 .nivel(nivel)
                 .build();
             var alter1 = Alternativa.builder()
@@ -313,6 +335,10 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao adicionar questão: " + ex.getMessage());
         }
     }//GEN-LAST:event_adicionarQuestaoButtonActionPerformed
+
+    private void materiaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materiaComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_materiaComboBoxActionPerformed
     private void questaoFacilButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (!clicado) {
             questaoFacilButton.setContentAreaFilled(true);
@@ -394,7 +420,8 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField enunciadoTextField;
     private javax.swing.JLabel imageLabel;
-    private javax.swing.JComboBox<String> materiaComboBox;
+    private javax.swing.JComboBox<Materia
+    > materiaComboBox;
     private javax.swing.JButton questaoDificilButton;
     private javax.swing.JButton questaoFacilButton;
     private javax.swing.JButton questaoMedioButton;
