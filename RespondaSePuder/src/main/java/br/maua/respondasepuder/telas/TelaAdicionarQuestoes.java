@@ -12,6 +12,8 @@ import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.MateriaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -51,7 +53,7 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
     private boolean alternativa4EhCorreta;
     private boolean alternativa5EhCorreta;
     // Cria a variável matéria
-    private String materia;
+    private Materia materia;
     // Cria a variável nível
     private String nivel;
     // Cria variável clicado
@@ -259,13 +261,18 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
         this.alternativa4EhCorreta = alternativa4RadioButton.isSelected();
         this.alternativa5EhCorreta = alternativa5RadioButton.isSelected();
         // Pegar a matéria
-        this.materia = (String) materiaComboBox.getSelectedItem();
+        this.materia =  (Materia) materiaComboBox.getSelectedItem();
         // Modelo de objetos para cadastro na base
+        var dao = new MateriaDAO();
         try{
+            int idMateria = dao.obterMateriaId(materia);
+            var mater = Materia.builder()
+                    .identificador(idMateria)
+                    .build();
             var questao = Questao.builder()
                 .enunciado(enunciado)
-                //.materia(materia)
                 .nivel(nivel)
+                .materia(mater)
                 .build();
             var alter1 = Alternativa.builder()
                     .texto(alternativa1)
@@ -317,14 +324,22 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                     .build(),
                 alternativa5EhCorreta
             );
-            questao.getAlternativas().add(qa1);
-            questao.getAlternativas().add(qa2);
-            questao.getAlternativas().add(qa3);
-            questao.getAlternativas().add(qa4);
-            questao.getAlternativas().add(qa5);
+            List <QuestaoAlternativa> alternativas = new ArrayList<>();
+            alternativas.add(qa1);
+            alternativas.add(qa2);
+            alternativas.add(qa3);
+            alternativas.add(qa4);
+            alternativas.add(qa5);
+            questao.setAlternativas(alternativas);
+            
+            //questao.setAlternativas().add(qa1);
+            //questao.setAlternativas().add(qa2);
+            //questao.setAlternativas().add(qa3);
+            //questao.setAlternativas().add(qa4);
+            //questao.setAlternativas().add(qa5);
         
             var queDAO = new QuestaoDAO();
-            queDAO.adicionarQuestao(questao);
+            queDAO.adicionarQuestao(questao, idMateria);
             var altDAO = new AlternativaDAO();
             altDAO.adicionarAlternativa(alter1);
             altDAO.adicionarAlternativa(alter2);
