@@ -1,6 +1,6 @@
 package br.maua.respondasepuder.modelo;
 
 public class Papel {
-    private int identificador;
+    private static int identificador;
     private String nome;
 }
