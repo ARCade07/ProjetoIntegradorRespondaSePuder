@@ -24,22 +24,20 @@ public class Jogo {
     }
     
     private Questao randomizarPergunta() {
+        var r = new Random();
         if(pergunta < 4){
-            var r = new Random();
             Questao questaoAtual = listaQuestoesFaceis.get(r.nextInt(listaQuestoesFaceis.size()));
             var index = listaQuestoesFaceis.indexOf(questaoAtual);
             listaQuestoesFaceis.remove(index);
             return questaoAtual;
         }
         else if(pergunta < 10){
-            var r = new Random();
             Questao questaoAtual = listaQuestoesMedias.get(r.nextInt(listaQuestoesMedias.size()));
             var index = listaQuestoesMedias.indexOf(questaoAtual);
             listaQuestoesMedias.remove(index);
             return questaoAtual;
         }
         else{
-            var r = new Random();
             Questao questaoAtual = listaQuestoesDificeis.get(r.nextInt(listaQuestoesDificeis.size()));
             var index = listaQuestoesDificeis.indexOf(questaoAtual);
             listaQuestoesDificeis.remove(index);
