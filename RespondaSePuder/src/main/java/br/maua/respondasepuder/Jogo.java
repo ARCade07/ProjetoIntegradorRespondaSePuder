@@ -12,26 +12,38 @@ import java.util.Random;
 
 public class Jogo {
     private int pergunta = 1;
+    List<Questao> listaQuestoesFaceis;
+    List<Questao> listaQuestoesMedias;
+    List<Questao> listaQuestoesDificeis;
     
-    private Questao randomizarPergunta() throws Exception {
-        QuestaoDAO dao = new QuestaoDAO();
-        List<Questao> listaQuestaoConsulta;
-        if(pergunta < 5){
-            listaQuestaoConsulta = (ArrayList<Questao>) dao.consultarQuestao(null, null, "fácil");
+    private void novaPartida() throws Exception {
+        var dao = new QuestaoDAO();
+        listaQuestoesFaceis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "fácil");
+        listaQuestoesMedias = (ArrayList<Questao>) dao.consultarQuestao(null, null, "médio");
+        listaQuestoesDificeis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "difícil");
+    }
+    
+    private Questao randomizarPergunta() {
+        if(pergunta < 4){
+            
             var r = new Random();
-            Questao questaoAtual = listaQuestaoConsulta.get(r.nextInt(listaQuestaoConsulta.size()));
+            Questao questaoAtual = listaQuestoesFaceis.get(r.nextInt(listaQuestoesFaceis.size()));
+            var index = listaQuestoesFaceis.indexOf(questaoAtual);
+            listaQuestoesFaceis.remove(index);
             return questaoAtual;
         }
-        else if(pergunta < 11){
-            listaQuestaoConsulta = (ArrayList<Questao>) dao.consultarQuestao(null, null, "médio");
+        else if(pergunta < 10){
             var r = new Random();
-            Questao questaoAtual = listaQuestaoConsulta.get(r.nextInt(listaQuestaoConsulta.size()));
+            Questao questaoAtual = listaQuestoesMedias.get(r.nextInt(listaQuestoesMedias.size()));
+            var index = listaQuestoesMedias.indexOf(questaoAtual);
+            listaQuestoesMedias.remove(index);
             return questaoAtual;
         }
         else{
-            listaQuestaoConsulta = (ArrayList<Questao>) dao.consultarQuestao(null, null, "difícil");
             var r = new Random();
-            Questao questaoAtual = listaQuestaoConsulta.get(r.nextInt(listaQuestaoConsulta.size()));
+            Questao questaoAtual = listaQuestoesDificeis.get(r.nextInt(listaQuestoesDificeis.size()));
+            var index = listaQuestoesDificeis.indexOf(questaoAtual);
+            listaQuestoesDificeis.remove(index);
             return questaoAtual;
         }
     }
