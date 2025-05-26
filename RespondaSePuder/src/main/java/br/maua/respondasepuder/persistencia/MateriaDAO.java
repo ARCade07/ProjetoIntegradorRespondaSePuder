@@ -7,19 +7,36 @@ import java.util.List;
 public class MateriaDAO {
     public List <Materia> obterMateria() throws Exception {
         var materias = new ArrayList <Materia>();
-        var sql = "SELECT * FROM materia";
+        var sql = "SELECT * FROM Materia";
         try (
                 var conexao = new ConnectionFactory().obterConexao();
                 var ps = conexao.prepareStatement(sql);
                 var rs = ps.executeQuery();
         ){
             while(rs.next()) {
-                var codigo = rs.getInt("id_materia");
-                var nome = rs.getString("nome");
-                var materia = new Materia(codigo, nome);
+                var materia = Materia.builder()
+                        .identificador(rs.getInt("id_materia"))
+                        .nome(rs.getString("nome"))
+                        .build();
                 materias.add(materia);
             }
         }
         return materias;
+    }
+    public int obterMateriaId(Materia materia) throws Exception {
+        var sql = "SELECT id_materia FROM Materia WHERE nome =?";
+        try(
+                var conexao = new ConnectionFactory().obterConexao();
+                var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setString(1, materia.getNome());
+            try (var rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id_materia");
+                }
+            }
+            
+        }
+        return 0;
     }
 }

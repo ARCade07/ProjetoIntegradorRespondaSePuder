@@ -4,17 +4,33 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.modelo.Materia;
+import br.maua.respondasepuder.persistencia.MateriaDAO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Arthur
  */
 public class TelaConsultarPergunta extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaConsultarPergunta
-     */
+    private void obterMateriaComboBox() {
+        try {
+            var dao = new MateriaDAO();
+            var materias = dao.obterMateria();
+            filtrarMateriaComboButton1.setModel(
+                    new DefaultComboBoxModel<Materia>(materias.toArray(new Materia[]{}))
+            );
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lista de matérias");
+        }
+    }
+   
     public TelaConsultarPergunta() {
         initComponents();
+        obterMateriaComboBox();
     }
 
     /**
@@ -67,7 +83,6 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         getContentPane().add(filtrarDificuldadeComboButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 60, 310, 70));
 
         filtrarMateriaComboButton1.setBackground(new java.awt.Color(0, 176, 185));
-        filtrarMateriaComboButton1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Matemática", "Português", "História", "Geografia" }));
         filtrarMateriaComboButton1.setBorder(javax.swing.BorderFactory.createTitledBorder("FIltrar Matéria"));
         getContentPane().add(filtrarMateriaComboButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 62, 310, 70));
 
@@ -86,6 +101,11 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
 
         adicionarPerguntaTextField2.setContentAreaFilled(false);
         adicionarPerguntaTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adicionarPerguntaTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarPerguntaTextField2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(adicionarPerguntaTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 880, 380, 100));
 
         voltarPerguntaQuestaoButton.setContentAreaFilled(false);
@@ -111,6 +131,12 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         this.dispose();
         new TelaDeADM().setVisible(true);
     }//GEN-LAST:event_voltarPerguntaQuestaoButtonActionPerformed
+
+    private void adicionarPerguntaTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarPerguntaTextField2ActionPerformed
+        var TelaAddQuestoes = new TelaAdicionarQuestoes();
+        TelaAddQuestoes.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_adicionarPerguntaTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,7 +178,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
     private javax.swing.JButton atualizarPerguntaTextField;
     private javax.swing.JTable consultarPerguntasTable;
     private javax.swing.JComboBox<String> filtrarDificuldadeComboButton;
-    private javax.swing.JComboBox<String> filtrarMateriaComboButton1;
+    private javax.swing.JComboBox<Materia> filtrarMateriaComboButton1;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField pesquisarPerguntaTextField;

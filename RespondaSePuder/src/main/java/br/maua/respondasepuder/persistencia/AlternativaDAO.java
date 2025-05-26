@@ -6,7 +6,7 @@ import java.util.*;
 
 public class AlternativaDAO {
     public void adicionarAlternativa(Alternativa alternativa) throws Exception {
-        var sql = "INSERT INTO alternativa(texto) VALUES (?)";
+        var sql = "INSERT INTO Alternativa(texto) VALUES (?)";
         try(
             var conexao = new ConnectionFactory().obterConexao();
             var ps = conexao.prepareStatement(sql);
@@ -16,7 +16,7 @@ public class AlternativaDAO {
         }
     }
     public void alterarAlternativa(Alternativa alternativa) throws Exception {
-        var sql = "UPDATE alternativa SET texto = ? WHERE id = ?";
+        var sql = "UPDATE Alternativa SET texto = ? WHERE id = ?";
         try(
             var conexao = new ConnectionFactory().obterConexao();
             var ps = conexao.prepareStatement(sql);
@@ -27,7 +27,7 @@ public class AlternativaDAO {
         }
     }
     public boolean removerQuestao(Alternativa alternativa) throws Exception {
-        var sql = "DELETE FROM alternativa WHERE id_alternativa = ?";
+        var sql = "DELETE FROM Alternativa WHERE id_alternativa = ?";
         try(
             var conexao = new ConnectionFactory().obterConexao();
             var ps = conexao.prepareStatement(sql)
@@ -41,7 +41,7 @@ public class AlternativaDAO {
     }
     public List<Alternativa> consultarAlternativa(Questao questao) throws Exception{
         List<Alternativa> listaAlternativaConsulta = new ArrayList<>();
-        var sql = "SELECT * FROM alternativa WHERE id_questao = ?";
+        var sql = "SELECT * FROM Alternativa WHERE id_questao = ?";
         try(
             var conexao = new ConnectionFactory().obterConexao();
             var ps = conexao.prepareStatement(sql);

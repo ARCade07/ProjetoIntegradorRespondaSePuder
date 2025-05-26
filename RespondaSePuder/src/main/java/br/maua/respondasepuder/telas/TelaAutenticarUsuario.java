@@ -4,6 +4,12 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondarsepuder.telas.TelaDeInicio;
+import br.maua.respondasepuder.modelo.Papel;
+import br.maua.respondasepuder.modelo.Usuario;
+import br.maua.respondasepuder.persistencia.UsuarioDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -85,12 +91,30 @@ public class TelaAutenticarUsuario extends javax.swing.JFrame {
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
         var email = emailLoginTextField.getText();
         var senha = senhaLoginPasswordField.getText();
-        if (email.length() > 0 && senha.length() > 0){
-            this.dispose();
-            new TelaDeADM().setVisible(true);
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Insira e-mail e senha");
+        var u = Usuario.builder()
+                .email(email)
+                .senha(senha)
+                .build();
+        var dao = new UsuarioDAO();
+        try {
+            if (dao.autenticarUsuario(u)) {
+                if (Papel.getIdentificador() == 1) {
+                    var telaInicio = new TelaDeInicio();
+                    telaInicio.setVisible(true);
+                    this.dispose();
+                }
+                else if (Papel.getIdentificador() == 2) {
+                    var telaAdm = new TelaDeADM();
+                    telaAdm.setVisible(true);
+                    this.dispose();
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Insira e-mail e senha");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //Logger.getLogger(TelaAutenticarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_entrarButtonActionPerformed
 
