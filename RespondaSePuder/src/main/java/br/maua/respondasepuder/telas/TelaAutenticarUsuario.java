@@ -4,7 +4,7 @@
  */
 package br.maua.respondasepuder.telas;
 
-import br.maua.respondarsepuder.telas.TelaDeInicio;
+import br.maua.respondasepuder.telas.TelaDeInicio;
 import br.maua.respondasepuder.modelo.Papel;
 import br.maua.respondasepuder.modelo.Usuario;
 import br.maua.respondasepuder.persistencia.UsuarioDAO;
