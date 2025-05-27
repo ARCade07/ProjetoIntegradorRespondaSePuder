@@ -4,9 +4,12 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.Jogo;
 import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Questao;
+import br.maua.respondasepuder.modelo.QuestaoAlternativa;
 import br.maua.respondasepuder.persistencia.AlternativaDAO;
+import br.maua.respondasepuder.persistencia.QuestaoAlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.util.*;
 
@@ -17,24 +20,25 @@ import java.util.*;
 public class TelaPergunta extends javax.swing.JFrame {
     private Questao questao;
     public void montarTela(Questao questao) {
-        AlternativaDAO dao = new AlternativaDAO();
-        List<Alternativa> listaAlternativaConsulta;
+        var dao = new QuestaoAlternativaDAO();
+        List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
         QuestaoDAO questaoDAO = new QuestaoDAO();
         try {
             Questao q = questaoDAO.buscarPorId(questao.getIdentificador(), questao);
-            enunciadoPerguntaLabel.setText(questao.getEnunciado());
-            listaAlternativaConsulta = (ArrayList<Alternativa>) dao.consultarAlternativa(questao);
-            String alternativaA = listaAlternativaConsulta.get(0).getTexto();
+            enunciadoPerguntaLabel.setText(q.getEnunciado());
+            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(q);
+            String alternativaA = listaQuestaoAlternativaConsulta.get(0).getResposta().getTexto();
             alternativaALabel.setText(alternativaA);
-            String alternativaB = listaAlternativaConsulta.get(1).getTexto();
+            String alternativaB = listaQuestaoAlternativaConsulta.get(1).getResposta().getTexto();
             alternativaBLabel.setText(alternativaB);
-            String alternativaC = listaAlternativaConsulta.get(2).getTexto();
+            String alternativaC = listaQuestaoAlternativaConsulta.get(2).getResposta().getTexto();
             alternativaCLabel.setText(alternativaC);
-            String alternativaD = listaAlternativaConsulta.get(3).getTexto();
+            String alternativaD = listaQuestaoAlternativaConsulta.get(3).getResposta().getTexto();
             alternativaDLabel.setText(alternativaD);
-            String alternativaE = listaAlternativaConsulta.get(4).getTexto();
+            String alternativaE = listaQuestaoAlternativaConsulta.get(4).getResposta().getTexto();
             alternativaELabel.setText(alternativaE);
         } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
     /**
@@ -204,7 +208,11 @@ public class TelaPergunta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Questao q = Questao.builder().build();
+                var jogo = new Jogo();
+                var random = jogo.randomizarPergunta();
+                Questao q = Questao.builder()
+                        .identificador(random.getIdentificador())
+                        .build();
                 new TelaPergunta(q).setVisible(true);
             }
         });
