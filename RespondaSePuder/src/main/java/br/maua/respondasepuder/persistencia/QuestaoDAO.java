@@ -134,7 +134,7 @@ public class QuestaoDAO {
         }
     }
     public Questao buscarPorId(int id, Questao questao) throws Exception {       
-        var sql = "SELECT * FROM questoes WHERE id = ?";
+        var sql = "SELECT * FROM Questao WHERE id_questao = ?";
         try(
             var conexao = new ConnectionFactory().obterConexao();
             var ps = conexao.prepareStatement(sql);  
