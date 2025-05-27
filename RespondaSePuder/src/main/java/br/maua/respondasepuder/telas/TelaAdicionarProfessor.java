@@ -103,12 +103,13 @@ public class TelaAdicionarProfessor extends javax.swing.JFrame {
                 .build();
         var dao = new UsuarioDAO();
         try {
-            dao.adicionarUsuario(usuario);   
+            dao.adicionarProfessor(usuario);   
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(
                 null, "Erro ao adicionar professor:" + ex.getMessage()
             );
+        }
     }//GEN-LAST:event_adicionarProfessorButtonActionPerformed
 
     /**
