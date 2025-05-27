@@ -18,6 +18,7 @@ public class Jogo {
     int pergunta;
     int pulos;
     int escudo;
+    int eliminaDuas;
     
     private void novaPartida() throws Exception {
         var dao = new QuestaoDAO();
@@ -27,6 +28,7 @@ public class Jogo {
         pergunta = 1;
         pulos = 2;
         escudo = 1;
+        eliminaDuas = 1;
     }
     
     private Questao randomizarPergunta() {
@@ -113,9 +115,32 @@ public class Jogo {
             JOptionPane.showMessageDialog(null, "VOcê ativou o escudo e agora terá uma nova chance de responder essa pergunta");
         }
         else{
-            JOptionPane.showMessageDialog(null, "Você não pode masi utilzar essa ajuda!");
+            JOptionPane.showMessageDialog(null, "Você não pode mais utilzar essa ajuda!");
         }
         escudo -= 1;
+    }
+    
+    private List<Alternativa> eliminarDuas (Questao questao, Alternativa alternativaCorreta) throws Exception {
+        if(eliminaDuas > 0 && pergunta != 12){
+            var adao = new AlternativaDAO();
+            var qadao = new QuestaoAlternativaDAO();
+            var r = new Random();
+            alternativaCorreta = qadao.alternativaCorreta(questao);
+            List<Alternativa> listaAlternativasQuestao = (ArrayList<Alternativa>) adao.consultarAlternativa(questao);
+            var indexCorreto = listaAlternativasQuestao.indexOf(alternativaCorreta);
+            listaAlternativasQuestao.remove(indexCorreto);
+            for (int i = 0; i < 2; i++) {
+                Alternativa alternativaEliminada = listaAlternativasQuestao.get(r.nextInt(listaAlternativasQuestao.size()));
+                var index = listaAlternativasQuestao.indexOf(alternativaEliminada);
+                listaAlternativasQuestao.remove(index);
+            return listaAlternativasQuestao;
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Você não pode mais utilizar essa ajuda!");
+        }
+        eliminaDuas -= 1;
+        return null;
     }
 }   
     
