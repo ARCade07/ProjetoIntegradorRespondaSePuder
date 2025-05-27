@@ -7,17 +7,19 @@ import java.util.*;
 
 public class QuestaoAlternativaDAO {
     public void adicionarQuestaoAlternativa (QuestaoAlternativa questaoAlternativa) throws Exception{
-        var sql = "INSERT INTO questao_alternativa(alternativa_correta) VALUES (?)";
+        var sql = "INSERT INTO Questao_Alternativa(id_questao, id_alternativa, alternativa_correta) VALUES (?, ?, ?)";
         try(
             var conexao = new ConnectionFactory().obterConexao();
             var ps = conexao.prepareStatement(sql);
         ){
-            ps.setBoolean(1, questaoAlternativa.isAlternativaCorreta());
+            ps.setInt(1, questaoAlternativa.getQuestao().getIdentificador());
+            ps.setInt(2, questaoAlternativa.getResposta().getIdentificador());
+            ps.setBoolean(3, questaoAlternativa.isAlternativaCorreta());
             ps.execute();
         }
     }
     public void alterarQuestaoAlternativa(QuestaoAlternativa questaoAlternativa) throws Exception {
-        var sql = "UPDATE questao_alternativa SET alternativa_correta = ? WHERE id_questao_alternativa = ?)";
+        var sql = "UPDATE Questao_Alternativa SET alternativa_correta = ? WHERE id_questao_alternativa = ?)";
         try (
                 var conexao = new ConnectionFactory().obterConexao(); 
                 var ps = conexao.prepareStatement(sql);
@@ -27,7 +29,7 @@ public class QuestaoAlternativaDAO {
         }
     }
     public boolean removerQuestaoAlternativa(QuestaoAlternativa questaoAlternativa) throws Exception {
-        var sql = "DELETE FROM questao_alternativa WHERE id_questao_alternativa = ?";
+        var sql = "DELETE FROM Questao_Alternativa WHERE id_questao_alternativa = ?";
         try (
                 var conexao = new ConnectionFactory().obterConexao(); 
                 var ps = conexao.prepareStatement(sql);
@@ -40,7 +42,7 @@ public class QuestaoAlternativaDAO {
     }
     public List<QuestaoAlternativa> consultarQuestaoAlternativa(Boolean ehCorreta) throws Exception {
         List<QuestaoAlternativa> listaQuestaoAlternativaConsulta = new ArrayList<>();
-        var sql = new StringBuilder("SELECT * FROM questao_alternativa WHERE 1=1");
+        var sql = new StringBuilder("SELECT * FROM Questao_Alternativa WHERE 1=1");
         List<String> parametrosConsulta = new ArrayList<>();
         if (ehCorreta != null) {
             sql.append("AND ehCorreta LIKE ?");
