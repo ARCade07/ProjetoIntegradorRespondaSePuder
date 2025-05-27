@@ -131,4 +131,29 @@ public class QuestaoAlternativaDAO {
         }
         return null;
     }
+    public List<QuestaoAlternativa> consultarQuestaoAlternativaPorIdQuestao (Questao questao) throws Exception{
+        List<QuestaoAlternativa> listaQuestaoAlternativaConsultaPorIdQuestao = new ArrayList<>();
+        var sql = "SELECT qa.alternativa_correta, a.texto FROM Questao_Alternativa qa JOIN Alternativa a USING(id_alternativa) WHERE qa.id_questao = ?";
+        try (
+            var conexao = new ConnectionFactory().obterConexao(); 
+            var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setInt(1, questao.getIdentificador());
+            try (
+                var rs = ps.executeQuery()
+            ) {
+                while (rs.next()) {
+                    var alternativa = Alternativa.builder()
+                            .texto(rs.getString("texto"))
+                            .build();
+                    var questaoAlternativa = QuestaoAlternativa.builder()
+                            .resposta(alternativa)
+                            .alternativaCorreta(rs.getBoolean("alternativa_correta"))
+                            .build();
+                    listaQuestaoAlternativaConsultaPorIdQuestao.add(questaoAlternativa);
+                }
+            }
+        }  
+        return listaQuestaoAlternativaConsultaPorIdQuestao;
+    }
 }
