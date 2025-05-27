@@ -12,17 +12,21 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class Jogo {
-    int pergunta = 1;
     List<Questao> listaQuestoesFaceis;
     List<Questao> listaQuestoesMedias;
     List<Questao> listaQuestoesDificeis;
-    int pulos = 2;
+    int pergunta;
+    int pulos;
+   
     
     private void novaPartida() throws Exception {
         var dao = new QuestaoDAO();
         listaQuestoesFaceis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "fácil");
         listaQuestoesMedias = (ArrayList<Questao>) dao.consultarQuestao(null, null, "médio");
         listaQuestoesDificeis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "difícil");
+        pergunta = 1;
+        pulos = 2;
+        
     }
     
     private Questao randomizarPergunta() {
@@ -100,6 +104,7 @@ public class Jogo {
         else{
             JOptionPane.showMessageDialog(null, "Você não pode mais utilizar está ajuda!");
         }
+        pulos -= 1;
     }
     
     
