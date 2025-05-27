@@ -7,7 +7,7 @@ import java.util.*;
 
 public class UsuarioDAO {
     public void adicionarUsuario(Usuario usuario) throws Exception {
-        var sql = "INSERT INTO Usuario(nome, email, senha, papel)"
+        var sql = "INSERT INTO Usuario(nome, email, senha, id_papel)"
                 + "VALUES (?, ?, ?, ?)";
         try(
                 var conexao = new ConnectionFactory().obterConexao();
