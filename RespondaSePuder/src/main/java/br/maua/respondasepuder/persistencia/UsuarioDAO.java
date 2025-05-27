@@ -41,12 +41,6 @@ public class UsuarioDAO {
             sql.append(" AND nome LIKE ?");
             parametrosConsulta.add("%" + nome + "%");
         }
-
-        if (email != null && !email.isEmpty()) {
-            sql.append(" AND email = ?");
-            parametrosConsulta.add(email);
-        }
-
         try (
                 var conexao = new ConnectionFactory().obterConexao(); 
                 var ps = conexao.prepareStatement(sql.toString());
