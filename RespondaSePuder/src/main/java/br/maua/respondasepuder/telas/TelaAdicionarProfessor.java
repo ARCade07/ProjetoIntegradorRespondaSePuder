@@ -4,6 +4,10 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.modelo.Usuario;
+import br.maua.respondasepuder.persistencia.UsuarioDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Arthur
@@ -62,11 +66,16 @@ public class TelaAdicionarProfessor extends javax.swing.JFrame {
         getContentPane().add(senhaProfessorTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, 310, 60));
 
         adicionarProfessorButton.setContentAreaFilled(false);
-        adicionarProfessorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adicionarProfessorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        adicionarProfessorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarProfessorButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(adicionarProfessorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 720, 480, 100));
 
         voltarAddProfessorButton.setContentAreaFilled(false);
-        voltarAddProfessorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarAddProfessorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(voltarAddProfessorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 23, 130, 120));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela adicionar professor.png"))); // NOI18N
@@ -82,6 +91,25 @@ public class TelaAdicionarProfessor extends javax.swing.JFrame {
     private void nomeProfessorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeProfessorTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeProfessorTextFieldActionPerformed
+
+    private void adicionarProfessorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarProfessorButtonActionPerformed
+        var nome = nomeProfessorTextField.getText();
+        var email = emailProfessorTextField.getText();
+        var senha = senhaProfessorTextField.getText();
+        var usuario = Usuario.builder()
+                .nome(nome)
+                .email(email)
+                .senha(senha)
+                .build();
+        var dao = new UsuarioDAO();
+        try {
+            dao.adicionarUsuario(usuario);   
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(
+                null, "Erro ao adicionar professor:" + ex.getMessage()
+            );
+    }//GEN-LAST:event_adicionarProfessorButtonActionPerformed
 
     /**
      * @param args the command line arguments
