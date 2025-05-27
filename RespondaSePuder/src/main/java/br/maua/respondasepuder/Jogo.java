@@ -17,7 +17,7 @@ public class Jogo {
     List<Questao> listaQuestoesDificeis;
     int pergunta;
     int pulos;
-   
+    int escudo;
     
     private void novaPartida() throws Exception {
         var dao = new QuestaoDAO();
@@ -26,7 +26,7 @@ public class Jogo {
         listaQuestoesDificeis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "difícil");
         pergunta = 1;
         pulos = 2;
-        
+        escudo = 1;
     }
     
     private Questao randomizarPergunta() {
@@ -99,14 +99,23 @@ public class Jogo {
     
     private void pularQuestao() {
         if(pulos > 0 && pergunta != 12){
-            Questao novaPergunta = randomizarPergunta();
+            var j = new Jogo();
+            Questao novaPergunta = j.randomizarPergunta();
         }
         else{
-            JOptionPane.showMessageDialog(null, "Você não pode mais utilizar está ajuda!");
+            JOptionPane.showMessageDialog(null, "Você não pode mais utilizar esta ajuda!");
         }
         pulos -= 1;
     }
     
-    
+    private void ativarEscudo(boolean acertou) {
+        if(acertou && escudo > 0 && pergunta != 12){
+            JOptionPane.showMessageDialog(null, "VOcê ativou o escudo e agora terá uma nova chance de responder essa pergunta");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Você não pode masi utilzar essa ajuda!");
+        }
+        escudo -= 1;
+    }
 }   
     
