@@ -20,6 +20,20 @@ public class UsuarioDAO {
             ps.execute();
         }
     }
+    public void adicionarProfessor(Usuario usuario) throws Exception {
+        var sql = "INSERT INTO Usuario(nome, email, senha, id_papel)"
+                + "VALUES (?, ?, ?, ?)";
+        try(
+                var conexao = new ConnectionFactory().obterConexao();
+                var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setString(1, usuario.getNome());
+            ps.setString(2, usuario.getEmail());
+            ps.setString(3, usuario.getSenha());
+            ps.setInt(4, 2);
+            ps.execute();
+        }
+    }
     public boolean removerUsuario(Usuario usuario) throws Exception {
         var sql = "DELETE FROM Usuario WHERE id_usuario = ?";
         try(
@@ -32,8 +46,9 @@ public class UsuarioDAO {
         }
        
     }
-    public List<Usuario> consultarUsuario(String nome, String email) throws Exception {
-        List<Usuario> listaUsuarioConsulta = new ArrayList<>();
+    public Object[] consultarUsuario(String nome, String email) throws Exception {
+        List<Object> listaUsuarioConsulta = new ArrayList<>();
+        Object[] array = listaUsuarioConsulta.toArray();
         var sql = new StringBuilder("SELECT nome, email, senha FROM Usuario WHERE 1=1");
         List<String> parametrosConsulta = new ArrayList<>();
 
@@ -60,10 +75,11 @@ public class UsuarioDAO {
                             .senha(rs.getString("senha"))
                             .build();
                     listaUsuarioConsulta.add(usuario);
+                    array = listaUsuarioConsulta.toArray();
                 }
             }
         }
-        return listaUsuarioConsulta;
+        return array;
     }
     public boolean autenticarUsuario(Usuario usuario) throws Exception {
         var sql = "SELECT id_usuario, id_papel, email, senha FROM Usuario JOIN Papel USING (id_papel) WHERE email = ? AND senha = ?";
