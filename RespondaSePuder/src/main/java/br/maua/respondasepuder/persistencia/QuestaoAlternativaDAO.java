@@ -3,19 +3,42 @@ package br.maua.respondasepuder.persistencia;
 import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.modelo.QuestaoAlternativa;
+import java.sql.SQLException;
 import java.util.*;
 
 public class QuestaoAlternativaDAO {
     public void adicionarQuestaoAlternativa (QuestaoAlternativa questaoAlternativa) throws Exception{
         var sql = "INSERT INTO Questao_Alternativa(id_questao, id_alternativa, alternativa_correta) VALUES (?, ?, ?)";
-        try(
-            var conexao = new ConnectionFactory().obterConexao();
-            var ps = conexao.prepareStatement(sql);
-        ){
-            ps.setInt(1, questaoAlternativa.getQuestao().getIdentificador());
-            ps.setInt(2, questaoAlternativa.getResposta().getIdentificador());
-            ps.setBoolean(3, questaoAlternativa.isAlternativaCorreta());
-            ps.execute();
+        var sqlVerificarQuestao = "SELECT COUNT(*) FROM Questao WHERE id_questao = ?";
+        var sqlVerificarAlternativa = "SELECT COUNT(*) FROM Alternativa WHERE id_alternativa = ?";
+        try (var conexao = new ConnectionFactory().obterConexao()){
+            try (var psVerificar = conexao.prepareStatement(sqlVerificarQuestao)){
+                psVerificar.setInt(1, questaoAlternativa.getQuestao().getIdentificador());
+                try (var rsVerificar = psVerificar.executeQuery()){
+                    if (rsVerificar.next() && rsVerificar.getInt(1) == 0){
+                        throw new SQLException("ERRO: Questão com ID " + questaoAlternativa.getQuestao().getIdentificador() + " não existe no banco!");
+                    }
+                }
+            }
+            try (var psVerificarAlt = conexao.prepareStatement(sqlVerificarAlternativa)){
+                psVerificarAlt.setInt(1, questaoAlternativa.getResposta().getIdentificador());
+                try (var rs = psVerificarAlt.executeQuery()) {
+                    if (rs.next() && rs.getInt(1) == 0) {
+                        throw new SQLException("ERRO: Alternativa com ID " + questaoAlternativa.getResposta().getIdentificador() + " não existe!");
+                    }
+                }
+            }    
+            try (var ps = conexao.prepareStatement(sql)){
+                ps.setInt(1, questaoAlternativa.getQuestao().getIdentificador());
+                ps.setInt(2, questaoAlternativa.getResposta().getIdentificador());
+                ps.setBoolean(3, questaoAlternativa.isAlternativaCorreta());
+                
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 0) {
+                    throw new SQLException("Falha ao inserir questão alternativa!");
+                }
+
+            }
         }
     }
     public void alterarQuestaoAlternativa(QuestaoAlternativa questaoAlternativa) throws Exception {
