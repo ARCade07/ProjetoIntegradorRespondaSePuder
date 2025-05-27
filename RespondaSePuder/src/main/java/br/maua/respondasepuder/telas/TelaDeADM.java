@@ -33,13 +33,14 @@ public class TelaDeADM extends javax.swing.JFrame {
         ranqueButton = new javax.swing.JButton();
         acessarInformacoesADMButton = new javax.swing.JButton();
         sairDoJogoADMButton = new javax.swing.JButton();
+        adicionarProfessorButton = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         consultarQuestoesButton.setContentAreaFilled(false);
-        consultarQuestoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        consultarQuestoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         consultarQuestoesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultarQuestoesButtonActionPerformed(evt);
@@ -48,7 +49,7 @@ public class TelaDeADM extends javax.swing.JFrame {
         getContentPane().add(consultarQuestoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 333, 980, 120));
 
         consultarAlunosButton.setContentAreaFilled(false);
-        consultarAlunosButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        consultarAlunosButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         consultarAlunosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultarAlunosButtonActionPerformed(evt);
@@ -57,16 +58,16 @@ public class TelaDeADM extends javax.swing.JFrame {
         getContentPane().add(consultarAlunosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 493, 980, 120));
 
         ranqueButton.setContentAreaFilled(false);
-        ranqueButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ranqueButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ranqueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ranqueButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(ranqueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 653, 700, 100));
+        getContentPane().add(ranqueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 830, 700, 100));
 
         acessarInformacoesADMButton.setContentAreaFilled(false);
-        acessarInformacoesADMButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        acessarInformacoesADMButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         acessarInformacoesADMButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 acessarInformacoesADMButtonActionPerformed(evt);
@@ -75,13 +76,17 @@ public class TelaDeADM extends javax.swing.JFrame {
         getContentPane().add(acessarInformacoesADMButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 13, 150, 150));
 
         sairDoJogoADMButton.setContentAreaFilled(false);
-        sairDoJogoADMButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sairDoJogoADMButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         sairDoJogoADMButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairDoJogoADMButtonActionPerformed(evt);
             }
         });
         getContentPane().add(sairDoJogoADMButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1765, 23, 120, 120));
+
+        adicionarProfessorButton.setContentAreaFilled(false);
+        adicionarProfessorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(adicionarProfessorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 660, 710, 120));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela de ADM.png"))); // NOI18N
         getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -60, -1, -1));
@@ -150,6 +155,7 @@ public class TelaDeADM extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acessarInformacoesADMButton;
+    private javax.swing.JButton adicionarProfessorButton;
     private javax.swing.JButton consultarAlunosButton;
     private javax.swing.JButton consultarQuestoesButton;
     private javax.swing.JLabel imageLabel;
