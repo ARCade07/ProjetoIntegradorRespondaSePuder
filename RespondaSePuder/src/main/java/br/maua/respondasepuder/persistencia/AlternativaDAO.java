@@ -2,18 +2,29 @@ package br.maua.respondasepuder.persistencia;
 
 import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Questao;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 public class AlternativaDAO {
-    public void adicionarAlternativa(Alternativa alternativa) throws Exception {
+    public int adicionarAlternativa(Alternativa alternativa) throws Exception {
         var sql = "INSERT INTO Alternativa(texto) VALUES (?)";
         try(
             var conexao = new ConnectionFactory().obterConexao();
-            var ps = conexao.prepareStatement(sql);
+            var ps = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ){
             ps.setString(1, alternativa.getTexto());
             ps.execute();
+            
+            try (var rs = ps.getGeneratedKeys()){
+                if(rs.next()){
+                    int idGerado = rs.getInt(1);
+                    alternativa.setIdentificador(idGerado);
+                    return idGerado;
+                }
+            }
         }
+        throw new SQLException("Falha ao obter ID");
     }
     public void alterarAlternativa(Alternativa alternativa) throws Exception {
         var sql = "UPDATE Alternativa SET texto = ? WHERE id = ?";
