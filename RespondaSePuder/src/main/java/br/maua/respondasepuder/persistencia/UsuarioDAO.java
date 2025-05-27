@@ -59,12 +59,12 @@ public class UsuarioDAO {
                     var rs = ps.executeQuery();
                 ){
                 while (rs.next()) {
-                    var usuario = new Usuario(
-                            rs.getInt("id_usuario"),
-                            rs.getString("nome"),
-                            rs.getString("email"),
-                            rs.getString("senha")
-                    );
+                    var usuario = Usuario.builder()
+                            .identificador(rs.getInt("id_usuario"))
+                            .nome(rs.getString("nome"))
+                            .email(rs.getString("email"))
+                            .senha(rs.getString("senha"))
+                            .build();
                     listaUsuarioConsulta.add(usuario);
                 }
             }
