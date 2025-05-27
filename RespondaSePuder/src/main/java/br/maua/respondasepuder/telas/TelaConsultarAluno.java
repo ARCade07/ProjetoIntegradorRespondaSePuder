@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.maua.respondasepuder.telas;
-
+import br.maua.respondasepuder.modelo.Usuario;
+import br.maua.respondasepuder.persistencia.UsuarioDAO;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Arthur
@@ -64,7 +66,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
 
         voltarConsultarAlunoButton.setText("jButton1");
         voltarConsultarAlunoButton.setContentAreaFilled(false);
-        voltarConsultarAlunoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarConsultarAlunoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         voltarConsultarAlunoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 voltarConsultarAlunoButtonActionPerformed(evt);
@@ -73,7 +75,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         getContentPane().add(voltarConsultarAlunoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 13, 130, 120));
 
         removerAlunoButton.setContentAreaFilled(false);
-        removerAlunoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        removerAlunoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         removerAlunoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removerAlunoButtonActionPerformed(evt);
@@ -82,11 +84,16 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         getContentPane().add(removerAlunoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 870, 370, 100));
 
         adicionarAlunoButton1.setContentAreaFilled(false);
-        adicionarAlunoButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adicionarAlunoButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        adicionarAlunoButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarAlunoButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(adicionarAlunoButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 700, 470, 100));
 
         atualizarAlunoButton1.setContentAreaFilled(false);
-        atualizarAlunoButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        atualizarAlunoButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         atualizarAlunoButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atualizarAlunoButton1ActionPerformed(evt);
@@ -143,6 +150,29 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         this.dispose();
         new TelaDeADM().setVisible(true);
     }//GEN-LAST:event_voltarConsultarAlunoButtonActionPerformed
+
+    private void adicionarAlunoButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarAlunoButton1ActionPerformed
+        var nome = nomeAlunoTextField.getText();
+        var email = emailAlunoTextField.getText();
+        var senha = senhaAlunoTextField.getText();
+        var usuario = Usuario.builder()
+                .nome(nome)
+                .email(email)
+                .senha(senha)
+                .build();
+        var dao = new UsuarioDAO();
+        try {
+            dao.adicionarUsuario(usuario);
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(
+                null, "Erro ao adicionar aluno:" + ex.getMessage()
+            );
+            
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adicionarAlunoButton1ActionPerformed
 
     /**
      * @param args the command line arguments
