@@ -34,7 +34,7 @@ public class UsuarioDAO {
     }
     public List<Usuario> consultarUsuario(String nome, String email) throws Exception {
         List<Usuario> listaUsuarioConsulta = new ArrayList<>();
-        var sql = new StringBuilder("SELECT * FROM Usuario WHERE 1=1");
+        var sql = new StringBuilder("SELECT nome, email, senha FROM Usuario WHERE 1=1");
         List<String> parametrosConsulta = new ArrayList<>();
 
         if (nome != null && !nome.isEmpty()) {
