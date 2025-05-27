@@ -3,6 +3,9 @@ package br.maua.respondasepuder.persistencia;
 import br.maua.respondasepuder.modelo.Materia;
 import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.modelo.Usuario;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 public class QuestaoDAO {
@@ -10,13 +13,24 @@ public class QuestaoDAO {
         var sql = "INSERT INTO Questao(enunciado, nivel, id_materia, id_professor) VALUES (?, ?, ?, ?)";
         try(
             var conexao = new ConnectionFactory().obterConexao();
-            var ps = conexao.prepareStatement(sql);
+            var ps = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ){
             ps.setString(1, questao.getEnunciado());
             ps.setString(2, questao.getNivel());
             ps.setInt(3, idMateria);
             ps.setInt(4, Usuario.getUsuarioLogado() - 1);
             ps.executeUpdate();
+            
+            try(ResultSet rs = ps.getGeneratedKeys()){
+                if (rs.next()){
+                    int idQuestaoGerado = rs.getInt(1);
+                    System.out.println("DEBUG: ID da questão gerada: " + idQuestaoGerado);
+                    return idQuestaoGerado;
+                }
+                else {
+                    throw new SQLException("Falha ao obter o ID da questão inserida.");
+                }
+            }
         }
     }
     public void alterarQuestao(Questao questao) throws Exception {
