@@ -9,6 +9,7 @@ import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 public class Jogo {
     int pergunta = 1;
@@ -89,6 +90,15 @@ public class Jogo {
                 
             }
             return pontuacao;
+        }
+    }
+    
+    private void pularQuestao() {
+        if(pulos > 0 && pergunta != 12){
+            Questao novaPergunta = randomizarPergunta();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Você não pode mais utilizar está ajuda!");
         }
     }
     
