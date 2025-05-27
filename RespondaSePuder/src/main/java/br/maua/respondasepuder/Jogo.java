@@ -55,6 +55,43 @@ public class Jogo {
         }
     }
     
+    private int receberPontuacao (int pergunta, boolean acertou) {
+        if(acertou){
+            int [] valorPergunta = {1000, 5000, 10000, 25000, 50000, 75000, 100000, 150000, 250000, 400000, 500000, 1000000};
+            return valorPergunta[pergunta - 1];
+        }
+        else{
+            int [] valorPergunta = {0, 500, 2500, 10000, 100000, 400000};
+            int pontuacao;
+            switch(pergunta){
+                case 2:
+                    pontuacao = valorPergunta[1];
+                    break;
+                case 3:
+                    pontuacao = valorPergunta[2];
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                    pontuacao = valorPergunta[3];
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                    pontuacao = valorPergunta[4];
+                    break;
+                case 10:
+                case 11:
+                    pontuacao = valorPergunta[5];
+                    break;
+                default:
+                    pontuacao = valorPergunta[0];
+                
+            }
+            return pontuacao;
+        }
+    }
+    
     
 }   
     
