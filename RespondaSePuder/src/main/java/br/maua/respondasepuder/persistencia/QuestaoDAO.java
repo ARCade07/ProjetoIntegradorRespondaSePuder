@@ -6,7 +6,7 @@ import br.maua.respondasepuder.modelo.Usuario;
 import java.util.*;
 
 public class QuestaoDAO {
-    public void adicionarQuestao(Questao questao, int idMateria) throws Exception {
+    public int adicionarQuestao(Questao questao, int idMateria) throws Exception {
         var sql = "INSERT INTO Questao(enunciado, nivel, id_materia, id_professor) VALUES (?, ?, ?, ?)";
         try(
             var conexao = new ConnectionFactory().obterConexao();
@@ -16,7 +16,7 @@ public class QuestaoDAO {
             ps.setString(2, questao.getNivel());
             ps.setInt(3, idMateria);
             ps.setInt(4, Usuario.getUsuarioLogado() - 1);
-            ps.execute();
+            ps.executeUpdate();
         }
     }
     public void alterarQuestao(Questao questao) throws Exception {
