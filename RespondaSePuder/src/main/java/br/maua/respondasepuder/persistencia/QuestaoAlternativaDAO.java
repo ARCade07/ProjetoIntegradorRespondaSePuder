@@ -67,7 +67,6 @@ public class QuestaoAlternativaDAO {
         return listaQuestaoAlternativaConsulta;
     }
     public boolean consultarQuestaoAlternativaID(Questao questao, Alternativa alternativa) throws Exception {
-        boolean alternativaCorreta = false; // variável de retorno
 
         var sql = "SELECT ehCorreta FROM Questao_Alternativa WHERE id_questao = ? AND id_alternativa = ?";
 
@@ -80,11 +79,33 @@ public class QuestaoAlternativaDAO {
                 var rs = ps.executeQuery()
             ){
                 if (rs.next()) {
-                    alternativaCorreta = rs.getBoolean("ehCorreta");
+                    var alternativaEhCorreta = rs.getBoolean("ehCorreta");
                 }
             }
         }
 
-        return alternativaCorreta;
+        return false;
+    }
+    public Alternativa alternativaCorreta(Questao questao) throws Exception {
+        var sql = "SELECT a.texto FROM Alternativa a JOIN Questao_Alternativa USING(id_alternativa) JOIN Questao USING(id_questao) WHERE id_questao =?";
+        try (
+            var conexao = new ConnectionFactory().obterConexao(); 
+            var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setInt(1, questao.getIdentificador());
+
+            try (
+                var rs = ps.executeQuery()
+            ){
+                if (rs.next()) {
+                    var alternativaCorreta = Alternativa.builder()
+                           .identificador(rs.getInt("id_alternativa"))
+                           .texto(rs.getString("texto"))
+                           .build();
+                    return alternativaCorreta;
+                }
+            }
+        }
+        return null;
     }
 }
