@@ -275,6 +275,8 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                 .nivel(nivel)
                 .materia(mater)
                 .build();
+            var queDAO = new QuestaoDAO();
+            int idQuestaoGerada = queDAO.adicionarQuestao(questao, idMateria);
             var alter1 = Alternativa.builder()
                     .texto(alternativa1)
                     .build();
@@ -290,31 +292,11 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
             var alter5 = Alternativa.builder()
                     .texto(alternativa5)
                     .build();
-            var qa1 = new QuestaoAlternativa(
-                questao,
-                alter1,
-                alternativa1EhCorreta
-            );
-            var qa2 = new QuestaoAlternativa(
-                questao,
-                alter2,
-                alternativa2EhCorreta
-            );
-            var qa3 = new QuestaoAlternativa(
-                questao,
-                alter3,
-                alternativa3EhCorreta
-            );
-            var qa4 = new QuestaoAlternativa(
-                questao,
-                alter4,
-                alternativa4EhCorreta
-            );
-            var qa5 = new QuestaoAlternativa(
-                questao,
-                alter5,
-                alternativa5EhCorreta
-            );
+            var qa1 = new QuestaoAlternativa();
+            var qa2 = new QuestaoAlternativa();
+            var qa3 = new QuestaoAlternativa();
+            var qa4 = new QuestaoAlternativa();
+            var qa5 = new QuestaoAlternativa();
             List <QuestaoAlternativa> alternativas = new ArrayList<>();
             alternativas.add(qa1);
             alternativas.add(qa2);
@@ -322,16 +304,42 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
             alternativas.add(qa4);
             alternativas.add(qa5);
             questao.setAlternativas(alternativas);
-        
-            var queDAO = new QuestaoDAO();
-            queDAO.adicionarQuestao(questao, idMateria);
+            
+            var questaoRef = Questao.builder().build();
+            questaoRef.setIdentificador(idQuestaoGerada);
+            
+            qa1.setQuestao(questaoRef);
+            qa1.setResposta(alter1);
+            qa1.setAlternativaCorreta(alternativa1EhCorreta);
+            
+            qa2.setQuestao(questaoRef);
+            qa2.setResposta(alter2);
+            qa2.setAlternativaCorreta(alternativa2EhCorreta);
+            
+            qa3.setQuestao(questaoRef);
+            qa3.setResposta(alter3);
+            qa3.setAlternativaCorreta(alternativa3EhCorreta);
+            
+            qa4.setQuestao(questaoRef);
+            qa4.setResposta(alter4);
+            qa4.setAlternativaCorreta(alternativa4EhCorreta);
+            
+            qa5.setQuestao(questaoRef);
+            qa5.setResposta(alter5);
+            qa5.setAlternativaCorreta(alternativa5EhCorreta);
             
             var altDAO = new AlternativaDAO();
-            altDAO.adicionarAlternativa(alter1);
-            altDAO.adicionarAlternativa(alter2);
-            altDAO.adicionarAlternativa(alter3);
-            altDAO.adicionarAlternativa(alter4);
-            altDAO.adicionarAlternativa(alter5);
+            int idAlt1 = altDAO.adicionarAlternativa(alter1);
+            int idAlt2 = altDAO.adicionarAlternativa(alter2);
+            int idAlt3 = altDAO.adicionarAlternativa(alter3);
+            int idAlt4 = altDAO.adicionarAlternativa(alter4);
+            int idAlt5 = altDAO.adicionarAlternativa(alter5);
+            
+            alter1.setIdentificador(idAlt1);
+            alter2.setIdentificador(idAlt2);
+            alter3.setIdentificador(idAlt3);
+            alter4.setIdentificador(idAlt4);
+            alter5.setIdentificador(idAlt5);
             
             var queAltDAO = new QuestaoAlternativaDAO();
             queAltDAO.adicionarQuestaoAlternativa(qa1);
@@ -340,6 +348,7 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
             queAltDAO.adicionarQuestaoAlternativa(qa4);
             queAltDAO.adicionarQuestaoAlternativa(qa5);
             
+            JOptionPane.showMessageDialog(null, "Questão cadastrada com sucesso!!!");
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Erro ao adicionar questão: " + ex.getMessage());
         }
