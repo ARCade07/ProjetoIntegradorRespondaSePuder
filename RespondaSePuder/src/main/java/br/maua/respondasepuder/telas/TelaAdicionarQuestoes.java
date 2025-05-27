@@ -11,6 +11,7 @@ import br.maua.respondasepuder.modelo.QuestaoAlternativa;
 import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.MateriaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
+import br.maua.respondasepuder.persistencia.QuestaoAlternativaDAO;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -291,37 +292,27 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
                     .build();
             var qa1 = new QuestaoAlternativa(
                 questao,
-                Alternativa.builder()
-                    .texto (alternativa1)
-                    .build(),
+                alter1,
                 alternativa1EhCorreta
             );
             var qa2 = new QuestaoAlternativa(
                 questao,
-                Alternativa.builder()
-                    .texto (alternativa2)
-                    .build(),
+                alter2,
                 alternativa2EhCorreta
             );
             var qa3 = new QuestaoAlternativa(
                 questao,
-                Alternativa.builder()
-                    .texto (alternativa3)
-                    .build(),
+                alter3,
                 alternativa3EhCorreta
             );
             var qa4 = new QuestaoAlternativa(
                 questao,
-                Alternativa.builder()
-                    .texto (alternativa4)
-                    .build(),
+                alter4,
                 alternativa4EhCorreta
             );
             var qa5 = new QuestaoAlternativa(
                 questao,
-                Alternativa.builder()
-                    .texto (alternativa5)
-                    .build(),
+                alter5,
                 alternativa5EhCorreta
             );
             List <QuestaoAlternativa> alternativas = new ArrayList<>();
@@ -331,21 +322,24 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
             alternativas.add(qa4);
             alternativas.add(qa5);
             questao.setAlternativas(alternativas);
-            
-            //questao.setAlternativas().add(qa1);
-            //questao.setAlternativas().add(qa2);
-            //questao.setAlternativas().add(qa3);
-            //questao.setAlternativas().add(qa4);
-            //questao.setAlternativas().add(qa5);
         
             var queDAO = new QuestaoDAO();
             queDAO.adicionarQuestao(questao, idMateria);
+            
             var altDAO = new AlternativaDAO();
             altDAO.adicionarAlternativa(alter1);
             altDAO.adicionarAlternativa(alter2);
             altDAO.adicionarAlternativa(alter3);
             altDAO.adicionarAlternativa(alter4);
             altDAO.adicionarAlternativa(alter5);
+            
+            var queAltDAO = new QuestaoAlternativaDAO();
+            queAltDAO.adicionarQuestaoAlternativa(qa1);
+            queAltDAO.adicionarQuestaoAlternativa(qa2);
+            queAltDAO.adicionarQuestaoAlternativa(qa3);
+            queAltDAO.adicionarQuestaoAlternativa(qa4);
+            queAltDAO.adicionarQuestaoAlternativa(qa5);
+            
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Erro ao adicionar questão: " + ex.getMessage());
         }
