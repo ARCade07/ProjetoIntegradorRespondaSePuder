@@ -144,4 +144,19 @@ public class UsuarioDAO {
         
     }
     
+    public int identificarID(String nome, String email, String senha) throws Exception {
+        var sql = "SELECT id_usuario FROM Usuario WHERE nome = ?, email = ?, senha = ?";
+        try (
+            var conexao = new ConnectionFactory().obterConexao();
+            var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setString(1, nome);
+            ps.setString(2, email);
+            ps.setString(3, senha);
+            var rs = ps.executeQuery();
+            int id = rs.getInt("id_usuario");
+            return id;
+            
+        }         
+    }
 }
