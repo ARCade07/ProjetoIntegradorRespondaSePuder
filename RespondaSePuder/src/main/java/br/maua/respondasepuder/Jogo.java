@@ -31,7 +31,8 @@ public class Jogo {
         eliminaDuas = 1;
     }
     
-    public Questao randomizarPergunta() {
+    public Questao randomizarPergunta() throws Exception {
+        novaPartida();
         var r = new Random();
         if(pergunta < 4){
             Questao questaoAtual = listaQuestoesFaceis.get(r.nextInt(listaQuestoesFaceis.size()));
