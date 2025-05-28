@@ -4,10 +4,16 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Materia;
+import br.maua.respondasepuder.modelo.Questao;
+import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.MateriaDAO;
+import br.maua.respondasepuder.persistencia.QuestaoDAO;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,10 +33,37 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lista de matérias");
         }
     }
+    private void mostrarQuestoes(){
+        DefaultTableModel model = (DefaultTableModel) consultarPerguntasTable.getModel(); 
+        model.setRowCount(0);
+        var qdao = new QuestaoDAO();
+        var adao = new AlternativaDAO();
+        try {
+            List<Questao> listaQuestoes = qdao.consultarQuestao(null, null, null);
+            Object[]linha = new Object[8];
+            for(int i = 0; i < listaQuestoes.size(); i++){
+                var q = listaQuestoes.get(i);
+                List<Alternativa> listaAlternativas = adao.consultarAlternativa(q);
+                linha[0] = q.getEnunciado();
+                for(int j= 0; j < 5; j++){
+                    linha[j + 1] = listaAlternativas.get(j).getTexto();
+                    i++;
+                }
+                linha[6] = q.getMateria().getNome();
+                linha[7] = q.getNivel();
+                model.addRow(linha);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Não foi possível conectar-se ao banco de dados");
+        }
+    }
+
    
     public TelaConsultarPergunta() {
         initComponents();
         obterMateriaComboBox();
+        mostrarQuestoes();
     }
 
     /**
