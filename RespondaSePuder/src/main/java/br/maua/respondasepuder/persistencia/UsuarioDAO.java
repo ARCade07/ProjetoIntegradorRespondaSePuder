@@ -79,6 +79,7 @@ public class UsuarioDAO {
                 }
             }
         }
+        return listaUsuarioConsulta.toArray();
     }
     public boolean autenticarUsuario(Usuario usuario) throws Exception {
         var sql = "SELECT id_usuario, id_papel, email, senha FROM Usuario JOIN Papel USING (id_papel) WHERE email = ? AND senha = ?";
