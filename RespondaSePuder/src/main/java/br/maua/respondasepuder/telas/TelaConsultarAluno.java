@@ -230,6 +230,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
 
     private void pesquisarAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarAlunoTextFieldActionPerformed
         // TODO add your handling code here:
+        try {
+            carregarUsuarios();
+        } catch (Exception ex) {
+            //Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_pesquisarAlunoTextFieldActionPerformed
 
     private void voltarConsultarAlunoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarConsultarAlunoButtonActionPerformed
