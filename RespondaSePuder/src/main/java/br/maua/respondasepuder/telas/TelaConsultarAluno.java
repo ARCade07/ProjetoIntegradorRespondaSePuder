@@ -121,6 +121,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         nomeAlunoTextField.setBackground(new java.awt.Color(0, 176, 185));
         nomeAlunoTextField.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         nomeAlunoTextField.setBorder(null);
+        nomeAlunoTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeAlunoTextFieldActionPerformed(evt);
+            }
+        });
         getContentPane().add(nomeAlunoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 222, 320, 60));
 
         voltarConsultarAlunoButton.setText("jButton1");
@@ -303,6 +308,10 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
             senhaAlunoTextField.setText("");
         }
     }//GEN-LAST:event_consultarAlunosTableMouseClicked
+
+    private void pesquisarAlunoTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pesquisarAlunoTextFieldKeyReleased
+      
+    }//GEN-LAST:event_pesquisarAlunoTextFieldKeyReleased
 
     /**
      * @param args the command line arguments
