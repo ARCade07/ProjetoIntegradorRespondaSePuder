@@ -58,6 +58,23 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não foi possível conectar-se ao banco de dados");
         }
     }
+    
+    private void removerQuestao(){
+        try{
+            DefaultTableModel model = (DefaultTableModel) consultarPerguntasTable.getModel();
+            var dao = new QuestaoDAO();
+            int linhaSelecionada = -1;
+            linhaSelecionada = consultarPerguntasTable.getSelectedRow();
+            String enunciado = (String) model.getValueAt(linhaSelecionada, 0);
+            List<Questao> questao = dao.consultarQuestao(enunciado, null, null);
+            var questaoRemovida = questao.get(0);
+            dao.removerQuestao(questaoRemovida);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao remover a questao, tente novamente!");
+        }
+    }
 
    
     public TelaConsultarPergunta() {
