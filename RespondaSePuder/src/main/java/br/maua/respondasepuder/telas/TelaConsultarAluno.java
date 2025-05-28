@@ -208,7 +208,20 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_removerAlunoButtonActionPerformed
 
     private void atualizarAlunoButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarAlunoButton1ActionPerformed
-        // TODO add your handling code here:
+        var dao = new UsuarioDAO();
+        try {
+            int id = dao.identificarID(nomeAlunoTextField.getText(), emailAlunoTextField.getText(), senhaAlunoTextField.getText());
+            dao.atualizarUsuario(id, nomeAlunoTextField.getText(), emailAlunoTextField.getText(), senhaAlunoTextField.getText());
+        } catch (Exception ex) {
+            Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            carregarUsuarios();
+
+            // TODO add your handling code here:
+        } catch (Exception ex) {
+            //Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_atualizarAlunoButton1ActionPerformed
 
     private void senhaAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaAlunoTextFieldActionPerformed
