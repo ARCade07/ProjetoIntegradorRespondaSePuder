@@ -30,6 +30,27 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         consultarAlunosTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         consultarAlunosTable.getTableHeader().setReorderingAllowed(false);
     }
+    public void carregarUsuarios() throws Exception {
+        modeloTabela.setRowCount(0);
+        try {
+            var dao = new UsuarioDAO();
+            Object [] usuarios = dao.consultarUsuario(pesquisarAlunoTextField.getText());
+            for (Object objeto : usuarios) {
+                var usuario = (Usuario) objeto;
+                Object[] linha = {
+                    usuario.getIdentificador(),
+                    usuario.getNome(),
+                    usuario.getEmail(),
+                    usuario.getSenha(),
+                };
+                modeloTabela.addRow(linha);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar usuários");
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
