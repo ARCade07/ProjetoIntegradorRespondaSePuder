@@ -261,6 +261,17 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
             );
             
         }
+        try {
+            carregarUsuarios();
+            
+            // TODO add your handling code here:
+        } catch (Exception ex) {
+            //Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_adicionarAlunoButton1ActionPerformed
+
+    private void nomeAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeAlunoTextFieldActionPerformed
+        
         
         // TODO add your handling code here:
     }//GEN-LAST:event_adicionarAlunoButton1ActionPerformed
