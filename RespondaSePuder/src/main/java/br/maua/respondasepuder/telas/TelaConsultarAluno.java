@@ -6,6 +6,8 @@ package br.maua.respondasepuder.telas;
 import br.maua.respondasepuder.modelo.Usuario;
 import br.maua.respondasepuder.persistencia.UsuarioDAO;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
 /**
  *
  * @author Arthur
@@ -16,9 +18,18 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
      * Creates new form TelaAdicionarAluno
      */
     public TelaConsultarAluno() {
+    private DefaultTableModel modeloTabela;
         super("Responda se puder");
         initComponents();
         setLocationRelativeTo(null);    }
+    private void configurarTabela() {
+        String[] colunas = {"ID", "Nome", "Email", "Senha"};
+        modeloTabela = new DefaultTableModel(colunas, 0);
+        consultarAlunosTable.setModel(modeloTabela);
+        consultarAlunosTable.setRowHeight(25);
+        consultarAlunosTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        consultarAlunosTable.getTableHeader().setReorderingAllowed(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
