@@ -87,7 +87,10 @@ public class QuestaoDAO {
                     var questao = Questao.builder()
                         .identificador(rs.getInt("id_questao"))
                         .enunciado(rs.getString("enunciado"))
-                        .materia(rs.getObject("nome", Materia.class))
+                        .materia(new Materia(
+                            rs.getInt("id_materia"),
+                            rs.getString("nome")
+                        ))
                         .nivel(rs.getString("nivel"))
                         .build();
                     listaQuestaoConsulta.add(questao);
