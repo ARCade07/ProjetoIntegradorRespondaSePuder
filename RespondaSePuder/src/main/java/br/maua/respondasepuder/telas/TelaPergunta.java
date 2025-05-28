@@ -12,6 +12,7 @@ import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoAlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -92,6 +93,11 @@ public class TelaPergunta extends javax.swing.JFrame {
 
         alternativaAButton.setBackground(new java.awt.Color(179, 73, 12));
         alternativaAButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaAButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alternativaAButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(alternativaAButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 760, 60));
 
         alternativaBLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -100,6 +106,11 @@ public class TelaPergunta extends javax.swing.JFrame {
 
         alternativaBButton.setBackground(new java.awt.Color(179, 73, 12));
         alternativaBButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaBButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alternativaBButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(alternativaBButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 760, 60));
 
         alternativaCLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -121,6 +132,11 @@ public class TelaPergunta extends javax.swing.JFrame {
 
         alternativaDButton.setBackground(new java.awt.Color(179, 73, 12));
         alternativaDButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaDButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alternativaDButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(alternativaDButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, 760, 60));
 
         alternativaELabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -129,6 +145,11 @@ public class TelaPergunta extends javax.swing.JFrame {
 
         alternativaEButton.setBackground(new java.awt.Color(179, 73, 12));
         alternativaEButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaEButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alternativaEButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(alternativaEButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 650, 760, 60));
 
         eliminarDuasButton.setContentAreaFilled(false);
@@ -171,12 +192,88 @@ public class TelaPergunta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void alternativaCButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaCButtonActionPerformed
-        // TODO add your handling code here:
+        new TelaConfirmarResposta();
+        this.dispose();
+        var jogo = new Jogo();
+        var dao = new QuestaoAlternativaDAO();
+        try {
+            List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
+            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(this.questao);
+            var alternativa = listaQuestaoAlternativaConsulta.get(2).getResposta();
+            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
+            JOptionPane.showMessageDialog(null, verificarResposta);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_alternativaCButtonActionPerformed
 
     private void pularQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pularQuestaoButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pularQuestaoButtonActionPerformed
+
+    private void alternativaAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaAButtonActionPerformed
+        new TelaConfirmarResposta();
+        this.dispose();
+        var jogo = new Jogo();
+        var dao = new QuestaoAlternativaDAO();
+        try {
+            List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
+            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(this.questao);
+            var alternativa = listaQuestaoAlternativaConsulta.get(0).getResposta();
+            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
+            JOptionPane.showMessageDialog(null, verificarResposta);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_alternativaAButtonActionPerformed
+
+    private void alternativaBButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaBButtonActionPerformed
+        new TelaConfirmarResposta();
+        this.dispose();
+        var jogo = new Jogo();
+        var dao = new QuestaoAlternativaDAO();
+        try {
+            List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
+            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(this.questao);
+            var alternativa = listaQuestaoAlternativaConsulta.get(1).getResposta();
+            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
+            JOptionPane.showMessageDialog(null, verificarResposta);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_alternativaBButtonActionPerformed
+
+    private void alternativaDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaDButtonActionPerformed
+        new TelaConfirmarResposta();
+        this.dispose();
+        var jogo = new Jogo();
+        var dao = new QuestaoAlternativaDAO();
+        try {
+            List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
+            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(this.questao);
+            var alternativa = listaQuestaoAlternativaConsulta.get(3).getResposta();
+            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
+            JOptionPane.showMessageDialog(null, verificarResposta);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_alternativaDButtonActionPerformed
+
+    private void alternativaEButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaEButtonActionPerformed
+        new TelaConfirmarResposta();
+        this.dispose();
+        var jogo = new Jogo();
+        var dao = new QuestaoAlternativaDAO();
+        try {
+            List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
+            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(this.questao);
+            var alternativa = listaQuestaoAlternativaConsulta.get(4).getResposta();
+            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
+            JOptionPane.showMessageDialog(null, verificarResposta);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_alternativaEButtonActionPerformed
 
     /**
      * @param args the command line arguments
