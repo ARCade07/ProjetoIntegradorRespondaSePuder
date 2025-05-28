@@ -51,6 +51,28 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao adicionar usuários");
         }
     }
+    public Usuario getUsuarioSelecionado() {
+        int linha = consultarAlunosTable.getSelectedRow();
+        if (linha != -1){
+            try {
+                int id = (int) modeloTabela.getValueAt(linha, 0);
+                String nome = (String) modeloTabela.getValueAt(linha, 1);
+                String email = (String) modeloTabela.getValueAt(linha, 2);
+                String senha = (String) modeloTabela.getValueAt(linha, 3);
+                return Usuario.builder()
+                        .identificador(id)
+                        .nome(nome)
+                        .email(email)
+                        .senha(senha)
+                        .build();
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return null;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
