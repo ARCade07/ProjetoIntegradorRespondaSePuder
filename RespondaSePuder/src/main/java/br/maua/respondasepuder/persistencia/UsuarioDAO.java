@@ -50,7 +50,6 @@ public class UsuarioDAO {
     }
     public Object[] consultarUsuario(String nome) throws Exception {
         List<Object> listaUsuarioConsulta = new ArrayList<>();
-        Object[] array = listaUsuarioConsulta.toArray();
         var sql = new StringBuilder("SELECT nome, email, senha FROM Usuario WHERE 1=1");
         List<String> parametrosConsulta = new ArrayList<>();
 
@@ -77,11 +76,9 @@ public class UsuarioDAO {
                             .senha(rs.getString("senha"))
                             .build();
                     listaUsuarioConsulta.add(usuario);
-                    array = listaUsuarioConsulta.toArray();
                 }
             }
         }
-        return array;
     }
     public boolean autenticarUsuario(Usuario usuario) throws Exception {
         var sql = "SELECT id_usuario, id_papel, email, senha FROM Usuario JOIN Papel USING (id_papel) WHERE email = ? AND senha = ?";
