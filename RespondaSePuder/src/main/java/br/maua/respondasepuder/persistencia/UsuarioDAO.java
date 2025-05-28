@@ -48,7 +48,7 @@ public class UsuarioDAO {
         }
        
     }
-    public Object[] consultarUsuario(String nome, String email) throws Exception {
+    public Object[] consultarUsuario(String nome) throws Exception {
         List<Object> listaUsuarioConsulta = new ArrayList<>();
         Object[] array = listaUsuarioConsulta.toArray();
         var sql = new StringBuilder("SELECT nome, email, senha FROM Usuario WHERE 1=1");
