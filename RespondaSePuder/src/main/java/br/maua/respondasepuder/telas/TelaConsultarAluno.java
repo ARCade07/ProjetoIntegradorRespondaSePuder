@@ -264,6 +264,19 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_adicionarAlunoButton1ActionPerformed
+    private void consultarAlunosTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarAlunosTableMouseClicked
+        var usuarioSelecionado = getUsuarioSelecionado();
+        if (usuarioSelecionado != null) {
+            nomeAlunoTextField.setText(usuarioSelecionado.getNome());
+            emailAlunoTextField.setText(usuarioSelecionado.getEmail());
+            senhaAlunoTextField.setText(usuarioSelecionado.getSenha());
+        }
+        else {
+            nomeAlunoTextField.setText("");
+            emailAlunoTextField.setText("");
+            senhaAlunoTextField.setText("");
+        }
+    }//GEN-LAST:event_consultarAlunosTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -299,6 +312,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaConsultarAluno().setVisible(true);
+                try {
+                    new TelaConsultarAluno().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
