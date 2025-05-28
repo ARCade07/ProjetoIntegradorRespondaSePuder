@@ -100,7 +100,7 @@ public class Jogo {
         }
     }
     
-    private void pularQuestao() {
+    private void pularQuestao() throws Exception{
         if(pulos > 0 && pergunta != 12){
             var j = new Jogo();
             Questao novaPergunta = j.randomizarPergunta();
