@@ -19,9 +19,14 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
      */
     public TelaConsultarAluno() {
     private DefaultTableModel modeloTabela;
+    public TelaConsultarAluno() throws Exception {
         super("Responda se puder");
         initComponents();
         setLocationRelativeTo(null);    }
+        setLocationRelativeTo(null);  
+        configurarTabela();
+        carregarUsuarios();
+    }
     private void configurarTabela() {
         String[] colunas = {"ID", "Nome", "Email", "Senha"};
         modeloTabela = new DefaultTableModel(colunas, 0);
