@@ -52,7 +52,7 @@ public class AlternativaDAO {
     }
     public List<Alternativa> consultarAlternativa(Questao questao) throws Exception{
         List<Alternativa> listaAlternativaConsulta = new ArrayList<>();
-        var sql = "SELECT * FROM Alternativa WHERE id_questao = ?";
+        var sql = "SELECT * FROM Alternativa JOIN Questao_Alternativa USING(id_alternativa) JOIN Questao USING(id_questao) WHERE id_questao = ?";
         try(
             var conexao = new ConnectionFactory().obterConexao();
             var ps = conexao.prepareStatement(sql);
