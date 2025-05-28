@@ -50,7 +50,7 @@ public class UsuarioDAO {
     }
     public Object[] consultarUsuario(String nome) throws Exception {
         List<Object> listaUsuarioConsulta = new ArrayList<>();
-        var sql = new StringBuilder("SELECT nome, email, senha FROM Usuario WHERE 1=1");
+        var sql = new StringBuilder("SELECT id_usuario, nome, email, senha, id_papel FROM Usuario WHERE id_papel = 1 AND 1=1");
         List<String> parametrosConsulta = new ArrayList<>();
 
         if (nome != null && !nome.isEmpty()) {
