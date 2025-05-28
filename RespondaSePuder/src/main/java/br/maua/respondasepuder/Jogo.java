@@ -52,7 +52,7 @@ public class Jogo {
             return questaoAtual;
         }
     }
-    private boolean verificarResposta(Questao questao, Alternativa alternativaEscolhida) throws Exception {
+    public boolean verificarResposta(Questao questao, Alternativa alternativaEscolhida) throws Exception {
         var dao = new QuestaoAlternativaDAO();
         if (dao.consultarQuestaoAlternativaID(questao, alternativaEscolhida)) {
             pergunta += 1; 
