@@ -144,6 +144,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
 
         adicionarAlunoButton1.setContentAreaFilled(false);
         adicionarAlunoButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        adicionarAlunoButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adicionarAlunoButton1MouseClicked(evt);
+            }
+        });
         adicionarAlunoButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarAlunoButton1ActionPerformed(evt);
@@ -169,6 +174,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
                 "Nome", "Email", "Senha"
             }
         ));
+        consultarAlunosTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultarAlunosTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(consultarAlunosTable);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 1050, 680));
