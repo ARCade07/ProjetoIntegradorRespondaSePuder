@@ -69,6 +69,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
             List<Questao> questao = dao.consultarQuestao(enunciado, null, null);
             var questaoRemovida = questao.get(0);
             dao.removerQuestao(questaoRemovida);
+            model.removeRow(linhaSelecionada);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -97,9 +98,9 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         filtrarDificuldadeComboButton = new javax.swing.JComboBox<>();
         filtrarMateriaComboButton1 = new javax.swing.JComboBox<>();
         pesquisarPerguntaTextField = new javax.swing.JTextField();
-        atualizarPerguntaTextField = new javax.swing.JButton();
-        removerPerguntaTextField = new javax.swing.JButton();
-        adicionarPerguntaTextField2 = new javax.swing.JButton();
+        atualizarPerguntaButton = new javax.swing.JButton();
+        removerPerguntaButton = new javax.swing.JButton();
+        adicionarPerguntaButton = new javax.swing.JButton();
         voltarPerguntaQuestaoButton = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
 
@@ -109,6 +110,102 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         consultarPerguntasTable.setBackground(new java.awt.Color(217, 217, 217));
         consultarPerguntasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -141,22 +238,27 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         pesquisarPerguntaTextField.setBorder(null);
         getContentPane().add(pesquisarPerguntaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 560, 40));
 
-        atualizarPerguntaTextField.setContentAreaFilled(false);
-        atualizarPerguntaTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(atualizarPerguntaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 880, 380, 100));
+        atualizarPerguntaButton.setContentAreaFilled(false);
+        atualizarPerguntaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(atualizarPerguntaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 880, 380, 100));
 
-        removerPerguntaTextField.setContentAreaFilled(false);
-        removerPerguntaTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(removerPerguntaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 880, 380, 100));
-
-        adicionarPerguntaTextField2.setContentAreaFilled(false);
-        adicionarPerguntaTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        adicionarPerguntaTextField2.addActionListener(new java.awt.event.ActionListener() {
+        removerPerguntaButton.setContentAreaFilled(false);
+        removerPerguntaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        removerPerguntaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adicionarPerguntaTextField2ActionPerformed(evt);
+                removerPerguntaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(adicionarPerguntaTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 880, 380, 100));
+        getContentPane().add(removerPerguntaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 880, 380, 100));
+
+        adicionarPerguntaButton.setContentAreaFilled(false);
+        adicionarPerguntaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adicionarPerguntaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarPerguntaButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(adicionarPerguntaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 880, 380, 100));
 
         voltarPerguntaQuestaoButton.setContentAreaFilled(false);
         voltarPerguntaQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -182,11 +284,15 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         new TelaDeADM().setVisible(true);
     }//GEN-LAST:event_voltarPerguntaQuestaoButtonActionPerformed
 
-    private void adicionarPerguntaTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarPerguntaTextField2ActionPerformed
+    private void adicionarPerguntaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarPerguntaButtonActionPerformed
         var TelaAddQuestoes = new TelaAdicionarQuestoes();
         TelaAddQuestoes.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_adicionarPerguntaTextField2ActionPerformed
+    }//GEN-LAST:event_adicionarPerguntaButtonActionPerformed
+
+    private void removerPerguntaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerPerguntaButtonActionPerformed
+        removerQuestao();
+    }//GEN-LAST:event_removerPerguntaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,15 +330,15 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adicionarPerguntaTextField2;
-    private javax.swing.JButton atualizarPerguntaTextField;
+    private javax.swing.JButton adicionarPerguntaButton;
+    private javax.swing.JButton atualizarPerguntaButton;
     private javax.swing.JTable consultarPerguntasTable;
     private javax.swing.JComboBox<String> filtrarDificuldadeComboButton;
     private javax.swing.JComboBox<Materia> filtrarMateriaComboButton1;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField pesquisarPerguntaTextField;
-    private javax.swing.JButton removerPerguntaTextField;
+    private javax.swing.JButton removerPerguntaButton;
     private javax.swing.JButton voltarPerguntaQuestaoButton;
     // End of variables declaration//GEN-END:variables
 }
