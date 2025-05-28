@@ -185,7 +185,26 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removerAlunoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerAlunoButtonActionPerformed
-        // TODO add your handling code here:
+        var nome = nomeAlunoTextField.getText();
+        var email = emailAlunoTextField.getText();
+        var senha = senhaAlunoTextField.getText();
+        var usuario = Usuario.builder()
+                .nome(nome)
+                .email(email)
+                .senha(senha)
+                .build();
+        var dao = new UsuarioDAO();
+        try {
+            if (dao.removerUsuario(usuario)) {
+                carregarUsuarios();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(
+                null, "Erro ao remover aluno"
+            );
+        }
     }//GEN-LAST:event_removerAlunoButtonActionPerformed
 
     private void atualizarAlunoButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarAlunoButton1ActionPerformed
