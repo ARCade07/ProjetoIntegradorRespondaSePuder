@@ -5,6 +5,9 @@
 package br.maua.respondasepuder.telas;
 import br.maua.respondasepuder.modelo.Usuario;
 import br.maua.respondasepuder.persistencia.UsuarioDAO;
+import java.awt.event.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
