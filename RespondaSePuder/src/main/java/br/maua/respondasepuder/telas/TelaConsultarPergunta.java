@@ -81,8 +81,8 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
                 linha[7] = q.getNivel();
                 model.addRow(linha);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(TelaConsultarPergunta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            Logger.getLogger(TelaConsultarPergunta.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
@@ -106,8 +106,34 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
                 linha[7] = q.getNivel();
                 model.addRow(linha);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(TelaConsultarPergunta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            Logger.getLogger(TelaConsultarPergunta.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    private void pesquisarQuestao() {
+        String enunciadoPesquisado = (String) pesquisarPerguntaTextField.getText();
+        DefaultTableModel model = (DefaultTableModel) consultarPerguntasTable.getModel();
+        model.setRowCount(0);
+        var qdao = new QuestaoDAO();
+        var adao = new AlternativaDAO();
+        try{
+            List<Questao> listaQuestoes = qdao.consultarQuestao(enunciadoPesquisado, null, null);
+            Object[] linha = new Object[8];
+            for(int i = 0; i < listaQuestoes.size(); i++){
+                var q = listaQuestoes.get(i);
+                List<Alternativa> listaAlternativas = adao.consultarAlternativa(q);
+                linha[0] = q.getEnunciado();
+                for(int j = 0; j < 5; j++) {
+                    linha[j + 1] = listaAlternativas.get(j).getTexto();
+                }
+                linha[6] = q.getMateria();
+                linha[7] = q.getNivel();
+                model.addRow(linha);
+            }
+        }
+        catch (Exception e) {
+            Logger.getLogger(TelaConsultarPergunta.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
@@ -193,14 +219,19 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         pesquisarPerguntaTextField.setBackground(new java.awt.Color(242, 92, 84));
         pesquisarPerguntaTextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         pesquisarPerguntaTextField.setBorder(null);
+        pesquisarPerguntaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarPerguntaTextFieldActionPerformed(evt);
+            }
+        });
         getContentPane().add(pesquisarPerguntaTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 560, 40));
 
         atualizarPerguntaButton.setContentAreaFilled(false);
-        atualizarPerguntaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        atualizarPerguntaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(atualizarPerguntaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 880, 380, 100));
 
         removerPerguntaButton.setContentAreaFilled(false);
-        removerPerguntaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        removerPerguntaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         removerPerguntaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removerPerguntaButtonActionPerformed(evt);
@@ -209,7 +240,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         getContentPane().add(removerPerguntaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 880, 380, 100));
 
         adicionarPerguntaButton.setContentAreaFilled(false);
-        adicionarPerguntaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adicionarPerguntaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         adicionarPerguntaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarPerguntaButtonActionPerformed(evt);
@@ -218,7 +249,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         getContentPane().add(adicionarPerguntaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 880, 380, 100));
 
         voltarPerguntaQuestaoButton.setContentAreaFilled(false);
-        voltarPerguntaQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarPerguntaQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         voltarPerguntaQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 voltarPerguntaQuestaoButtonActionPerformed(evt);
@@ -254,6 +285,10 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
     private void filtrarMateriaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarMateriaComboBoxActionPerformed
        mostrarQuestoesMateria();
     }//GEN-LAST:event_filtrarMateriaComboBoxActionPerformed
+
+    private void pesquisarPerguntaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarPerguntaTextFieldActionPerformed
+        pesquisarQuestao();
+    }//GEN-LAST:event_pesquisarPerguntaTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
