@@ -67,6 +67,11 @@ public class TelaAdicionarProfessor extends javax.swing.JFrame {
 
         voltarAddProfessorButton.setContentAreaFilled(false);
         voltarAddProfessorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarAddProfessorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarAddProfessorButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(voltarAddProfessorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 23, 130, 120));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela adicionar professor.png"))); // NOI18N
@@ -82,6 +87,11 @@ public class TelaAdicionarProfessor extends javax.swing.JFrame {
     private void nomeProfessorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeProfessorTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeProfessorTextFieldActionPerformed
+
+    private void voltarAddProfessorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarAddProfessorButtonActionPerformed
+        new TelaDeADM().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_voltarAddProfessorButtonActionPerformed
 
     /**
      * @param args the command line arguments

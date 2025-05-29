@@ -46,6 +46,11 @@ public class TelaOpcoes extends javax.swing.JFrame {
 
         voltarOpcoesButton.setContentAreaFilled(false);
         voltarOpcoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarOpcoesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarOpcoesButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(voltarOpcoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 120, 120));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela opcoes.png"))); // NOI18N
@@ -53,6 +58,10 @@ public class TelaOpcoes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void voltarOpcoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarOpcoesButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_voltarOpcoesButtonActionPerformed
 
     /**
      * @param args the command line arguments

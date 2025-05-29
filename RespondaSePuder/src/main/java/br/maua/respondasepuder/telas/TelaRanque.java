@@ -67,8 +67,8 @@ public class TelaRanque extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarRanqueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarRanqueButtonActionPerformed
-        this.dispose();
         new TelaDeADM().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_voltarRanqueButtonActionPerformed
 
     /**

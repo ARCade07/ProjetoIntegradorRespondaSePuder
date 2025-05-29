@@ -37,10 +37,20 @@ public class TelaResultadosPartida extends javax.swing.JFrame {
 
         jogarNovamenteButton.setContentAreaFilled(false);
         jogarNovamenteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jogarNovamenteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jogarNovamenteButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(jogarNovamenteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 863, 470, 90));
 
         voltarResultadosButton.setContentAreaFilled(false);
         voltarResultadosButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarResultadosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarResultadosButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(voltarResultadosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 863, 480, 90));
 
         pontuacaoPartidaLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -56,6 +66,14 @@ public class TelaResultadosPartida extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jogarNovamenteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jogarNovamenteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jogarNovamenteButtonActionPerformed
+
+    private void voltarResultadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarResultadosButtonActionPerformed
+        new TelaDeInicio().setVisible(true);
+    }//GEN-LAST:event_voltarResultadosButtonActionPerformed
 
     /**
      * @param args the command line arguments

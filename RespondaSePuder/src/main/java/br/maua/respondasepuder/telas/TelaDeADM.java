@@ -85,7 +85,12 @@ public class TelaDeADM extends javax.swing.JFrame {
         getContentPane().add(sairDoJogoADMButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1765, 23, 120, 120));
 
         adicionarProfessorButton.setContentAreaFilled(false);
-        adicionarProfessorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adicionarProfessorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        adicionarProfessorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarProfessorButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(adicionarProfessorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 660, 710, 120));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela de ADM.png"))); // NOI18N
@@ -95,8 +100,8 @@ public class TelaDeADM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultarQuestoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarQuestoesButtonActionPerformed
-        this.dispose();
         new TelaConsultarPergunta().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_consultarQuestoesButtonActionPerformed
 
     private void sairDoJogoADMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairDoJogoADMButtonActionPerformed
@@ -104,19 +109,21 @@ public class TelaDeADM extends javax.swing.JFrame {
     }//GEN-LAST:event_sairDoJogoADMButtonActionPerformed
 
     private void consultarAlunosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAlunosButtonActionPerformed
-        this.dispose();
         new TelaConsultarAluno().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_consultarAlunosButtonActionPerformed
 
     private void acessarInformacoesADMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessarInformacoesADMButtonActionPerformed
-        this.dispose();
         new TelaConta().setVisible(true);
     }//GEN-LAST:event_acessarInformacoesADMButtonActionPerformed
 
     private void ranqueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ranqueButtonActionPerformed
-        this.dispose();
         new TelaRanque().setVisible(true);
     }//GEN-LAST:event_ranqueButtonActionPerformed
+
+    private void adicionarProfessorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarProfessorButtonActionPerformed
+        new TelaAdicionarProfessor().setVisible(true);
+    }//GEN-LAST:event_adicionarProfessorButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -116,8 +116,8 @@ public class TelaAutenticarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_entrarButtonActionPerformed
 
     private void esqueceuSenhaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esqueceuSenhaButtonActionPerformed
-        this.dispose();
         new TelaEsqueciASenha().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_esqueceuSenhaButtonActionPerformed
 
     /**

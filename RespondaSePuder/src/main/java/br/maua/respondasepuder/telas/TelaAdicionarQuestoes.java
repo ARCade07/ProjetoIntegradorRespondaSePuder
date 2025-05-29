@@ -178,6 +178,11 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
 
         voltarConsultarQuestoesButton.setContentAreaFilled(false);
         voltarConsultarQuestoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarConsultarQuestoesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarConsultarQuestoesButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(voltarConsultarQuestoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 110, 110));
 
         buttonGroup1.add(alternativa1RadioButton);
@@ -357,6 +362,11 @@ public class TelaAdicionarQuestoes extends javax.swing.JFrame {
     private void materiaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materiaComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_materiaComboBoxActionPerformed
+
+    private void voltarConsultarQuestoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarConsultarQuestoesButtonActionPerformed
+        new TelaConsultarPergunta().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_voltarConsultarQuestoesButtonActionPerformed
     private void questaoFacilButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (!clicado) {
             questaoFacilButton.setContentAreaFilled(true);

@@ -42,6 +42,11 @@ public class TelaConta extends javax.swing.JFrame {
 
         voltarContaButton.setContentAreaFilled(false);
         voltarContaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarContaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarContaButtonActionPerformed(evt);
+            }
+        });
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela Conta.png"))); // NOI18N
 
@@ -75,6 +80,10 @@ public class TelaConta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void voltarContaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarContaButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_voltarContaButtonActionPerformed
 
     /**
      * @param args the command line arguments

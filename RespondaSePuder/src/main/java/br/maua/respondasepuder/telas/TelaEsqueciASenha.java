@@ -48,8 +48,8 @@ public class TelaEsqueciASenha extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lebrouSenhaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lebrouSenhaButtonActionPerformed
-        this.dispose();
         new TelaAutenticarUsuario().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lebrouSenhaButtonActionPerformed
 
     /**

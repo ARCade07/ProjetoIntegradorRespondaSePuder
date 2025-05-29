@@ -49,6 +49,11 @@ public class TelaPontuacaoAluno extends javax.swing.JFrame {
 
         voltarPontuacaoButton.setContentAreaFilled(false);
         voltarPontuacaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarPontuacaoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarPontuacaoButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(voltarPontuacaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 130, 120));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela pontuação aluno.png"))); // NOI18N
@@ -56,6 +61,10 @@ public class TelaPontuacaoAluno extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void voltarPontuacaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarPontuacaoButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_voltarPontuacaoButtonActionPerformed
 
     /**
      * @param args the command line arguments

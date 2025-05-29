@@ -269,12 +269,10 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
 
     private void voltarPerguntaQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarPerguntaQuestaoButtonActionPerformed
         this.dispose();
-        new TelaDeADM().setVisible(true);
     }//GEN-LAST:event_voltarPerguntaQuestaoButtonActionPerformed
 
     private void adicionarPerguntaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarPerguntaButtonActionPerformed
-        var TelaAddQuestoes = new TelaAdicionarQuestoes();
-        TelaAddQuestoes.setVisible(true);
+        new TelaAdicionarQuestoes().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_adicionarPerguntaButtonActionPerformed
 
