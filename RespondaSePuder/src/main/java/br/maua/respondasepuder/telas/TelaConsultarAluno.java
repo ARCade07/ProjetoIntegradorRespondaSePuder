@@ -20,12 +20,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     /**
      * Creates new form TelaAdicionarAluno
      */
-    public TelaConsultarAluno() {
     private DefaultTableModel modeloTabela;
+    
     public TelaConsultarAluno() throws Exception {
         super("Responda se puder");
         initComponents();
-        setLocationRelativeTo(null);    }
         setLocationRelativeTo(null);  
         configurarTabela();
         carregarUsuarios();
@@ -154,7 +153,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         adicionarAlunoButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         adicionarAlunoButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                adicionarAlunoButton1MouseClicked(evt);
+                //adicionarAlunoButton1MouseClicked(evt);
             }
         });
         adicionarAlunoButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -293,11 +292,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_adicionarAlunoButton1ActionPerformed
 
-    private void nomeAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeAlunoTextFieldActionPerformed
+    private void nomeAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                   
         
         
         // TODO add your handling code here:
-    }//GEN-LAST:event_adicionarAlunoButton1ActionPerformed
+    }                                                     
     private void consultarAlunosTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarAlunosTableMouseClicked
         var usuarioSelecionado = getUsuarioSelecionado();
         if (usuarioSelecionado != null) {
