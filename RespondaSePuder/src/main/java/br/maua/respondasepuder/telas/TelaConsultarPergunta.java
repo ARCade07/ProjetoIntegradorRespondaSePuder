@@ -11,6 +11,8 @@ import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.MateriaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +26,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         try {
             var dao = new MateriaDAO();
             var materias = dao.obterMateria();
-            filtrarMateriaComboButton1.setModel(
+            filtrarMateriaComboBox.setModel(
                     new DefaultComboBoxModel<Materia>(materias.toArray(new Materia[]{}))
             );
         }
@@ -55,6 +57,32 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Não foi possível conectar-se ao banco de dados");
+        }
+    }
+    
+    private void mostrarQuestoesMateria() {
+        Materia materia = (Materia) filtrarMateriaComboBox.getSelectedItem();
+        String materiaSelecionada = materia.getNome();
+        DefaultTableModel model = (DefaultTableModel) consultarPerguntasTable.getModel();
+        model.setRowCount(0);
+        var qdao = new QuestaoDAO();
+        var adao = new AlternativaDAO();
+        try {
+            List<Questao> listaQuestoes = qdao.consultarQuestao(null, materiaSelecionada, null);
+            Object[] linha = new Object[8];
+            for(int i = 0; i < listaQuestoes.size(); i++) {
+                var q = listaQuestoes.get(i);
+                List<Alternativa> listaAlternativas = adao.consultarAlternativa(q);
+                linha[0] = q.getEnunciado();
+                for(int j= 0; j < 5; j++){
+                    linha[j + 1] = listaAlternativas.get(j).getTexto();
+                }
+                linha[5] = q.getMateria();
+                linha[6] = q.getNivel();
+                model.addRow(linha);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaConsultarPergunta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -93,8 +121,8 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         consultarPerguntasTable = new javax.swing.JTable();
-        filtrarDificuldadeComboButton = new javax.swing.JComboBox<>();
-        filtrarMateriaComboButton1 = new javax.swing.JComboBox<>();
+        filtrarDificuldadeComboBox = new javax.swing.JComboBox<>();
+        filtrarMateriaComboBox = new javax.swing.JComboBox<>();
         pesquisarPerguntaTextField = new javax.swing.JTextField();
         atualizarPerguntaButton = new javax.swing.JButton();
         removerPerguntaButton = new javax.swing.JButton();
@@ -118,19 +146,24 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 1630, 690));
 
-        filtrarDificuldadeComboButton.setBackground(new java.awt.Color(0, 176, 185));
-        filtrarDificuldadeComboButton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Fácil", "Médio", "Dificil" }));
-        filtrarDificuldadeComboButton.setBorder(javax.swing.BorderFactory.createTitledBorder("FIltrar Dificuldade"));
-        filtrarDificuldadeComboButton.addActionListener(new java.awt.event.ActionListener() {
+        filtrarDificuldadeComboBox.setBackground(new java.awt.Color(0, 176, 185));
+        filtrarDificuldadeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Fácil", "Médio", "Dificil" }));
+        filtrarDificuldadeComboBox.setBorder(javax.swing.BorderFactory.createTitledBorder("FIltrar Dificuldade"));
+        filtrarDificuldadeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtrarDificuldadeComboButtonActionPerformed(evt);
+                filtrarDificuldadeComboBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(filtrarDificuldadeComboButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 60, 310, 70));
+        getContentPane().add(filtrarDificuldadeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 60, 310, 70));
 
-        filtrarMateriaComboButton1.setBackground(new java.awt.Color(0, 176, 185));
-        filtrarMateriaComboButton1.setBorder(javax.swing.BorderFactory.createTitledBorder("FIltrar Matéria"));
-        getContentPane().add(filtrarMateriaComboButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 62, 310, 70));
+        filtrarMateriaComboBox.setBackground(new java.awt.Color(0, 176, 185));
+        filtrarMateriaComboBox.setBorder(javax.swing.BorderFactory.createTitledBorder("FIltrar Matéria"));
+        filtrarMateriaComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarMateriaComboBoxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(filtrarMateriaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 62, 310, 70));
 
         pesquisarPerguntaTextField.setBackground(new java.awt.Color(242, 92, 84));
         pesquisarPerguntaTextField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -174,9 +207,9 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void filtrarDificuldadeComboButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarDificuldadeComboButtonActionPerformed
+    private void filtrarDificuldadeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarDificuldadeComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_filtrarDificuldadeComboButtonActionPerformed
+    }//GEN-LAST:event_filtrarDificuldadeComboBoxActionPerformed
 
     private void voltarPerguntaQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarPerguntaQuestaoButtonActionPerformed
         this.dispose();
@@ -192,6 +225,10 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
     private void removerPerguntaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerPerguntaButtonActionPerformed
         removerQuestao();
     }//GEN-LAST:event_removerPerguntaButtonActionPerformed
+
+    private void filtrarMateriaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarMateriaComboBoxActionPerformed
+       mostrarQuestoesMateria();
+    }//GEN-LAST:event_filtrarMateriaComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,8 +269,8 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
     private javax.swing.JButton adicionarPerguntaButton;
     private javax.swing.JButton atualizarPerguntaButton;
     private javax.swing.JTable consultarPerguntasTable;
-    private javax.swing.JComboBox<String> filtrarDificuldadeComboButton;
-    private javax.swing.JComboBox<Materia> filtrarMateriaComboButton1;
+    private javax.swing.JComboBox<String> filtrarDificuldadeComboBox;
+    private javax.swing.JComboBox<Materia> filtrarMateriaComboBox;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField pesquisarPerguntaTextField;
