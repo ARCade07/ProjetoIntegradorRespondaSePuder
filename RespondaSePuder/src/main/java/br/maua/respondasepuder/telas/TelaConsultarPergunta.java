@@ -77,8 +77,8 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
                 for(int j= 0; j < 5; j++){
                     linha[j + 1] = listaAlternativas.get(j).getTexto();
                 }
-                linha[5] = q.getMateria();
-                linha[6] = q.getNivel();
+                linha[6] = q.getMateria();
+                linha[7] = q.getNivel();
                 model.addRow(linha);
             }
         } catch (Exception ex) {
@@ -102,8 +102,8 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
                 for(int j= 0; j < 5; j++){
                     linha[j + 1] = listaAlternativas.get(j).getTexto();
                 }
-                linha[5] = q.getMateria();
-                linha[6] = q.getNivel();
+                linha[6] = q.getMateria();
+                linha[7] = q.getNivel();
                 model.addRow(linha);
             }
         } catch (Exception ex) {
