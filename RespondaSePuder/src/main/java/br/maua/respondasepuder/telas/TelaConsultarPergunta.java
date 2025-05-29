@@ -86,6 +86,31 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         }
     }
     
+    private void mostrarQuestoesNivel() {
+        String nivelSelecionado = (String) filtrarDificuldadeComboBox.getSelectedItem();
+        DefaultTableModel model = (DefaultTableModel) consultarPerguntasTable.getModel();
+        model.setRowCount(0);
+        var qdao = new QuestaoDAO();
+        var adao = new AlternativaDAO();
+        try {
+            List<Questao> listaQuestoes = qdao.consultarQuestao(null, null, nivelSelecionado);
+            Object[] linha = new Object[8];
+            for(int i = 0; i < listaQuestoes.size(); i++) {
+                var q = listaQuestoes.get(i);
+                List<Alternativa> listaAlternativas = adao.consultarAlternativa(q);
+                linha[0] = q.getEnunciado();
+                for(int j= 0; j < 5; j++){
+                    linha[j + 1] = listaAlternativas.get(j).getTexto();
+                }
+                linha[5] = q.getMateria();
+                linha[6] = q.getNivel();
+                model.addRow(linha);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaConsultarPergunta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void removerQuestao(){
         try{
             DefaultTableModel model = (DefaultTableModel) consultarPerguntasTable.getModel();
@@ -208,7 +233,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void filtrarDificuldadeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarDificuldadeComboBoxActionPerformed
-        // TODO add your handling code here:
+        mostrarQuestoesNivel();
     }//GEN-LAST:event_filtrarDificuldadeComboBoxActionPerformed
 
     private void voltarPerguntaQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarPerguntaQuestaoButtonActionPerformed
