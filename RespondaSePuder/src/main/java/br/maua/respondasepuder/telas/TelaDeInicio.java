@@ -4,6 +4,9 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.Jogo;
+import br.maua.respondasepuder.modelo.Questao;
+
 /**
  *
  * @author Arthur
@@ -39,6 +42,11 @@ public class TelaDeInicio extends javax.swing.JFrame {
 
         iniciarJogoButton.setContentAreaFilled(false);
         iniciarJogoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iniciarJogoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iniciarJogoButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(iniciarJogoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 323, 990, 130));
 
         OpcoesButton.setContentAreaFilled(false);
@@ -52,10 +60,20 @@ public class TelaDeInicio extends javax.swing.JFrame {
 
         pontuacaoButton.setContentAreaFilled(false);
         pontuacaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pontuacaoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pontuacaoButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(pontuacaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 633, 690, 110));
 
         acessarInformacoesButton.setContentAreaFilled(false);
         acessarInformacoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        acessarInformacoesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acessarInformacoesButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(acessarInformacoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 3, 170, 170));
 
         ativarMusicaButton.setContentAreaFilled(false);
@@ -84,7 +102,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void OpcoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpcoesButtonActionPerformed
-        // TODO add your handling code here:
+        new TelaOpcoes().setVisible(true);
     }//GEN-LAST:event_OpcoesButtonActionPerformed
 
     private void ativarMusicaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ativarMusicaButtonActionPerformed
@@ -92,8 +110,32 @@ public class TelaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_ativarMusicaButtonActionPerformed
 
     private void sairDoJogoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairDoJogoButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_sairDoJogoButtonActionPerformed
+
+    private void acessarInformacoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessarInformacoesButtonActionPerformed
+        new TelaConta().setVisible(true);
+    }//GEN-LAST:event_acessarInformacoesButtonActionPerformed
+
+    private void iniciarJogoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarJogoButtonActionPerformed
+        try {
+            Jogo jogo = new Jogo();
+            var random = jogo.randomizarPergunta();
+            
+            Questao q = Questao.builder()
+                    .identificador(random.getIdentificador())
+                    .build();
+            
+            new TelaPergunta(jogo, q).setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_iniciarJogoButtonActionPerformed
+
+    private void pontuacaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pontuacaoButtonActionPerformed
+        new TelaPontuacaoAluno().setVisible(true);
+    }//GEN-LAST:event_pontuacaoButtonActionPerformed
 
     /**
      * @param args the command line arguments
