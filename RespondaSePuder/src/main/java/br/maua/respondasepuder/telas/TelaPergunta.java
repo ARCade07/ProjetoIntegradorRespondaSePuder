@@ -286,11 +286,9 @@ public class TelaPergunta extends javax.swing.JFrame {
             public void run() {
                 try {
                     var jogo = new Jogo();
-                    var random = jogo.randomizarPergunta();
-                    Questao q = Questao.builder()
-                            .identificador(random.getIdentificador())
-                            .build();
-                    new TelaPergunta(q).setVisible(true);
+                    jogo.novaPartida();
+                    var questaoJogo = jogo.randomizarPergunta();
+                    new TelaPergunta(jogo, questaoJogo).setVisible(true);
                 }
                 catch(Exception e){
                     e.printStackTrace();
