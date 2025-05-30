@@ -122,7 +122,7 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         numeroPerguntaLabel.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        getContentPane().add(numeroPerguntaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 10, 10, 50));
+        getContentPane().add(numeroPerguntaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 0, 80, 60));
 
         alternativaALabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         alternativaALabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -215,6 +215,8 @@ public class TelaPergunta extends javax.swing.JFrame {
 
         pontuacaoQuestaoLabel.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         getContentPane().add(pontuacaoQuestaoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 900, 310, 40));
+
+        enunciadoPerguntaLabel.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         getContentPane().add(enunciadoPerguntaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 190, 710, 560));
 
         pararJogarButton.setContentAreaFilled(false);
