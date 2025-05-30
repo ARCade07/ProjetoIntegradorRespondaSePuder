@@ -218,6 +218,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         var dao = new UsuarioDAO();
         try {
             if (dao.removerUsuario(usuario)) {
+                JOptionPane.showMessageDialog(null, "Aluno removido com sucesso.");
                 carregarUsuarios();
             }
         }
