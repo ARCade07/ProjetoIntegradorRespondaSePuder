@@ -19,7 +19,16 @@ import javax.swing.JOptionPane;
  * @author Arthur
  */
 public class TelaPergunta extends javax.swing.JFrame {
+    
+    private Jogo jogo;
     private Questao questao;
+    private Alternativa alternativaA;
+    private Alternativa alternativaB;
+    private Alternativa alternativaC;
+    private Alternativa alternativaD;
+    private Alternativa alternativaE;
+    private TelaPergunta telaAtual;
+    
     public void montarTela(Questao questao) {
         var dao = new QuestaoAlternativaDAO();
         List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
@@ -28,16 +37,23 @@ public class TelaPergunta extends javax.swing.JFrame {
             Questao q = questaoDAO.buscarPorId(questao.getIdentificador(), questao);
             enunciadoPerguntaLabel.setText(q.getEnunciado());
             listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(q);
-            String alternativaA = listaQuestaoAlternativaConsulta.get(0).getResposta().getTexto();
-            alternativaALabel.setText(alternativaA);
-            String alternativaB = listaQuestaoAlternativaConsulta.get(1).getResposta().getTexto();
-            alternativaBLabel.setText(alternativaB);
-            String alternativaC = listaQuestaoAlternativaConsulta.get(2).getResposta().getTexto();
-            alternativaCLabel.setText(alternativaC);
-            String alternativaD = listaQuestaoAlternativaConsulta.get(3).getResposta().getTexto();
-            alternativaDLabel.setText(alternativaD);
-            String alternativaE = listaQuestaoAlternativaConsulta.get(4).getResposta().getTexto();
-            alternativaELabel.setText(alternativaE);
+            this.alternativaA = listaQuestaoAlternativaConsulta.get(0).getResposta();
+            this.alternativaB = listaQuestaoAlternativaConsulta.get(1).getResposta();
+            this.alternativaC = listaQuestaoAlternativaConsulta.get(2).getResposta();
+            this.alternativaD = listaQuestaoAlternativaConsulta.get(3).getResposta();
+            this.alternativaE = listaQuestaoAlternativaConsulta.get(4).getResposta();
+            
+            alternativaALabel.setText(alternativaA.getTexto());
+            alternativaBLabel.setText(alternativaB.getTexto());
+            alternativaCLabel.setText(alternativaC.getTexto());
+            alternativaDLabel.setText(alternativaD.getTexto());
+            alternativaELabel.setText(alternativaE.getTexto());
+            
+            var numeroQuestao = String.valueOf(jogo.pergunta);
+            numeroPerguntaLabel.setText(numeroQuestao);
+            
+            pontuacaoQuestaoLabel.setText("1000");
+            
         } catch (Exception exception) {
             exception.printStackTrace();
         }
