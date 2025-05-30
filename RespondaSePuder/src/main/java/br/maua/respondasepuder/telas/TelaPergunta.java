@@ -58,6 +58,25 @@ public class TelaPergunta extends javax.swing.JFrame {
             exception.printStackTrace();
         }
     }
+    private void verificarAlternativa(Alternativa alternativa) {
+        var dao = new QuestaoAlternativaDAO();
+        try {
+            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
+
+            if (verificarResposta) {
+                JOptionPane.showMessageDialog(null, "Acertou!");
+                var pontuacao = String.valueOf(jogo.receberPontuacao(jogo.pergunta, verificarResposta));
+                pontuacaoQuestaoLabel.setText(pontuacao);
+                var novaQuestao = jogo.randomizarPergunta();
+                new TelaPergunta(jogo, novaQuestao).setVisible(true);
+                telaAtual.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Errou!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Creates new form TelaPergunta
      */
