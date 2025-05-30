@@ -80,8 +80,10 @@ public class TelaPergunta extends javax.swing.JFrame {
     /**
      * Creates new form TelaPergunta
      */
-    public TelaPergunta(Questao questaoSelecionada) {
+    public TelaPergunta(Jogo jogo, Questao questaoSelecionada) {
+        this.jogo = jogo;
         this.questao = questaoSelecionada;
+        this.telaAtual = this;
         initComponents();
         montarTela(this.questao);
     }
