@@ -35,7 +35,7 @@ public class TelaPergunta extends javax.swing.JFrame {
         QuestaoDAO questaoDAO = new QuestaoDAO();
         try {
             Questao q = questaoDAO.buscarPorId(questao.getIdentificador(), questao);
-            enunciadoPerguntaLabel.setText(q.getEnunciado());
+            enunciadoPerguntaLabel.setText(String.format("<html><p style=\"width:500px\">%s</p></html>", q.getEnunciado()));
             listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(q);
             this.alternativaA = listaQuestaoAlternativaConsulta.get(0).getResposta();
             this.alternativaB = listaQuestaoAlternativaConsulta.get(1).getResposta();
@@ -81,10 +81,10 @@ public class TelaPergunta extends javax.swing.JFrame {
      * Creates new form TelaPergunta
      */
     public TelaPergunta(Jogo jogo, Questao questaoSelecionada) {
+        initComponents();
         this.jogo = jogo;
         this.questao = questaoSelecionada;
         this.telaAtual = this;
-        initComponents();
         montarTela(this.questao);
     }
 
