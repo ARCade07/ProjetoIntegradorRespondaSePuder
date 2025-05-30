@@ -133,7 +133,7 @@ public class QuestaoAlternativaDAO {
     }
     public List<QuestaoAlternativa> consultarQuestaoAlternativaPorIdQuestao (Questao questao) throws Exception{
         List<QuestaoAlternativa> listaQuestaoAlternativaConsultaPorIdQuestao = new ArrayList<>();
-        var sql = "SELECT qa.alternativa_correta, a.texto FROM Questao_Alternativa qa JOIN Alternativa a USING(id_alternativa) WHERE qa.id_questao = ?";
+        var sql = "SELECT qa.alternativa_correta, a.texto, qa.id_alternativa, qa.id_questao FROM Questao_Alternativa qa JOIN Alternativa a USING(id_alternativa) WHERE qa.id_questao = ?";
         try (
             var conexao = new ConnectionFactory().obterConexao(); 
             var ps = conexao.prepareStatement(sql);
@@ -143,10 +143,15 @@ public class QuestaoAlternativaDAO {
                 var rs = ps.executeQuery()
             ) {
                 while (rs.next()) {
+                    questao = Questao.builder()
+                            .identificador(rs.getInt("id_questao"))
+                            .build();
                     var alternativa = Alternativa.builder()
+                            .identificador(rs.getInt("id_alternativa"))
                             .texto(rs.getString("texto"))
                             .build();
                     var questaoAlternativa = QuestaoAlternativa.builder()
+                            .questao(questao)
                             .resposta(alternativa)
                             .alternativaCorreta(rs.getBoolean("alternativa_correta"))
                             .build();
