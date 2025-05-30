@@ -15,6 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -42,7 +45,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         var adao = new AlternativaDAO();
         try {
             List<Questao> listaQuestoes = qdao.consultarQuestao(null, null, null);
-            Object[]linha = new Object[8];
+            Object[]linha = new Object[9];
             for(int i = 0; i < listaQuestoes.size(); i++){
                 var q = listaQuestoes.get(i);
                 List<Alternativa> listaAlternativas = adao.consultarAlternativa(q);
@@ -52,6 +55,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
                 }
                 linha[6] = q.getMateria().getNome();
                 linha[7] = q.getNivel();
+                linha[8] = q.getIdentificador();
                 model.addRow(linha);
             }
         } catch (Exception ex) {
@@ -69,7 +73,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         var adao = new AlternativaDAO();
         try {
             List<Questao> listaQuestoes = qdao.consultarQuestao(null, materiaSelecionada, null);
-            Object[] linha = new Object[8];
+            Object[] linha = new Object[9];
             for(int i = 0; i < listaQuestoes.size(); i++) {
                 var q = listaQuestoes.get(i);
                 List<Alternativa> listaAlternativas = adao.consultarAlternativa(q);
@@ -94,7 +98,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         var adao = new AlternativaDAO();
         try {
             List<Questao> listaQuestoes = qdao.consultarQuestao(null, null, nivelSelecionado);
-            Object[] linha = new Object[8];
+            Object[] linha = new Object[9];
             for(int i = 0; i < listaQuestoes.size(); i++) {
                 var q = listaQuestoes.get(i);
                 List<Alternativa> listaAlternativas = adao.consultarAlternativa(q);
@@ -119,7 +123,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
         var adao = new AlternativaDAO();
         try{
             List<Questao> listaQuestoes = qdao.consultarQuestao(enunciadoPesquisado, null, null);
-            Object[] linha = new Object[8];
+            Object[] linha = new Object[9];
             for(int i = 0; i < listaQuestoes.size(); i++){
                 var q = listaQuestoes.get(i);
                 List<Alternativa> listaAlternativas = adao.consultarAlternativa(q);
@@ -190,7 +194,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Pergunta", "Alternativa A", "Alternativa B", "Alternativa C", "Alternativa D", "Alternativa E", "Matéria", "Dificuldade"
+                "Pergunta", "Alternativa A", "Alternativa B", "Alternativa C", "Alternativa D", "Alternativa E", "Matéria", "Dificuldade", "id"
             }
         ));
         jScrollPane1.setViewportView(consultarPerguntasTable);
@@ -228,6 +232,11 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
 
         atualizarPerguntaButton.setContentAreaFilled(false);
         atualizarPerguntaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        atualizarPerguntaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarPerguntaButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(atualizarPerguntaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 880, 380, 100));
 
         removerPerguntaButton.setContentAreaFilled(false);
@@ -287,6 +296,28 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
     private void pesquisarPerguntaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarPerguntaTextFieldActionPerformed
         pesquisarQuestao();
     }//GEN-LAST:event_pesquisarPerguntaTextFieldActionPerformed
+
+    private void atualizarPerguntaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarPerguntaButtonActionPerformed
+        if(consultarPerguntasTable.isEditing()){
+            consultarPerguntasTable.getCellEditor().stopCellEditing();
+        }
+        DefaultTableModel model = (DefaultTableModel) consultarPerguntasTable.getModel();
+        var dao = new QuestaoDAO();
+        
+        var linha = (Integer) consultarPerguntasTable.getSelectedRow();
+        String enunciado = (String) consultarPerguntasTable.getValueAt(linha, 0);
+        var id = (Integer) consultarPerguntasTable.getValueAt(linha, 8);
+        System.out.println(enunciado);
+        System.out.println(id);
+            
+        try {
+            dao.atualizarQuestao(id, enunciado, null, null);
+        } catch (Exception ex) {
+            Logger.getLogger(TelaConsultarPergunta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JOptionPane.showMessageDialog(null, "Questão atualizada com sucesso!");
+    }//GEN-LAST:event_atualizarPerguntaButtonActionPerformed
 
     /**
      * @param args the command line arguments
