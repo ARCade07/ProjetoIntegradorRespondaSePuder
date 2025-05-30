@@ -230,10 +230,18 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_removerAlunoButtonActionPerformed
 
     private void atualizarAlunoButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarAlunoButton1ActionPerformed
+        if(consultarAlunosTable.isEditing()){
+            consultarAlunosTable.getCellEditor().stopCellEditing();
+        }
+        DefaultTableModel model = (DefaultTableModel) consultarAlunosTable.getModel();
         var dao = new UsuarioDAO();
+        var linha = (Integer) consultarAlunosTable.getSelectedRow();
+        var identificador = (Integer) consultarAlunosTable.getValueAt(linha, 0);
+        var nome = (String) consultarAlunosTable.getValueAt(linha, 1);
+        var email = (String) consultarAlunosTable.getValueAt(linha, 2);
+        var senha = (String) consultarAlunosTable.getValueAt(linha, 3);
         try {
-            int id = dao.identificarID(nomeAlunoTextField.getText(), emailAlunoTextField.getText(), senhaAlunoTextField.getText());
-            dao.atualizarUsuario(id, nomeAlunoTextField.getText(), emailAlunoTextField.getText(), senhaAlunoTextField.getText());
+            dao.atualizarUsuario(identificador, nome, email, senha);
         } catch (Exception ex) {
             Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
