@@ -286,6 +286,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         var dao = new UsuarioDAO();
         try {
             dao.adicionarUsuario(usuario);
+            JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso.");
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(
