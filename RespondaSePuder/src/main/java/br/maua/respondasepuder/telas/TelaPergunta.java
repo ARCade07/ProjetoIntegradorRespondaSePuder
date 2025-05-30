@@ -19,7 +19,16 @@ import javax.swing.JOptionPane;
  * @author Arthur
  */
 public class TelaPergunta extends javax.swing.JFrame {
+    
+    private Jogo jogo;
     private Questao questao;
+    private Alternativa alternativaA;
+    private Alternativa alternativaB;
+    private Alternativa alternativaC;
+    private Alternativa alternativaD;
+    private Alternativa alternativaE;
+    private TelaPergunta telaAtual;
+    
     public void montarTela(Questao questao) {
         var dao = new QuestaoAlternativaDAO();
         List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
@@ -28,25 +37,53 @@ public class TelaPergunta extends javax.swing.JFrame {
             Questao q = questaoDAO.buscarPorId(questao.getIdentificador(), questao);
             enunciadoPerguntaLabel.setText(q.getEnunciado());
             listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(q);
-            String alternativaA = listaQuestaoAlternativaConsulta.get(0).getResposta().getTexto();
-            alternativaALabel.setText(alternativaA);
-            String alternativaB = listaQuestaoAlternativaConsulta.get(1).getResposta().getTexto();
-            alternativaBLabel.setText(alternativaB);
-            String alternativaC = listaQuestaoAlternativaConsulta.get(2).getResposta().getTexto();
-            alternativaCLabel.setText(alternativaC);
-            String alternativaD = listaQuestaoAlternativaConsulta.get(3).getResposta().getTexto();
-            alternativaDLabel.setText(alternativaD);
-            String alternativaE = listaQuestaoAlternativaConsulta.get(4).getResposta().getTexto();
-            alternativaELabel.setText(alternativaE);
+            this.alternativaA = listaQuestaoAlternativaConsulta.get(0).getResposta();
+            this.alternativaB = listaQuestaoAlternativaConsulta.get(1).getResposta();
+            this.alternativaC = listaQuestaoAlternativaConsulta.get(2).getResposta();
+            this.alternativaD = listaQuestaoAlternativaConsulta.get(3).getResposta();
+            this.alternativaE = listaQuestaoAlternativaConsulta.get(4).getResposta();
+            
+            alternativaALabel.setText(alternativaA.getTexto());
+            alternativaBLabel.setText(alternativaB.getTexto());
+            alternativaCLabel.setText(alternativaC.getTexto());
+            alternativaDLabel.setText(alternativaD.getTexto());
+            alternativaELabel.setText(alternativaE.getTexto());
+            
+            var numeroQuestao = String.valueOf(jogo.pergunta);
+            numeroPerguntaLabel.setText(numeroQuestao);
+            
+            pontuacaoQuestaoLabel.setText("1000");
+            
         } catch (Exception exception) {
             exception.printStackTrace();
+        }
+    }
+    private void verificarAlternativa(Alternativa alternativa) {
+        var dao = new QuestaoAlternativaDAO();
+        try {
+            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
+
+            if (verificarResposta) {
+                JOptionPane.showMessageDialog(null, "Acertou!");
+                var pontuacao = String.valueOf(jogo.receberPontuacao(jogo.pergunta, verificarResposta));
+                pontuacaoQuestaoLabel.setText(pontuacao);
+                var novaQuestao = jogo.randomizarPergunta();
+                new TelaPergunta(jogo, novaQuestao).setVisible(true);
+                telaAtual.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Errou!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     /**
      * Creates new form TelaPergunta
      */
-    public TelaPergunta(Questao questaoSelecionada) {
+    public TelaPergunta(Jogo jogo, Questao questaoSelecionada) {
+        this.jogo = jogo;
         this.questao = questaoSelecionada;
+        this.telaAtual = this;
         initComponents();
         montarTela(this.questao);
     }
@@ -85,7 +122,7 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         numeroPerguntaLabel.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        getContentPane().add(numeroPerguntaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 10, 10, 50));
+        getContentPane().add(numeroPerguntaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 0, 80, 60));
 
         alternativaALabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         alternativaALabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -178,6 +215,8 @@ public class TelaPergunta extends javax.swing.JFrame {
 
         pontuacaoQuestaoLabel.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         getContentPane().add(pontuacaoQuestaoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 900, 310, 40));
+
+        enunciadoPerguntaLabel.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         getContentPane().add(enunciadoPerguntaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 190, 710, 560));
 
         pararJogarButton.setContentAreaFilled(false);
@@ -192,19 +231,7 @@ public class TelaPergunta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void alternativaCButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaCButtonActionPerformed
-        new TelaConfirmarResposta();
-        this.dispose();
-        var jogo = new Jogo();
-        var dao = new QuestaoAlternativaDAO();
-        try {
-            List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
-            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(this.questao);
-            var alternativa = listaQuestaoAlternativaConsulta.get(2).getResposta();
-            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
-            JOptionPane.showMessageDialog(null, verificarResposta);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        verificarAlternativa(alternativaC);
     }//GEN-LAST:event_alternativaCButtonActionPerformed
 
     private void pularQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pularQuestaoButtonActionPerformed
@@ -212,67 +239,19 @@ public class TelaPergunta extends javax.swing.JFrame {
     }//GEN-LAST:event_pularQuestaoButtonActionPerformed
 
     private void alternativaAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaAButtonActionPerformed
-        new TelaConfirmarResposta();
-        this.dispose();
-        var jogo = new Jogo();
-        var dao = new QuestaoAlternativaDAO();
-        try {
-            List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
-            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(this.questao);
-            var alternativa = listaQuestaoAlternativaConsulta.get(0).getResposta();
-            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
-            JOptionPane.showMessageDialog(null, verificarResposta);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        verificarAlternativa(alternativaA);
     }//GEN-LAST:event_alternativaAButtonActionPerformed
 
     private void alternativaBButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaBButtonActionPerformed
-        new TelaConfirmarResposta();
-        this.dispose();
-        var jogo = new Jogo();
-        var dao = new QuestaoAlternativaDAO();
-        try {
-            List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
-            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(this.questao);
-            var alternativa = listaQuestaoAlternativaConsulta.get(1).getResposta();
-            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
-            JOptionPane.showMessageDialog(null, verificarResposta);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        verificarAlternativa(alternativaB);
     }//GEN-LAST:event_alternativaBButtonActionPerformed
 
     private void alternativaDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaDButtonActionPerformed
-        new TelaConfirmarResposta();
-        this.dispose();
-        var jogo = new Jogo();
-        var dao = new QuestaoAlternativaDAO();
-        try {
-            List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
-            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(this.questao);
-            var alternativa = listaQuestaoAlternativaConsulta.get(3).getResposta();
-            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
-            JOptionPane.showMessageDialog(null, verificarResposta);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        verificarAlternativa(alternativaD);
     }//GEN-LAST:event_alternativaDButtonActionPerformed
 
     private void alternativaEButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaEButtonActionPerformed
-        new TelaConfirmarResposta();
-        this.dispose();
-        var jogo = new Jogo();
-        var dao = new QuestaoAlternativaDAO();
-        try {
-            List<QuestaoAlternativa> listaQuestaoAlternativaConsulta;
-            listaQuestaoAlternativaConsulta = (ArrayList<QuestaoAlternativa>) dao.consultarQuestaoAlternativaPorIdQuestao(this.questao);
-            var alternativa = listaQuestaoAlternativaConsulta.get(4).getResposta();
-            var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
-            JOptionPane.showMessageDialog(null, verificarResposta);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        verificarAlternativa(alternativaE);
     }//GEN-LAST:event_alternativaEButtonActionPerformed
 
     /**
@@ -307,11 +286,9 @@ public class TelaPergunta extends javax.swing.JFrame {
             public void run() {
                 try {
                     var jogo = new Jogo();
-                    var random = jogo.randomizarPergunta();
-                    Questao q = Questao.builder()
-                            .identificador(random.getIdentificador())
-                            .build();
-                    new TelaPergunta(q).setVisible(true);
+                    jogo.novaPartida();
+                    var questaoJogo = jogo.randomizarPergunta();
+                    new TelaPergunta(jogo, questaoJogo).setVisible(true);
                 }
                 catch(Exception e){
                     e.printStackTrace();

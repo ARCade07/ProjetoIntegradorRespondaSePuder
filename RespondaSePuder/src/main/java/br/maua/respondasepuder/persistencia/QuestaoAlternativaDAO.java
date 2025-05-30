@@ -90,11 +90,12 @@ public class QuestaoAlternativaDAO {
         return listaQuestaoAlternativaConsulta;
     }
     public boolean consultarQuestaoAlternativaID(Questao questao, Alternativa alternativa) throws Exception {
+        var sql = "SELECT alternativa_correta FROM Questao_Alternativa WHERE id_questao = ? AND id_alternativa = ?";
 
-        var sql = "SELECT ehCorreta FROM Questao_Alternativa WHERE id_questao = ? AND id_alternativa = ?";
-
+        boolean alternativaEhCorreta = false;
         try (
-                var conexao = new ConnectionFactory().obterConexao(); var ps = conexao.prepareStatement(sql);) {
+            var conexao = new ConnectionFactory().obterConexao(); var ps = conexao.prepareStatement(sql);
+        ) {
             ps.setInt(1, questao.getIdentificador());
             ps.setInt(2, alternativa.getIdentificador());
 
@@ -102,12 +103,11 @@ public class QuestaoAlternativaDAO {
                 var rs = ps.executeQuery()
             ){
                 if (rs.next()) {
-                    var alternativaEhCorreta = rs.getBoolean("ehCorreta");
+                    alternativaEhCorreta = rs.getBoolean("alternativa_correta");
                 }
             }
         }
-
-        return false;
+        return alternativaEhCorreta;
     }
     public Alternativa alternativaCorreta(Questao questao) throws Exception {
         var sql = "SELECT a.texto FROM Alternativa a JOIN Questao_Alternativa USING(id_alternativa) JOIN Questao USING(id_questao) WHERE id_questao =?";
@@ -133,7 +133,7 @@ public class QuestaoAlternativaDAO {
     }
     public List<QuestaoAlternativa> consultarQuestaoAlternativaPorIdQuestao (Questao questao) throws Exception{
         List<QuestaoAlternativa> listaQuestaoAlternativaConsultaPorIdQuestao = new ArrayList<>();
-        var sql = "SELECT qa.alternativa_correta, a.texto FROM Questao_Alternativa qa JOIN Alternativa a USING(id_alternativa) WHERE qa.id_questao = ?";
+        var sql = "SELECT qa.alternativa_correta, a.texto, qa.id_alternativa, qa.id_questao FROM Questao_Alternativa qa JOIN Alternativa a USING(id_alternativa) WHERE qa.id_questao = ?";
         try (
             var conexao = new ConnectionFactory().obterConexao(); 
             var ps = conexao.prepareStatement(sql);
@@ -143,10 +143,15 @@ public class QuestaoAlternativaDAO {
                 var rs = ps.executeQuery()
             ) {
                 while (rs.next()) {
+                    questao = Questao.builder()
+                            .identificador(rs.getInt("id_questao"))
+                            .build();
                     var alternativa = Alternativa.builder()
+                            .identificador(rs.getInt("id_alternativa"))
                             .texto(rs.getString("texto"))
                             .build();
                     var questaoAlternativa = QuestaoAlternativa.builder()
+                            .questao(questao)
                             .resposta(alternativa)
                             .alternativaCorreta(rs.getBoolean("alternativa_correta"))
                             .build();

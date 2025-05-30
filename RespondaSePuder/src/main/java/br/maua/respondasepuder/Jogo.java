@@ -15,12 +15,12 @@ public class Jogo {
     List<Questao> listaQuestoesFaceis;
     List<Questao> listaQuestoesMedias;
     List<Questao> listaQuestoesDificeis;
-    int pergunta;
+    public int pergunta;
     int pulos;
     int escudo;
     int eliminaDuas;
     
-    private void novaPartida() throws Exception {
+    public void novaPartida() throws Exception {
         var dao = new QuestaoDAO();
         listaQuestoesFaceis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "fácil");
         listaQuestoesMedias = (ArrayList<Questao>) dao.consultarQuestao(null, null, "médio");
@@ -32,7 +32,6 @@ public class Jogo {
     }
     
     public Questao randomizarPergunta() throws Exception {
-        novaPartida();
         var r = new Random();
         if(pergunta < 4){
             Questao questaoAtual = listaQuestoesFaceis.get(r.nextInt(listaQuestoesFaceis.size()));
@@ -63,7 +62,7 @@ public class Jogo {
         }
     }
     
-    private int receberPontuacao (int pergunta, boolean acertou) {
+    public int receberPontuacao (int pergunta, boolean acertou) {
         if(acertou){
             int [] valorPergunta = {1000, 5000, 10000, 25000, 50000, 75000, 100000, 150000, 250000, 400000, 500000, 1000000};
             return valorPergunta[pergunta - 1];
