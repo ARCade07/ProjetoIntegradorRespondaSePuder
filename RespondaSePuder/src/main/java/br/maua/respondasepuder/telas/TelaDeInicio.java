@@ -120,13 +120,10 @@ public class TelaDeInicio extends javax.swing.JFrame {
     private void iniciarJogoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarJogoButtonActionPerformed
         try {
             Jogo jogo = new Jogo();
-            var random = jogo.randomizarPergunta();
+            jogo.novaPartida();
+            var questaoAleatoria = jogo.randomizarPergunta();
             
-            Questao q = Questao.builder()
-                    .identificador(random.getIdentificador())
-                    .build();
-            
-            new TelaPergunta(jogo, q).setVisible(true);
+            new TelaPergunta(jogo, questaoAleatoria).setVisible(true);
             this.dispose();
         } catch (Exception e) {
             e.printStackTrace();
