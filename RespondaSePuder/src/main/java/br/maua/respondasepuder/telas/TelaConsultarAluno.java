@@ -243,6 +243,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         var senha = (String) consultarAlunosTable.getValueAt(linha, 3);
         try {
             dao.atualizarUsuario(identificador, nome, email, senha);
+            JOptionPane.showMessageDialog(null, "Aluno atualizado com sucesso.");
         } catch (Exception ex) {
             Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
