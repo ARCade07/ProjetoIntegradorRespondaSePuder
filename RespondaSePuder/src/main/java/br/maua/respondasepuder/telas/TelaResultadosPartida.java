@@ -4,17 +4,28 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.Jogo;
+
 /**
  *
  * @author Arthur
  */
 public class TelaResultadosPartida extends javax.swing.JFrame {
-
+    public int pontuacaoAcumulada;
+    public int numeroQuestaoInt;
     /**
      * Creates new form TelaResultadosPartida
      */
-    public TelaResultadosPartida() {
+    public TelaResultadosPartida(int pontuacaoAcumulada, int numeroQuestaoInt) {
+        this.pontuacaoAcumulada = pontuacaoAcumulada;
+        this.numeroQuestaoInt = numeroQuestaoInt;
         initComponents();
+        montarTela();
+    }
+    
+    public void montarTela() {
+        pontuacaoPartidaLabel.setText(String.valueOf(pontuacaoAcumulada));
+        questoesCorretasPartidaLabel.setText(String.valueOf(numeroQuestaoInt));
     }
 
     /**
@@ -29,7 +40,7 @@ public class TelaResultadosPartida extends javax.swing.JFrame {
         jogarNovamenteButton = new javax.swing.JButton();
         voltarResultadosButton = new javax.swing.JButton();
         pontuacaoPartidaLabel = new javax.swing.JLabel();
-        QuestoesCorretasPartidaLabel = new javax.swing.JLabel();
+        questoesCorretasPartidaLabel = new javax.swing.JLabel();
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,9 +68,9 @@ public class TelaResultadosPartida extends javax.swing.JFrame {
         pontuacaoPartidaLabel.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(pontuacaoPartidaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 240, 380, 110));
 
-        QuestoesCorretasPartidaLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        QuestoesCorretasPartidaLabel.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(QuestoesCorretasPartidaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 450, 370, 100));
+        questoesCorretasPartidaLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        questoesCorretasPartidaLabel.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(questoesCorretasPartidaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 450, 370, 100));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela resultados partida.png"))); // NOI18N
         getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, -1, -1));
@@ -105,16 +116,18 @@ public class TelaResultadosPartida extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaResultadosPartida().setVisible(true);
+                var pontuacaoAcumulada = 0;
+                var numeroQuestaoInt = 0;
+                new TelaResultadosPartida(pontuacaoAcumulada, numeroQuestaoInt).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel QuestoesCorretasPartidaLabel;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JButton jogarNovamenteButton;
     private javax.swing.JLabel pontuacaoPartidaLabel;
+    private javax.swing.JLabel questoesCorretasPartidaLabel;
     private javax.swing.JButton voltarResultadosButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -71,7 +71,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="QuestoesCorretasPartidaLabel">
+    <Component class="javax.swing.JLabel" name="questoesCorretasPartidaLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="48" style="1"/>
