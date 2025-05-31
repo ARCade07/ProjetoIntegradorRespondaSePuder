@@ -12,6 +12,8 @@ import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoAlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +30,10 @@ public class TelaPergunta extends javax.swing.JFrame {
     private Alternativa alternativaD;
     private Alternativa alternativaE;
     private TelaPergunta telaAtual;
+    private int pontuacaoAcumulada;
+    private String numeroQuestao;
+    private int numeroQuestaoInt;
+    private boolean escudoAtivo = false;
     
     public void montarTela(Questao questao) {
         var dao = new QuestaoAlternativaDAO();
@@ -49,10 +55,20 @@ public class TelaPergunta extends javax.swing.JFrame {
             alternativaDLabel.setText(alternativaD.getTexto());
             alternativaELabel.setText(alternativaE.getTexto());
             
-            var numeroQuestao = String.valueOf(jogo.pergunta);
+            numeroQuestao = String.valueOf(jogo.pergunta);
             numeroPerguntaLabel.setText(numeroQuestao);
             
-            pontuacaoQuestaoLabel.setText("1000");
+            numeroQuestaoInt = jogo.pergunta;
+            var pontuacao = jogo.receberPontuacao(numeroQuestaoInt,true);
+            pontuacaoQuestaoLabel.setText(String.valueOf(pontuacao));
+            
+            if (numeroQuestaoInt == 1){
+                this.pontuacaoAcumulada = 0;
+            }
+            else {
+                this.pontuacaoAcumulada = jogo.receberPontuacao(numeroQuestaoInt - 1, true);
+            }
+            pontuacaoAcumuladaLabel.setText(String.valueOf(this.pontuacaoAcumulada));
             
         } catch (Exception exception) {
             exception.printStackTrace();
