@@ -84,11 +84,19 @@ public class TelaPergunta extends javax.swing.JFrame {
 
             if (verificarResposta) {
                 JOptionPane.showMessageDialog(null, "Acertou!");
-                var pontuacao = String.valueOf(jogo.receberPontuacao(jogo.pergunta, verificarResposta));
-                pontuacaoQuestaoLabel.setText(pontuacao);
-                var novaQuestao = jogo.randomizarPergunta();
-                new TelaPergunta(jogo, novaQuestao).setVisible(true);
-                telaAtual.dispose();
+                if (jogo.jogoAcabou()){
+                    new TelaResultadosPartida(pontuacaoAcumulada * 2, this.numeroQuestaoInt).setVisible(true);
+                    telaAtual.dispose();
+                }
+                else{
+                    int pontuacao = jogo.receberPontuacao(jogo.pergunta, verificarResposta);
+                    pontuacaoQuestaoLabel.setText(String.valueOf(pontuacao));
+                    atualizarPontuacaoAcumulada(jogo.pergunta);
+                    var novaQuestao = jogo.randomizarPergunta();
+                    new TelaPergunta(jogo, novaQuestao).setVisible(true);
+                    telaAtual.dispose();
+                }
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Errou!");
             }
