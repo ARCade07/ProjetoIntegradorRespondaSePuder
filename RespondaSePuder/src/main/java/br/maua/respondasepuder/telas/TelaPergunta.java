@@ -229,7 +229,12 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().add(alternativaEButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 650, 760, 60));
 
         eliminarDuasButton.setContentAreaFilled(false);
-        eliminarDuasButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        eliminarDuasButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        eliminarDuasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarDuasButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(eliminarDuasButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 130, 110));
 
         escudoButton.setContentAreaFilled(false);
@@ -297,6 +302,14 @@ public class TelaPergunta extends javax.swing.JFrame {
     private void alternativaEButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaEButtonActionPerformed
         verificarAlternativa(alternativaE);
     }//GEN-LAST:event_alternativaEButtonActionPerformed
+
+    private void eliminarDuasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarDuasButtonActionPerformed
+        try {
+            jogo.eliminarDuas(this.questao);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_eliminarDuasButtonActionPerformed
 
     /**
      * @param args the command line arguments
