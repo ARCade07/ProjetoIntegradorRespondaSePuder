@@ -158,6 +158,25 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao remover a questao, tente novamente!");
         }
     }
+    private void atualizarQuestao() {
+        if(consultarPerguntasTable.isEditing()){
+            consultarPerguntasTable.getCellEditor().stopCellEditing();
+        }
+        DefaultTableModel model = (DefaultTableModel) consultarPerguntasTable.getModel();
+        var dao = new QuestaoDAO();
+        
+        var linha = (Integer) consultarPerguntasTable.getSelectedRow();
+        String enunciado = (String) consultarPerguntasTable.getValueAt(linha, 0);
+        var id = (Integer) consultarPerguntasTable.getValueAt(linha, 8);
+            
+        try {
+            dao.atualizarQuestao(id, enunciado, null, null);
+            JOptionPane.showMessageDialog(null, "Questão atualizada com sucesso!");
+        } catch (Exception ex) {
+            Logger.getLogger(TelaConsultarPergunta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
    
     public TelaConsultarPergunta() {
         initComponents();
@@ -298,25 +317,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
     }//GEN-LAST:event_pesquisarPerguntaTextFieldActionPerformed
 
     private void atualizarPerguntaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarPerguntaButtonActionPerformed
-        if(consultarPerguntasTable.isEditing()){
-            consultarPerguntasTable.getCellEditor().stopCellEditing();
-        }
-        DefaultTableModel model = (DefaultTableModel) consultarPerguntasTable.getModel();
-        var dao = new QuestaoDAO();
-        
-        var linha = (Integer) consultarPerguntasTable.getSelectedRow();
-        String enunciado = (String) consultarPerguntasTable.getValueAt(linha, 0);
-        var id = (Integer) consultarPerguntasTable.getValueAt(linha, 8);
-        System.out.println(enunciado);
-        System.out.println(id);
-            
-        try {
-            dao.atualizarQuestao(id, enunciado, null, null);
-        } catch (Exception ex) {
-            Logger.getLogger(TelaConsultarPergunta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        JOptionPane.showMessageDialog(null, "Questão atualizada com sucesso!");
+        atualizarQuestao();
     }//GEN-LAST:event_atualizarPerguntaButtonActionPerformed
 
     /**
