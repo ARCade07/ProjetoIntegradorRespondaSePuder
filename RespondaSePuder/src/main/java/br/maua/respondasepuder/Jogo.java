@@ -30,7 +30,6 @@ public class Jogo {
         escudo = 1;
         eliminaDuas = 1;
     }
-    
     public Questao randomizarPergunta() throws Exception {
         var r = new Random();
         if(pergunta < 4){
@@ -55,7 +54,9 @@ public class Jogo {
     public boolean verificarResposta(Questao questao, Alternativa alternativaEscolhida) throws Exception {
         var dao = new QuestaoAlternativaDAO();
         if (dao.consultarQuestaoAlternativaID(questao, alternativaEscolhida)) {
-            pergunta += 1; 
+            if (pergunta <= 12) {
+                pergunta += 1; 
+            }
             return true;
         } else {
             return false;
