@@ -74,6 +74,9 @@ public class TelaPergunta extends javax.swing.JFrame {
             exception.printStackTrace();
         }
     }
+    private void atualizarPontuacaoAcumulada(int numeroPergunta){
+        this.pontuacaoAcumulada = jogo.receberPontuacao(numeroPergunta, true);
+    }
     private void verificarAlternativa(Alternativa alternativa) {
         var dao = new QuestaoAlternativaDAO();
         try {
