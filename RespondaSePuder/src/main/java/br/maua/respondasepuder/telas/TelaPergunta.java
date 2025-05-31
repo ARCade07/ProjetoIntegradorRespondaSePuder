@@ -284,7 +284,12 @@ public class TelaPergunta extends javax.swing.JFrame {
     }//GEN-LAST:event_alternativaCButtonActionPerformed
 
     private void pularQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pularQuestaoButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            var questaoNova = jogo.pularQuestao();
+            montarTela(questaoNova);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_pularQuestaoButtonActionPerformed
 
     private void alternativaAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaAButtonActionPerformed
