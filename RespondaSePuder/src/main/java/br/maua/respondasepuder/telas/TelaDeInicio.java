@@ -41,7 +41,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iniciarJogoButton.setContentAreaFilled(false);
-        iniciarJogoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iniciarJogoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         iniciarJogoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iniciarJogoButtonActionPerformed(evt);
@@ -50,7 +50,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
         getContentPane().add(iniciarJogoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 323, 990, 130));
 
         OpcoesButton.setContentAreaFilled(false);
-        OpcoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        OpcoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         OpcoesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OpcoesButtonActionPerformed(evt);
@@ -59,7 +59,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
         getContentPane().add(OpcoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 493, 690, 100));
 
         pontuacaoButton.setContentAreaFilled(false);
-        pontuacaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pontuacaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pontuacaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pontuacaoButtonActionPerformed(evt);
@@ -68,7 +68,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
         getContentPane().add(pontuacaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 633, 690, 110));
 
         acessarInformacoesButton.setContentAreaFilled(false);
-        acessarInformacoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        acessarInformacoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         acessarInformacoesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 acessarInformacoesButtonActionPerformed(evt);
@@ -77,7 +77,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
         getContentPane().add(acessarInformacoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 3, 170, 170));
 
         ativarMusicaButton.setContentAreaFilled(false);
-        ativarMusicaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ativarMusicaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ativarMusicaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ativarMusicaButtonActionPerformed(evt);
@@ -86,7 +86,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
         getContentPane().add(ativarMusicaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 800, 170, 170));
 
         sairDoJogoButton.setContentAreaFilled(false);
-        sairDoJogoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sairDoJogoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         sairDoJogoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairDoJogoButtonActionPerformed(evt);
@@ -132,6 +132,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
 
     private void pontuacaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pontuacaoButtonActionPerformed
         new TelaPontuacaoAluno().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_pontuacaoButtonActionPerformed
 
     /**
