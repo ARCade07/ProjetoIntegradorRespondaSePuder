@@ -107,14 +107,21 @@ public class Jogo {
         }
     }
     
-    private void ativarEscudo(boolean acertou) {
-        if(acertou && escudo > 0 && pergunta != 12){
-            JOptionPane.showMessageDialog(null, "VOcê ativou o escudo e agora terá uma nova chance de responder essa pergunta");
+    public void setDesejaUsarEscudo(boolean deseja){
+        this.desejaUsarEscudo = deseja;
+    }
+    public boolean isDesejaUsarEscudo(){
+        return desejaUsarEscudo;
+    }
+    public void ativarEscudo(boolean acertou) {
+        if(!acertou && escudo > 0 && pergunta != 12 && !usouEscudo){
+            usouEscudo = true;
+            escudo -= 1;
         }
         else{
             JOptionPane.showMessageDialog(null, "Você não pode mais utilzar essa ajuda!");
         }
-        escudo -= 1;
+
     }
     
     private List<Alternativa> eliminarDuas (Questao questao, Alternativa alternativaCorreta) throws Exception {
