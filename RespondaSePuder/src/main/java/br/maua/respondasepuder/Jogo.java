@@ -19,6 +19,8 @@ public class Jogo {
     int pulos;
     int escudo;
     int eliminaDuas;
+    private boolean desejaUsarEscudo = false;
+    private boolean usouEscudo = false;
     
     public void novaPartida() throws Exception {
         var dao = new QuestaoDAO();
@@ -124,12 +126,12 @@ public class Jogo {
 
     }
     
-    private List<Alternativa> eliminarDuas (Questao questao, Alternativa alternativaCorreta) throws Exception {
+    public List<Alternativa> eliminarDuas (Questao questao) throws Exception {
         if(eliminaDuas > 0 && pergunta != 12){
             var adao = new AlternativaDAO();
             var qadao = new QuestaoAlternativaDAO();
             var r = new Random();
-            alternativaCorreta = qadao.alternativaCorreta(questao);
+            var alternativaCorreta = qadao.alternativaCorreta(questao);
             List<Alternativa> listaAlternativasQuestao = (ArrayList<Alternativa>) adao.consultarAlternativa(questao);
             var indexCorreto = listaAlternativasQuestao.indexOf(alternativaCorreta);
             listaAlternativasQuestao.remove(indexCorreto);
