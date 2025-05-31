@@ -7,8 +7,8 @@ import java.util.*;
 
 public class UsuarioDAO {
     public void adicionarUsuario(Usuario usuario) throws Exception {
-        var sql = "INSERT INTO Usuario(nome, email, senha)"
-                + "VALUES (?, ?, ?)";
+        var sql = "INSERT INTO Usuario(nome, email, senha, id_papel)"
+                + "VALUES (?, ?, ?, ?)";
         try(
                 var conexao = new ConnectionFactory().obterConexao();
                 var ps = conexao.prepareStatement(sql);
@@ -16,36 +16,47 @@ public class UsuarioDAO {
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getEmail());
             ps.setString(3, usuario.getSenha());
+            ps.setInt(4, 1);
             ps.execute();
         }
     }
-    public boolean removerUsuario(Usuario usuario) throws Exception {
-        var sql = "DELETE FROM Usuario WHERE id_usuario = ?";
+    public void adicionarProfessor(Usuario usuario) throws Exception {
+        var sql = "INSERT INTO Usuario(nome, email, senha, id_papel)"
+                + "VALUES (?, ?, ?, ?)";
         try(
                 var conexao = new ConnectionFactory().obterConexao();
                 var ps = conexao.prepareStatement(sql);
         ){
-            ps.setInt(1, usuario.getIdentificador());
+            ps.setString(1, usuario.getNome());
+            ps.setString(2, usuario.getEmail());
+            ps.setString(3, usuario.getSenha());
+            ps.setInt(4, 2);
+            ps.execute();
+        }
+    }
+    public boolean removerUsuario(Usuario usuario) throws Exception {
+        var sql = "DELETE FROM Usuario WHERE nome = ? AND email = ? AND senha = ?";
+        try(
+                var conexao = new ConnectionFactory().obterConexao();
+                var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setString(1, usuario.getNome());
+            ps.setString(2, usuario.getEmail());
+            ps.setString(3, usuario.getSenha());
             int linhaRemovida = ps.executeUpdate();
             return linhaRemovida > 0;
         }
        
     }
-    public List<Usuario> consultarUsuario(String nome, String email) throws Exception {
-        List<Usuario> listaUsuarioConsulta = new ArrayList<>();
-        var sql = new StringBuilder("SELECT * FROM Usuario WHERE 1=1");
+    public Object[] consultarUsuario(String nome) throws Exception {
+        List<Object> listaUsuarioConsulta = new ArrayList<>();
+        var sql = new StringBuilder("SELECT id_usuario, nome, email, senha, id_papel FROM Usuario WHERE id_papel = 1 AND 1=1");
         List<String> parametrosConsulta = new ArrayList<>();
 
         if (nome != null && !nome.isEmpty()) {
             sql.append(" AND nome LIKE ?");
             parametrosConsulta.add("%" + nome + "%");
         }
-
-        if (email != null && !email.isEmpty()) {
-            sql.append(" AND email = ?");
-            parametrosConsulta.add(email);
-        }
-
         try (
                 var conexao = new ConnectionFactory().obterConexao(); 
                 var ps = conexao.prepareStatement(sql.toString());
@@ -68,7 +79,7 @@ public class UsuarioDAO {
                 }
             }
         }
-        return listaUsuarioConsulta;
+        return listaUsuarioConsulta.toArray();
     }
     public boolean autenticarUsuario(Usuario usuario) throws Exception {
         var sql = "SELECT id_usuario, id_papel, email, senha FROM Usuario JOIN Papel USING (id_papel) WHERE email = ? AND senha = ?";
@@ -133,4 +144,19 @@ public class UsuarioDAO {
         
     }
     
+    public int identificarID(String nome, String email, String senha) throws Exception {
+        var sql = "SELECT id_usuario FROM Usuario WHERE nome = ?, email = ?, senha = ?";
+        try (
+            var conexao = new ConnectionFactory().obterConexao();
+            var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setString(1, nome);
+            ps.setString(2, email);
+            ps.setString(3, senha);
+            var rs = ps.executeQuery();
+            int id = rs.getInt("id_usuario");
+            return id;
+            
+        }         
+    }
 }

@@ -3,7 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.maua.respondasepuder.telas;
-
+import br.maua.respondasepuder.modelo.Usuario;
+import br.maua.respondasepuder.persistencia.UsuarioDAO;
+import java.awt.event.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
 /**
  *
  * @author Arthur
@@ -13,10 +20,66 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     /**
      * Creates new form TelaAdicionarAluno
      */
-    public TelaConsultarAluno() {
+    private DefaultTableModel modeloTabela;
+    
+    public TelaConsultarAluno() throws Exception {
         super("Responda se puder");
         initComponents();
-        setLocationRelativeTo(null);    }
+        setLocationRelativeTo(null);  
+        configurarTabela();
+        carregarUsuarios();
+    }
+    private void configurarTabela() {
+        String[] colunas = {"ID", "Nome", "Email", "Senha"};
+        modeloTabela = new DefaultTableModel(colunas, 0);
+        consultarAlunosTable.setModel(modeloTabela);
+        consultarAlunosTable.setRowHeight(25);
+        consultarAlunosTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        consultarAlunosTable.getTableHeader().setReorderingAllowed(false);
+    }
+    public void carregarUsuarios() throws Exception {
+        modeloTabela.setRowCount(0);
+        try {
+            var dao = new UsuarioDAO();
+            Object [] usuarios = dao.consultarUsuario(pesquisarAlunoTextField.getText());
+            for (Object objeto : usuarios) {
+                var usuario = (Usuario) objeto;
+                Object[] linha = {
+                    usuario.getIdentificador(),
+                    usuario.getNome(),
+                    usuario.getEmail(),
+                    usuario.getSenha(),
+                };
+                modeloTabela.addRow(linha);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar usuários");
+        }
+    }
+    public Usuario getUsuarioSelecionado() {
+        int linha = consultarAlunosTable.getSelectedRow();
+        if (linha != -1){
+            try {
+                int id = (int) modeloTabela.getValueAt(linha, 0);
+                String nome = (String) modeloTabela.getValueAt(linha, 1);
+                String email = (String) modeloTabela.getValueAt(linha, 2);
+                String senha = (String) modeloTabela.getValueAt(linha, 3);
+                return Usuario.builder()
+                        .identificador(id)
+                        .nome(nome)
+                        .email(email)
+                        .senha(senha)
+                        .build();
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return null;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,11 +123,16 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         nomeAlunoTextField.setBackground(new java.awt.Color(0, 176, 185));
         nomeAlunoTextField.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         nomeAlunoTextField.setBorder(null);
+        nomeAlunoTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeAlunoTextFieldActionPerformed(evt);
+            }
+        });
         getContentPane().add(nomeAlunoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 222, 320, 60));
 
         voltarConsultarAlunoButton.setText("jButton1");
         voltarConsultarAlunoButton.setContentAreaFilled(false);
-        voltarConsultarAlunoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarConsultarAlunoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         voltarConsultarAlunoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 voltarConsultarAlunoButtonActionPerformed(evt);
@@ -73,7 +141,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         getContentPane().add(voltarConsultarAlunoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 13, 130, 120));
 
         removerAlunoButton.setContentAreaFilled(false);
-        removerAlunoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        removerAlunoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         removerAlunoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removerAlunoButtonActionPerformed(evt);
@@ -82,11 +150,21 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         getContentPane().add(removerAlunoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 870, 370, 100));
 
         adicionarAlunoButton1.setContentAreaFilled(false);
-        adicionarAlunoButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adicionarAlunoButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        adicionarAlunoButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                //adicionarAlunoButton1MouseClicked(evt);
+            }
+        });
+        adicionarAlunoButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarAlunoButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(adicionarAlunoButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 700, 470, 100));
 
         atualizarAlunoButton1.setContentAreaFilled(false);
-        atualizarAlunoButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        atualizarAlunoButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         atualizarAlunoButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atualizarAlunoButton1ActionPerformed(evt);
@@ -103,6 +181,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
                 "Nome", "Email", "Senha"
             }
         ));
+        consultarAlunosTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultarAlunosTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(consultarAlunosTable);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 1050, 680));
@@ -124,11 +207,53 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removerAlunoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerAlunoButtonActionPerformed
-        // TODO add your handling code here:
+        var nome = nomeAlunoTextField.getText();
+        var email = emailAlunoTextField.getText();
+        var senha = senhaAlunoTextField.getText();
+        var usuario = Usuario.builder()
+                .nome(nome)
+                .email(email)
+                .senha(senha)
+                .build();
+        var dao = new UsuarioDAO();
+        try {
+            if (dao.removerUsuario(usuario)) {
+                JOptionPane.showMessageDialog(null, "Aluno removido com sucesso.");
+                carregarUsuarios();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(
+                null, "Erro ao remover aluno"
+            );
+        }
     }//GEN-LAST:event_removerAlunoButtonActionPerformed
 
     private void atualizarAlunoButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarAlunoButton1ActionPerformed
-        // TODO add your handling code here:
+        if(consultarAlunosTable.isEditing()){
+            consultarAlunosTable.getCellEditor().stopCellEditing();
+        }
+        DefaultTableModel model = (DefaultTableModel) consultarAlunosTable.getModel();
+        var dao = new UsuarioDAO();
+        var linha = (Integer) consultarAlunosTable.getSelectedRow();
+        var identificador = (Integer) consultarAlunosTable.getValueAt(linha, 0);
+        var nome = (String) consultarAlunosTable.getValueAt(linha, 1);
+        var email = (String) consultarAlunosTable.getValueAt(linha, 2);
+        var senha = (String) consultarAlunosTable.getValueAt(linha, 3);
+        try {
+            dao.atualizarUsuario(identificador, nome, email, senha);
+            JOptionPane.showMessageDialog(null, "Aluno atualizado com sucesso.");
+        } catch (Exception ex) {
+            Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            carregarUsuarios();
+
+            // TODO add your handling code here:
+        } catch (Exception ex) {
+            //Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_atualizarAlunoButton1ActionPerformed
 
     private void senhaAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaAlunoTextFieldActionPerformed
@@ -137,12 +262,69 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
 
     private void pesquisarAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarAlunoTextFieldActionPerformed
         // TODO add your handling code here:
+        try {
+            carregarUsuarios();
+        } catch (Exception ex) {
+            //Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_pesquisarAlunoTextFieldActionPerformed
 
     private void voltarConsultarAlunoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarConsultarAlunoButtonActionPerformed
         this.dispose();
         new TelaDeADM().setVisible(true);
     }//GEN-LAST:event_voltarConsultarAlunoButtonActionPerformed
+
+    private void adicionarAlunoButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarAlunoButton1ActionPerformed
+        var nome = nomeAlunoTextField.getText();
+        var email = emailAlunoTextField.getText();
+        var senha = senhaAlunoTextField.getText();
+        var usuario = Usuario.builder()
+                .nome(nome)
+                .email(email)
+                .senha(senha)
+                .build();
+        var dao = new UsuarioDAO();
+        try {
+            dao.adicionarUsuario(usuario);
+            JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso.");
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(
+                null, "Erro ao adicionar aluno:" + ex.getMessage()
+            );
+            
+        }
+        try {
+            carregarUsuarios();
+            
+            // TODO add your handling code here:
+        } catch (Exception ex) {
+            //Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_adicionarAlunoButton1ActionPerformed
+
+    private void nomeAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+        
+        
+        // TODO add your handling code here:
+    }                                                     
+    private void consultarAlunosTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarAlunosTableMouseClicked
+        var usuarioSelecionado = getUsuarioSelecionado();
+        if (usuarioSelecionado != null) {
+            nomeAlunoTextField.setText(usuarioSelecionado.getNome());
+            emailAlunoTextField.setText(usuarioSelecionado.getEmail());
+            senhaAlunoTextField.setText(usuarioSelecionado.getSenha());
+        }
+        else {
+            nomeAlunoTextField.setText("");
+            emailAlunoTextField.setText("");
+            senhaAlunoTextField.setText("");
+        }
+    }//GEN-LAST:event_consultarAlunosTableMouseClicked
+
+    private void pesquisarAlunoTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pesquisarAlunoTextFieldKeyReleased
+      
+    }//GEN-LAST:event_pesquisarAlunoTextFieldKeyReleased
 
     /**
      * @param args the command line arguments
@@ -177,7 +359,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaConsultarAluno().setVisible(true);
+                try {
+                    new TelaConsultarAluno().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
