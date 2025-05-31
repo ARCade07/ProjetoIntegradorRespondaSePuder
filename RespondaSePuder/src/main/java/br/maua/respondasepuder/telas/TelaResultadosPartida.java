@@ -79,11 +79,21 @@ public class TelaResultadosPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jogarNovamenteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jogarNovamenteButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            Jogo jogo = new Jogo();
+            jogo.novaPartida();
+            var questaoAleatoria = jogo.randomizarPergunta();
+
+            new TelaPergunta(jogo, questaoAleatoria).setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jogarNovamenteButtonActionPerformed
 
     private void voltarResultadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarResultadosButtonActionPerformed
         new TelaDeInicio().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_voltarResultadosButtonActionPerformed
 
     /**
