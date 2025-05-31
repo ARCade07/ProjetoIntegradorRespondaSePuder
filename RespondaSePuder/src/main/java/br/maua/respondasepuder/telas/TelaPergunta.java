@@ -311,6 +311,11 @@ public class TelaPergunta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_eliminarDuasButtonActionPerformed
 
+    private void escudoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escudoButtonActionPerformed
+        jogo.setDesejaUsarEscudo(true);
+        JOptionPane.showMessageDialog(null, "Você ativou o escudo e terá mais uma chance, caso erre!!!!");
+    }//GEN-LAST:event_escudoButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
