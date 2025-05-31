@@ -90,15 +90,21 @@ public class Jogo {
         }
     }
     
-    private void pularQuestao() throws Exception{
+    public boolean jogoAcabou(){
+        return pergunta > 12;
+    }
+    
+    public Questao pularQuestao() throws Exception{
         if(pulos > 0 && pergunta != 12){
             var j = new Jogo();
-            Questao novaPergunta = j.randomizarPergunta();
+            pulos -= 1;
+            var novaPergunta = j.randomizarPergunta();
+            return novaPergunta;
         }
         else{
             JOptionPane.showMessageDialog(null, "Você não pode mais utilizar esta ajuda!");
+            return null;
         }
-        pulos -= 1;
     }
     
     private void ativarEscudo(boolean acertou) {
