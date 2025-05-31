@@ -4,19 +4,24 @@
  */
 package br.maua.respondasepuder.telas;
 
+
 /**
  *
  * @author Arthur
  */
 public class TelaPontuacaoAluno extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form TelaPontuacaoAluno
      */
     public TelaPontuacaoAluno() {
         initComponents();
     }
+    
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,15 +42,15 @@ public class TelaPontuacaoAluno extends javax.swing.JFrame {
 
         questoesCorretasTotalLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         questoesCorretasTotalLabel.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(questoesCorretasTotalLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 500, 390, 80));
+        getContentPane().add(questoesCorretasTotalLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 500, 390, 80));
 
         totalQuestoesLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         totalQuestoesLabel.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(totalQuestoesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 680, 390, 80));
+        getContentPane().add(totalQuestoesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 680, 390, 80));
 
         pontuacaoAlunoLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         pontuacaoAlunoLabel.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(pontuacaoAlunoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 310, 390, 80));
+        getContentPane().add(pontuacaoAlunoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 310, 390, 80));
 
         voltarPontuacaoButton.setContentAreaFilled(false);
         voltarPontuacaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -63,6 +68,7 @@ public class TelaPontuacaoAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarPontuacaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarPontuacaoButtonActionPerformed
+        new TelaDeInicio().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_voltarPontuacaoButtonActionPerformed
 
