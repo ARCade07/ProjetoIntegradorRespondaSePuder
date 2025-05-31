@@ -280,6 +280,7 @@ public class TelaPergunta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void alternativaCButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaCButtonActionPerformed
+        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
         verificarAlternativa(alternativaC);
     }//GEN-LAST:event_alternativaCButtonActionPerformed
 
@@ -293,18 +294,22 @@ public class TelaPergunta extends javax.swing.JFrame {
     }//GEN-LAST:event_pularQuestaoButtonActionPerformed
 
     private void alternativaAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaAButtonActionPerformed
+        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
         verificarAlternativa(alternativaA);
     }//GEN-LAST:event_alternativaAButtonActionPerformed
 
     private void alternativaBButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaBButtonActionPerformed
+        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
         verificarAlternativa(alternativaB);
     }//GEN-LAST:event_alternativaBButtonActionPerformed
 
     private void alternativaDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaDButtonActionPerformed
+        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
         verificarAlternativa(alternativaD);
     }//GEN-LAST:event_alternativaDButtonActionPerformed
 
     private void alternativaEButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaEButtonActionPerformed
+        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
         verificarAlternativa(alternativaE);
     }//GEN-LAST:event_alternativaEButtonActionPerformed
 
