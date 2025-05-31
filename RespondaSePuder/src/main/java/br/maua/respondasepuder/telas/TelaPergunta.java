@@ -109,6 +109,8 @@ public class TelaPergunta extends javax.swing.JFrame {
                     return;
                 }
                 JOptionPane.showMessageDialog(null, "Errou!");
+                new TelaResultadosPartida(jogo.receberPontuacao(jogo.pergunta, false), this.numeroQuestaoInt - 1).setVisible(true);
+                telaAtual.dispose();
             }
         } catch (Exception e) {
             e.printStackTrace();
