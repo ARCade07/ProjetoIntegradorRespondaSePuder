@@ -1,4 +1,4 @@
-package br.maua.respondarsepuder;
+package br.maua.respondasepuder;
 
 public class Main {
     
