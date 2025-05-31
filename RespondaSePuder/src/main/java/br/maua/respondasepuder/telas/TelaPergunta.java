@@ -98,6 +98,16 @@ public class TelaPergunta extends javax.swing.JFrame {
                 }
                 
             } else {
+                if(jogo.isDesejaUsarEscudo()){
+                    jogo.ativarEscudo(false);
+                    jogo.setDesejaUsarEscudo(false);
+                    return;
+                }
+                if (escudoAtivo){
+                    escudoAtivo = false;
+                    JOptionPane.showMessageDialog(null, "Você errou, mas o escudo te protegeu!!!");
+                    return;
+                }
                 JOptionPane.showMessageDialog(null, "Errou!");
             }
         } catch (Exception e) {
@@ -221,7 +231,12 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().add(eliminarDuasButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 130, 110));
 
         escudoButton.setContentAreaFilled(false);
-        escudoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        escudoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        escudoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                escudoButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(escudoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, 130, 110));
 
         pularQuestaoButton.setContentAreaFilled(false);
