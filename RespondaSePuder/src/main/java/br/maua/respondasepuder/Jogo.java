@@ -64,8 +64,14 @@ public class Jogo {
     }
     
     public int receberPontuacao (int pergunta, boolean acertou) {
-        if(acertou){
-            int [] valorPergunta = {1000, 5000, 10000, 25000, 50000, 75000, 100000, 150000, 250000, 400000, 500000, 1000000};
+        int [] valorPergunta = {1000, 5000, 10000, 25000, 50000, 75000, 100000, 150000, 250000, 400000, 500000, 1000000};
+        int [] valorCheckPoint = {0, 10000, 100000, 400000};
+        
+        if (pergunta < 1){
+            return 0;
+        }
+        
+        if (acertou){
             return valorPergunta[pergunta - 1];
         }
         else{
