@@ -4,11 +4,30 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.modelo.Materia;
+import br.maua.respondasepuder.persistencia.MateriaDAO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Arthur
  */
 public class TelaOpcoes extends javax.swing.JFrame {
+    private void obterMateriaComboBox() {
+        try {
+            var dao = new MateriaDAO();
+            var materias = dao.obterMateria();
+            selecionarMateriaComboBox.setModel(
+                    new DefaultComboBoxModel<Materia>(materias.toArray(new Materia[]{}))
+            );
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lista de matérias");
+        }
+    }
+    
 
     /**
      * Creates new form TelaOpcoes
@@ -26,7 +45,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        selecionarMateriaComboBox = new javax.swing.JComboBox<>();
+        selecionarMateriaComboBox = new javax.swing.JComboBox<Materia>();
         selecionarDificuldadeComboBox1 = new javax.swing.JComboBox<>();
         voltarOpcoesButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -35,8 +54,12 @@ public class TelaOpcoes extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         selecionarMateriaComboBox.setBackground(new java.awt.Color(0, 176, 185));
-        selecionarMateriaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Matemática", "Português", "História", "Geografia" }));
         selecionarMateriaComboBox.setBorder(null);
+        selecionarMateriaComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selecionarMateriaComboBoxActionPerformed(evt);
+            }
+        });
         getContentPane().add(selecionarMateriaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 1230, 60));
 
         selecionarDificuldadeComboBox1.setBackground(new java.awt.Color(0, 176, 185));
@@ -62,6 +85,10 @@ public class TelaOpcoes extends javax.swing.JFrame {
     private void voltarOpcoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarOpcoesButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_voltarOpcoesButtonActionPerformed
+
+    private void selecionarMateriaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarMateriaComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selecionarMateriaComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,7 +128,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JComboBox<String> selecionarDificuldadeComboBox1;
-    private javax.swing.JComboBox<String> selecionarMateriaComboBox;
+    private javax.swing.JComboBox<Materia> selecionarMateriaComboBox;
     private javax.swing.JButton voltarOpcoesButton;
     // End of variables declaration//GEN-END:variables
 }
