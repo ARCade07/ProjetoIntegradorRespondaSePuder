@@ -28,6 +28,25 @@ public class TelaOpcoes extends javax.swing.JFrame {
         }
     }
     
+    public String opcaoMateriaSelecionada(){
+        Materia m = (Materia) selecionarMateriaComboBox.getSelectedItem();
+        if(m.getNome() == "Matemática"){
+            return "Matemática";
+        }
+        else if(m.getNome() == "Português"){
+            return "Português";
+        }
+        else if(m.getNome() == "História"){
+            return "História";
+        }
+        else if(m.getNome() == "Geografia"){
+            return "Geografia";
+        }
+        else if(m.getNome() == "Ciências"){
+            return "Ciências";
+        }
+        return null;
+    }
 
     /**
      * Creates new form TelaOpcoes
