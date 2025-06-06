@@ -50,22 +50,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
     
     public String opcaoMateriaSelecionada(){
         Materia m = (Materia) selecionarMateriaComboBox.getSelectedItem();
-        if(m.getNome().equals("Matemática")){
-            return "Matemática";
-        }
-        else if(m.getNome().equals("Português")){
-            return "Português";
-        }
-        else if(m.getNome().equals("História")){
-            return "História";
-        }
-        else if(m.getNome().equals("Geografia")){
-            return "Geografia";
-        }
-        else if(m.getNome().equals("Ciências")){
-            return "Ciências";
-        }
-        return null;
+        return m.getNome();
     }
 
     /**
