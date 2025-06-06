@@ -6,12 +6,14 @@ import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoAlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
+import br.maua.respondasepuder.telas.TelaOpcoes;
+import br.maua.respondasepuder.telas.TelaOpcoes.MateriaSelectionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-public class Jogo {
+public class Jogo implements MateriaSelectionListener{
     List<Questao> listaQuestoesFaceis;
     List<Questao> listaQuestoesMedias;
     List<Questao> listaQuestoesDificeis;
@@ -21,6 +23,15 @@ public class Jogo {
     int eliminaDuas;
     private boolean desejaUsarEscudo = false;
     private boolean usouEscudo = false;
+    private String materiaSelecionada;
+    
+     public void configurarListener(TelaOpcoes tela) {
+        tela.addMateriaSelectionListener(this);
+    }
+    @Override
+    public void onMateriaSelected(String materia) {
+        this.materiaSelecionada = materia;
+    }
     
     public void novaPartida() throws Exception {
         var dao = new QuestaoDAO();
