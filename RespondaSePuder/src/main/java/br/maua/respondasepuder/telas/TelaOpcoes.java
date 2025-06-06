@@ -6,6 +6,8 @@ package br.maua.respondasepuder.telas;
 
 import br.maua.respondasepuder.modelo.Materia;
 import br.maua.respondasepuder.persistencia.MateriaDAO;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -27,22 +29,40 @@ public class TelaOpcoes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lista de matérias");
         }
     }
+    public interface MateriaSelectionListener {
+
+        void onMateriaSelected(String materia);
+    }
+
+        private List<MateriaSelectionListener> listeners = new ArrayList<>();
+
+        public void addMateriaSelectionListener(MateriaSelectionListener listener) {
+            listeners.add(listener);
+        }
+        
+        private void notificarMateriaAlterada() {
+            String materiaSelecionada = opcaoMateriaSelecionada();
+            for (MateriaSelectionListener listener : listeners) {
+                listener.onMateriaSelected(materiaSelecionada);
+            }
+        }
+
     
     public String opcaoMateriaSelecionada(){
         Materia m = (Materia) selecionarMateriaComboBox.getSelectedItem();
-        if(m.getNome() == "Matemática"){
+        if(m.getNome().equals("Matemática")){
             return "Matemática";
         }
-        else if(m.getNome() == "Português"){
+        else if(m.getNome().equals("Português")){
             return "Português";
         }
-        else if(m.getNome() == "História"){
+        else if(m.getNome().equals("História")){
             return "História";
         }
-        else if(m.getNome() == "Geografia"){
+        else if(m.getNome().equals("Geografia")){
             return "Geografia";
         }
-        else if(m.getNome() == "Ciências"){
+        else if(m.getNome().equals("Ciências")){
             return "Ciências";
         }
         return null;
