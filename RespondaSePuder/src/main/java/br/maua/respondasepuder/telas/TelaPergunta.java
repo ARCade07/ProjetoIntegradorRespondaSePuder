@@ -280,8 +280,10 @@ public class TelaPergunta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void alternativaCButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaCButtonActionPerformed
-        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
-        verificarAlternativa(alternativaC);
+        int confirmacao = JOptionPane.showConfirmDialog(null, "Você tem certeza?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if(confirmacao == JOptionPane.YES_OPTION){
+            verificarAlternativa(alternativaC);
+        }
     }//GEN-LAST:event_alternativaCButtonActionPerformed
 
     private void pularQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pularQuestaoButtonActionPerformed
@@ -294,23 +296,31 @@ public class TelaPergunta extends javax.swing.JFrame {
     }//GEN-LAST:event_pularQuestaoButtonActionPerformed
 
     private void alternativaAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaAButtonActionPerformed
-        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
-        verificarAlternativa(alternativaA);
+        int confirmacao = JOptionPane.showConfirmDialog(null, "Você tem certeza?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if(confirmacao == JOptionPane.YES_OPTION){
+            verificarAlternativa(alternativaA);
+        }
     }//GEN-LAST:event_alternativaAButtonActionPerformed
 
     private void alternativaBButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaBButtonActionPerformed
-        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
-        verificarAlternativa(alternativaB);
+        int confirmacao = JOptionPane.showConfirmDialog(null, "Você tem certeza?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if(confirmacao == JOptionPane.YES_OPTION){
+            verificarAlternativa(alternativaB);
+        }
     }//GEN-LAST:event_alternativaBButtonActionPerformed
 
     private void alternativaDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaDButtonActionPerformed
-        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
-        verificarAlternativa(alternativaD);
+       int confirmacao = JOptionPane.showConfirmDialog(null, "Você tem certeza?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if(confirmacao == JOptionPane.YES_OPTION){
+            verificarAlternativa(alternativaD);
+        }
     }//GEN-LAST:event_alternativaDButtonActionPerformed
 
     private void alternativaEButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaEButtonActionPerformed
-        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
-        verificarAlternativa(alternativaE);
+        int confirmacao = JOptionPane.showConfirmDialog(null, "Você tem certeza?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if(confirmacao == JOptionPane.YES_OPTION){
+            verificarAlternativa(alternativaE);
+        }
     }//GEN-LAST:event_alternativaEButtonActionPerformed
 
     private void eliminarDuasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarDuasButtonActionPerformed
