@@ -50,30 +50,32 @@ public class Jogo implements MateriaSelectionListener{
     
     public void novaPartida() throws Exception {
         var dao = new QuestaoDAO();
-        if (materiaSelecionada.equals("Matemática")){
-            listaQuestoesMatematicaF = (ArrayList<Questao>) dao.consultarQuestao(null, "Matemática", "fácil");
-            listaQuestoesMatematicaM = (ArrayList<Questao>) dao.consultarQuestao(null, "Matemática", "médio");
-            listaQuestoesMatematicaD = (ArrayList<Questao>) dao.consultarQuestao(null, "Matemática", "difícil");
-        }
-        else if (materiaSelecionada.equals("Português")){
-            listaQuestoesPortuguesF = (ArrayList<Questao>) dao.consultarQuestao(null, "Português", "fácil");
-            listaQuestoesPortuguesM = (ArrayList<Questao>) dao.consultarQuestao(null, "Português", "médio");
-            listaQuestoesPortuguesD = (ArrayList<Questao>) dao.consultarQuestao(null, "Português", "difícil");
-        }
-        else if (materiaSelecionada.equals("História")){
-            listaQuestoesHistoriaF = (ArrayList<Questao>) dao.consultarQuestao(null, "História", "fácil");
-            listaQuestoesHistoriaM = (ArrayList<Questao>) dao.consultarQuestao(null, "História", "médio");
-            listaQuestoesHistoriaD = (ArrayList<Questao>) dao.consultarQuestao(null, "História", "difícil");
-        }
-        else if (materiaSelecionada.equals("Geografia")){
-            listaQuestoesGeografiaF = (ArrayList<Questao>) dao.consultarQuestao(null, "Geografia", "fácil");
-            listaQuestoesGeografiaM = (ArrayList<Questao>) dao.consultarQuestao(null, "Geografia", "médio");
-            listaQuestoesGeografiaD = (ArrayList<Questao>) dao.consultarQuestao(null, "Geografia", "difícil");
-        }
-        else if (materiaSelecionada.equals("Ciências")){
-            listaQuestoesCienciasF = (ArrayList<Questao>) dao.consultarQuestao(null, "Ciências", "fácil");
-            listaQuestoesCienciasM = (ArrayList<Questao>) dao.consultarQuestao(null, "Ciências", "médio");
-            listaQuestoesCienciasD = (ArrayList<Questao>) dao.consultarQuestao(null, "Ciências", "difícil");        
+        if (materiaSelecionada != null) {
+            if (materiaSelecionada.equals("Matemática")){
+                listaQuestoesMatematicaF = (ArrayList<Questao>) dao.consultarQuestao(null, "Matemática", "fácil");
+                listaQuestoesMatematicaM = (ArrayList<Questao>) dao.consultarQuestao(null, "Matemática", "médio");
+                listaQuestoesMatematicaD = (ArrayList<Questao>) dao.consultarQuestao(null, "Matemática", "difícil");
+            }
+            else if (materiaSelecionada.equals("Português")){
+                listaQuestoesPortuguesF = (ArrayList<Questao>) dao.consultarQuestao(null, "Português", "fácil");
+                listaQuestoesPortuguesM = (ArrayList<Questao>) dao.consultarQuestao(null, "Português", "médio");
+                listaQuestoesPortuguesD = (ArrayList<Questao>) dao.consultarQuestao(null, "Português", "difícil");
+            }
+            else if (materiaSelecionada.equals("História")){
+                listaQuestoesHistoriaF = (ArrayList<Questao>) dao.consultarQuestao(null, "História", "fácil");
+                listaQuestoesHistoriaM = (ArrayList<Questao>) dao.consultarQuestao(null, "História", "médio");
+                listaQuestoesHistoriaD = (ArrayList<Questao>) dao.consultarQuestao(null, "História", "difícil");
+            }
+            else if (materiaSelecionada.equals("Geografia")){
+                listaQuestoesGeografiaF = (ArrayList<Questao>) dao.consultarQuestao(null, "Geografia", "fácil");
+                listaQuestoesGeografiaM = (ArrayList<Questao>) dao.consultarQuestao(null, "Geografia", "médio");
+                listaQuestoesGeografiaD = (ArrayList<Questao>) dao.consultarQuestao(null, "Geografia", "difícil");
+            }
+            else if (materiaSelecionada.equals("Ciências")){
+                listaQuestoesCienciasF = (ArrayList<Questao>) dao.consultarQuestao(null, "Ciências", "fácil");
+                listaQuestoesCienciasM = (ArrayList<Questao>) dao.consultarQuestao(null, "Ciências", "médio");
+                listaQuestoesCienciasD = (ArrayList<Questao>) dao.consultarQuestao(null, "Ciências", "difícil");        
+            }
         }
         else{
             listaQuestoesFaceis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "fácil");
@@ -88,104 +90,106 @@ public class Jogo implements MateriaSelectionListener{
     }
     public Questao randomizarPergunta() throws Exception {
         var r = new Random();
-        if (materiaSelecionada.equals("Matemática")){
-            if(pergunta < 4){
-                Questao questaoAtual = listaQuestoesMatematicaF.get(r.nextInt(listaQuestoesMatematicaF.size()));
-                var index = listaQuestoesMatematicaF.indexOf(questaoAtual);
-                listaQuestoesMatematicaF.remove(index);
-                return questaoAtual;
+        if(materiaSelecionada != null){
+            if (materiaSelecionada.equals("Matemática")){
+                if(pergunta < 4){
+                    Questao questaoAtual = listaQuestoesMatematicaF.get(r.nextInt(listaQuestoesMatematicaF.size()));
+                    var index = listaQuestoesMatematicaF.indexOf(questaoAtual);
+                    listaQuestoesMatematicaF.remove(index);
+                    return questaoAtual;
+                }
+                else if(pergunta < 10){
+                    Questao questaoAtual = listaQuestoesMatematicaM.get(r.nextInt(listaQuestoesMatematicaM.size()));
+                    var index = listaQuestoesMatematicaM.indexOf(questaoAtual);
+                    listaQuestoesMatematicaM.remove(index);
+                    return questaoAtual;
+                }
+                else{
+                    Questao questaoAtual = listaQuestoesMatematicaD.get(r.nextInt(listaQuestoesMatematicaD.size()));
+                    var index = listaQuestoesMatematicaD.indexOf(questaoAtual);
+                    listaQuestoesMatematicaD.remove(index);
+                    return questaoAtual;
+                }
             }
-            else if(pergunta < 10){
-                Questao questaoAtual = listaQuestoesMatematicaM.get(r.nextInt(listaQuestoesMatematicaM.size()));
-                var index = listaQuestoesMatematicaM.indexOf(questaoAtual);
-                listaQuestoesMatematicaM.remove(index);
-                return questaoAtual;
+            else if (materiaSelecionada.equals("Português")){
+                if(pergunta < 4){
+                    Questao questaoAtual = listaQuestoesPortuguesF.get(r.nextInt(listaQuestoesPortuguesF.size()));
+                    var index = listaQuestoesPortuguesF.indexOf(questaoAtual);
+                    listaQuestoesPortuguesF.remove(index);
+                    return questaoAtual;
+                }
+                else if(pergunta < 10){
+                    Questao questaoAtual = listaQuestoesPortuguesM.get(r.nextInt(listaQuestoesPortuguesM.size()));
+                    var index = listaQuestoesPortuguesM.indexOf(questaoAtual);
+                    listaQuestoesPortuguesM.remove(index);
+                    return questaoAtual;
+                }
+                else{
+                    Questao questaoAtual = listaQuestoesPortuguesD.get(r.nextInt(listaQuestoesPortuguesD.size()));
+                    var index = listaQuestoesPortuguesD.indexOf(questaoAtual);
+                    listaQuestoesPortuguesD.remove(index);
+                    return questaoAtual;
+                }
             }
-            else{
-                Questao questaoAtual = listaQuestoesMatematicaD.get(r.nextInt(listaQuestoesMatematicaD.size()));
-                var index = listaQuestoesMatematicaD.indexOf(questaoAtual);
-                listaQuestoesMatematicaD.remove(index);
-                return questaoAtual;
+            else if (materiaSelecionada.equals("História")){
+                if(pergunta < 4){
+                    Questao questaoAtual = listaQuestoesHistoriaF.get(r.nextInt(listaQuestoesHistoriaF.size()));
+                    var index = listaQuestoesHistoriaF.indexOf(questaoAtual);
+                    listaQuestoesHistoriaF.remove(index);
+                    return questaoAtual;
+                }
+                else if(pergunta < 10){
+                    Questao questaoAtual = listaQuestoesHistoriaM.get(r.nextInt(listaQuestoesHistoriaM.size()));
+                    var index = listaQuestoesHistoriaM.indexOf(questaoAtual);
+                    listaQuestoesHistoriaM.remove(index);
+                    return questaoAtual;
+                }
+                else{
+                    Questao questaoAtual = listaQuestoesHistoriaD.get(r.nextInt(listaQuestoesHistoriaD.size()));
+                    var index = listaQuestoesHistoriaD.indexOf(questaoAtual);
+                    listaQuestoesHistoriaD.remove(index);
+                    return questaoAtual;
+                }
             }
-        }
-        else if (materiaSelecionada.equals("Português")){
-            if(pergunta < 4){
-                Questao questaoAtual = listaQuestoesPortuguesF.get(r.nextInt(listaQuestoesPortuguesF.size()));
-                var index = listaQuestoesPortuguesF.indexOf(questaoAtual);
-                listaQuestoesPortuguesF.remove(index);
-                return questaoAtual;
+            else if (materiaSelecionada.equals("Geografia")){
+                if(pergunta < 4){
+                    Questao questaoAtual = listaQuestoesGeografiaF.get(r.nextInt(listaQuestoesGeografiaF.size()));
+                    var index = listaQuestoesGeografiaF.indexOf(questaoAtual);
+                    listaQuestoesGeografiaF.remove(index);
+                    return questaoAtual;
+                }
+                else if(pergunta < 10){
+                    Questao questaoAtual = listaQuestoesGeografiaM.get(r.nextInt(listaQuestoesGeografiaM.size()));
+                    var index = listaQuestoesGeografiaM.indexOf(questaoAtual);
+                    listaQuestoesGeografiaM.remove(index);
+                    return questaoAtual;
+                }
+                else{
+                    Questao questaoAtual = listaQuestoesGeografiaD.get(r.nextInt(listaQuestoesGeografiaD.size()));
+                    var index = listaQuestoesGeografiaD.indexOf(questaoAtual);
+                    listaQuestoesGeografiaD.remove(index);
+                    return questaoAtual;
+                }
             }
-            else if(pergunta < 10){
-                Questao questaoAtual = listaQuestoesPortuguesM.get(r.nextInt(listaQuestoesPortuguesM.size()));
-                var index = listaQuestoesPortuguesM.indexOf(questaoAtual);
-                listaQuestoesPortuguesM.remove(index);
-                return questaoAtual;
-            }
-            else{
-                Questao questaoAtual = listaQuestoesPortuguesD.get(r.nextInt(listaQuestoesPortuguesD.size()));
-                var index = listaQuestoesPortuguesD.indexOf(questaoAtual);
-                listaQuestoesPortuguesD.remove(index);
-                return questaoAtual;
-            }
-        }
-        else if (materiaSelecionada.equals("História")){
-            if(pergunta < 4){
-                Questao questaoAtual = listaQuestoesHistoriaF.get(r.nextInt(listaQuestoesHistoriaF.size()));
-                var index = listaQuestoesHistoriaF.indexOf(questaoAtual);
-                listaQuestoesHistoriaF.remove(index);
-                return questaoAtual;
-            }
-            else if(pergunta < 10){
-                Questao questaoAtual = listaQuestoesHistoriaM.get(r.nextInt(listaQuestoesHistoriaM.size()));
-                var index = listaQuestoesHistoriaM.indexOf(questaoAtual);
-                listaQuestoesHistoriaM.remove(index);
-                return questaoAtual;
-            }
-            else{
-                Questao questaoAtual = listaQuestoesHistoriaD.get(r.nextInt(listaQuestoesHistoriaD.size()));
-                var index = listaQuestoesHistoriaD.indexOf(questaoAtual);
-                listaQuestoesHistoriaD.remove(index);
-                return questaoAtual;
-            }
-        }
-        else if (materiaSelecionada.equals("Geografia")){
-            if(pergunta < 4){
-                Questao questaoAtual = listaQuestoesGeografiaF.get(r.nextInt(listaQuestoesGeografiaF.size()));
-                var index = listaQuestoesGeografiaF.indexOf(questaoAtual);
-                listaQuestoesGeografiaF.remove(index);
-                return questaoAtual;
-            }
-            else if(pergunta < 10){
-                Questao questaoAtual = listaQuestoesGeografiaM.get(r.nextInt(listaQuestoesGeografiaM.size()));
-                var index = listaQuestoesGeografiaM.indexOf(questaoAtual);
-                listaQuestoesGeografiaM.remove(index);
-                return questaoAtual;
-            }
-            else{
-                Questao questaoAtual = listaQuestoesGeografiaD.get(r.nextInt(listaQuestoesGeografiaD.size()));
-                var index = listaQuestoesGeografiaD.indexOf(questaoAtual);
-                listaQuestoesGeografiaD.remove(index);
-                return questaoAtual;
-            }
-        }
-        else if (materiaSelecionada.equals("Ciências")){
-            if(pergunta < 4){
-                Questao questaoAtual = listaQuestoesCienciasF.get(r.nextInt(listaQuestoesCienciasF.size()));
-                var index = listaQuestoesCienciasF.indexOf(questaoAtual);
-                listaQuestoesCienciasF.remove(index);
-                return questaoAtual;
-            }
-            else if(pergunta < 10){
-                Questao questaoAtual = listaQuestoesCienciasM.get(r.nextInt(listaQuestoesCienciasM.size()));
-                var index = listaQuestoesCienciasM.indexOf(questaoAtual);
-                listaQuestoesCienciasM.remove(index);
-                return questaoAtual;
-            }
-            else{
-                Questao questaoAtual = listaQuestoesCienciasD.get(r.nextInt(listaQuestoesCienciasD.size()));
-                var index = listaQuestoesCienciasD.indexOf(questaoAtual);
-                listaQuestoesCienciasD.remove(index);
-                return questaoAtual;       
+            else if (materiaSelecionada.equals("Ciências")){
+                if(pergunta < 4){
+                    Questao questaoAtual = listaQuestoesCienciasF.get(r.nextInt(listaQuestoesCienciasF.size()));
+                    var index = listaQuestoesCienciasF.indexOf(questaoAtual);
+                    listaQuestoesCienciasF.remove(index);
+                    return questaoAtual;
+                }
+                else if(pergunta < 10){
+                    Questao questaoAtual = listaQuestoesCienciasM.get(r.nextInt(listaQuestoesCienciasM.size()));
+                    var index = listaQuestoesCienciasM.indexOf(questaoAtual);
+                    listaQuestoesCienciasM.remove(index);
+                    return questaoAtual;
+                }
+                else{
+                    Questao questaoAtual = listaQuestoesCienciasD.get(r.nextInt(listaQuestoesCienciasD.size()));
+                    var index = listaQuestoesCienciasD.indexOf(questaoAtual);
+                    listaQuestoesCienciasD.remove(index);
+                    return questaoAtual;       
+                }
             }
         }
         else{
@@ -208,6 +212,7 @@ public class Jogo implements MateriaSelectionListener{
                 return questaoAtual;
             }
         }
+        return null;
     }
     public boolean verificarResposta(Questao questao, Alternativa alternativaEscolhida) throws Exception {
         var dao = new QuestaoAlternativaDAO();
