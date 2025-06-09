@@ -18,8 +18,12 @@ import javax.swing.JOptionPane;
 public class TelaOpcoes extends javax.swing.JFrame {
     private void obterMateriaComboBox() {
         try {
+            //Intancia um objeto do tipo MateriaDAO().
             var dao = new MateriaDAO();
+            //Chama o método obterMateria() e atribui o seu retorno a variável materias.
             var materias = dao.obterMateria();
+            // Converte a lista de matérias para um array e define como modelo do ComboBox 'filtrarMateriaComboBox'
+            // Preenche o combobox com as matérias obtidas.
             selecionarMateriaComboBox.setModel(
                     new DefaultComboBoxModel<Materia>(materias.toArray(new Materia[]{}))
             );
