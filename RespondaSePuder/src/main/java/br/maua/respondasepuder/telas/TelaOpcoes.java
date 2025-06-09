@@ -34,15 +34,15 @@ public class TelaOpcoes extends javax.swing.JFrame {
         void onMateriaSelected(String materia);
     }
 
-        private List<MateriaSelectionListener> listeners = new ArrayList<>();
+        private final List<MateriaSelectionListener> listenersMateria = new ArrayList<>();
 
         public void addMateriaSelectionListener(MateriaSelectionListener listener) {
-            listeners.add(listener);
+            listenersMateria.add(listener);
         }
         
         private void notificarMateriaAlterada() {
             String materiaSelecionada = opcaoMateriaSelecionada();
-            for (MateriaSelectionListener listener : listeners) {
+            for (MateriaSelectionListener listener : listenersMateria) {
                 listener.onMateriaSelected(materiaSelecionada);
             }
         }
