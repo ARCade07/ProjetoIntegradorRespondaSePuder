@@ -53,6 +53,11 @@ public class TelaOpcoes extends javax.swing.JFrame {
         Materia m = (Materia) selecionarMateriaComboBox.getSelectedItem();
         return m.getNome();
     }
+    
+    public String opcaoDificuldadeSelecionada(){
+        String n = (String) selecionarDificuldadeComboBox.getSelectedItem();
+        return n;
+    }
 
     /**
      * Creates new form TelaOpcoes
@@ -71,7 +76,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
     private void initComponents() {
 
         selecionarMateriaComboBox = new javax.swing.JComboBox<Materia>();
-        selecionarDificuldadeComboBox1 = new javax.swing.JComboBox<>();
+        selecionarDificuldadeComboBox = new javax.swing.JComboBox<>();
         voltarOpcoesButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -87,10 +92,10 @@ public class TelaOpcoes extends javax.swing.JFrame {
         });
         getContentPane().add(selecionarMateriaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 1230, 60));
 
-        selecionarDificuldadeComboBox1.setBackground(new java.awt.Color(0, 176, 185));
-        selecionarDificuldadeComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Fácil", "Médio", "Difícil" }));
-        selecionarDificuldadeComboBox1.setBorder(null);
-        getContentPane().add(selecionarDificuldadeComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 590, 1230, 60));
+        selecionarDificuldadeComboBox.setBackground(new java.awt.Color(0, 176, 185));
+        selecionarDificuldadeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Fácil", "Médio", "Difícil" }));
+        selecionarDificuldadeComboBox.setBorder(null);
+        getContentPane().add(selecionarDificuldadeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 590, 1230, 60));
 
         voltarOpcoesButton.setContentAreaFilled(false);
         voltarOpcoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -152,7 +157,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JComboBox<String> selecionarDificuldadeComboBox1;
+    private javax.swing.JComboBox<String> selecionarDificuldadeComboBox;
     private javax.swing.JComboBox<Materia> selecionarMateriaComboBox;
     private javax.swing.JButton voltarOpcoesButton;
     // End of variables declaration//GEN-END:variables
