@@ -109,12 +109,13 @@ public class TelaDeADM extends javax.swing.JFrame {
     }//GEN-LAST:event_sairDoJogoADMButtonActionPerformed
 
     private void consultarAlunosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAlunosButtonActionPerformed
-        this.dispose();
+        
         try {
             new TelaConsultarAluno().setVisible(true);
         } catch (Exception ex) {
             //Logger.getLogger(TelaDeADM.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.dispose();
     }//GEN-LAST:event_consultarAlunosButtonActionPerformed
 
     private void acessarInformacoesADMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessarInformacoesADMButtonActionPerformed
