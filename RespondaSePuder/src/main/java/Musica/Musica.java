@@ -1,9 +1,20 @@
 package Musica;
+
 import javax.sound.sampled.*;
 import java.io.InputStream;
+
 public class Musica {
     private static Clip clip;
     private static boolean musicaAtivada = false;
+
+    public static void alternarSom() {
+        if (musicaAtivada) {
+            pararSom();
+        } else {
+            tocarSom();
+        }
+    }
+
     public static void tocarSom() {
         try {
             // Lê o arquivo .wav da pasta resources
