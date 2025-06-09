@@ -7,13 +7,14 @@ import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoAlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import br.maua.respondasepuder.telas.TelaOpcoes;
+import br.maua.respondasepuder.telas.TelaOpcoes.DificuldadeListener;
 import br.maua.respondasepuder.telas.TelaOpcoes.MateriaListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-public class Jogo implements MateriaListener{
+public class Jogo implements MateriaListener, DificuldadeListener{
     List<Questao> listaQuestoesFaceis;
     List<Questao> listaQuestoesMedias;
     List<Questao> listaQuestoesDificeis;
@@ -39,6 +40,7 @@ public class Jogo implements MateriaListener{
     private boolean desejaUsarEscudo = false;
     private boolean usouEscudo = false;
     private String materiaSelecionada;
+    private String dificuldadeSelecionada;
     
      public void configurarListener(TelaOpcoes tela) {
         tela.adicionarMateriaListener(this);
@@ -46,6 +48,10 @@ public class Jogo implements MateriaListener{
     @Override
     public void notificarMateria(String materia) {
         this.materiaSelecionada = materia;
+    }
+    @Override
+    public void notificarDificuldade(String dificuldade) {
+        this.dificuldadeSelecionada = dificuldade;
     }
     
     public void novaPartida() throws Exception {
