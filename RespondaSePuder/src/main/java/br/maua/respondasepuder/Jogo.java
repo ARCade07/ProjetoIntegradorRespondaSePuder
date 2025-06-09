@@ -7,13 +7,13 @@ import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoAlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import br.maua.respondasepuder.telas.TelaOpcoes;
-import br.maua.respondasepuder.telas.TelaOpcoes.MateriaSelectionListener;
+import br.maua.respondasepuder.telas.TelaOpcoes.MateriaListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-public class Jogo implements MateriaSelectionListener{
+public class Jogo implements MateriaListener{
     List<Questao> listaQuestoesFaceis;
     List<Questao> listaQuestoesMedias;
     List<Questao> listaQuestoesDificeis;
@@ -41,10 +41,10 @@ public class Jogo implements MateriaSelectionListener{
     private String materiaSelecionada;
     
      public void configurarListener(TelaOpcoes tela) {
-        tela.addMateriaSelectionListener(this);
+        tela.adicionarMateriaListener(this);
     }
     @Override
-    public void onMateriaSelected(String materia) {
+    public void notificarMateria(String materia) {
         this.materiaSelecionada = materia;
     }
     
