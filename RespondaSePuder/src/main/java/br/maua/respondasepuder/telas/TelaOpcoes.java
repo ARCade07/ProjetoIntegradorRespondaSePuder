@@ -40,7 +40,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
             listenersMateria.add(listener);
         }
         
-        private void notificarMateriaAlterada() {
+        private void notificarMateriaSelecionada() {
             String materiaSelecionada = opcaoMateriaSelecionada();
             for (MateriaListener listener : listenersMateria) {
                 listener.onMateriaSelected(materiaSelecionada);
