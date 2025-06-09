@@ -49,7 +49,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         //remove as linhas da tabela mantendo as colunas.
         modeloTabela.setRowCount(0);
         try {
-            // Instância um objeto do tipo UsuarioDAO.
+            // Instancia um objeto do tipo UsuarioDAO.
             var dao = new UsuarioDAO();
             //Chama o método consultarUsuario, passando como parâmetro um campo de texto
             //e retorna para um array de objetos (usuarios).
@@ -230,13 +230,13 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         var nome = nomeAlunoTextField.getText();
         var email = emailAlunoTextField.getText();
         var senha = senhaAlunoTextField.getText();
-        //Instãncia um objeto do tipo Usuario com o valor das variáveis.
+        //Instancia um objeto do tipo Usuario com o valor das variáveis.
         var usuario = Usuario.builder()
                 .nome(nome)
                 .email(email)
                 .senha(senha)
                 .build();
-        //Instãncia um objeto do tipo UsuarioDAO.
+        //Instancia um objeto do tipo UsuarioDAO.
         var dao = new UsuarioDAO();
         try {
             //chama o método removerUsuario passando usuario como parâmetro
@@ -262,7 +262,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         }
         // Obtém o modelo da tabela como DefaultTableModel para poder utilizar o seus métodos.
         DefaultTableModel model = (DefaultTableModel) consultarAlunosTable.getModel();
-        //Instância um objeto do tipo UsuarioDAO.
+        //Instancia um objeto do tipo UsuarioDAO.
         var dao = new UsuarioDAO();
         //Realiza a conversão de tipo e inicializa as respectivas variáveis:
         var linha = (Integer) consultarAlunosTable.getSelectedRow();
@@ -304,13 +304,13 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         var nome = nomeAlunoTextField.getText();
         var email = emailAlunoTextField.getText();
         var senha = senhaAlunoTextField.getText();
-        //Instância um objeto do tipo Usuario com o valor das variáveis.
+        //Instancia um objeto do tipo Usuario com o valor das variáveis.
         var usuario = Usuario.builder()
                 .nome(nome)
                 .email(email)
                 .senha(senha)
                 .build();
-        //Instância um objeto do tipo UsuarioDAO.
+        //Instancia um objeto do tipo UsuarioDAO.
         var dao = new UsuarioDAO();
         try {
             // Chama o método adicionarUsuario passando usuario como parâmetro
