@@ -31,7 +31,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
     }
     public interface MateriaListener {
 
-        void onMateriaSelected(String materia);
+        public void notificarMateria(String materia);
     }
 
         private final List<MateriaListener> listenersMateria = new ArrayList<>();
@@ -43,7 +43,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
         private void notificarMateriaSelecionada() {
             String materiaSelecionada = opcaoMateriaSelecionada();
             for (MateriaListener listener : listenersMateria) {
-                listener.onMateriaSelected(materiaSelecionada);
+                listener.notificarMateria(materiaSelecionada);
             }
         }
 
