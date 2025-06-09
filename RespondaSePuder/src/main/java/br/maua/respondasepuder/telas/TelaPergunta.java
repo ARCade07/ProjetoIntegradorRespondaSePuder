@@ -4,6 +4,7 @@
  */
 package br.maua.respondasepuder.telas;
 
+import Musica.Musica;
 import br.maua.respondasepuder.Jogo;
 import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Questao;
@@ -164,11 +165,11 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().add(numeroPerguntaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 0, 80, 60));
 
         alternativaALabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        alternativaALabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaALabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(alternativaALabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 740, 40));
 
         alternativaAButton.setBackground(new java.awt.Color(179, 73, 12));
-        alternativaAButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaAButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         alternativaAButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaAButtonActionPerformed(evt);
@@ -177,11 +178,11 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().add(alternativaAButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 760, 60));
 
         alternativaBLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        alternativaBLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaBLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(alternativaBLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 740, 40));
 
         alternativaBButton.setBackground(new java.awt.Color(179, 73, 12));
-        alternativaBButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaBButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         alternativaBButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaBButtonActionPerformed(evt);
@@ -190,11 +191,11 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().add(alternativaBButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 760, 60));
 
         alternativaCLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        alternativaCLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaCLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(alternativaCLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 740, 40));
 
         alternativaCButton.setBackground(new java.awt.Color(179, 73, 12));
-        alternativaCButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaCButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         alternativaCButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaCButtonActionPerformed(evt);
@@ -203,11 +204,11 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().add(alternativaCButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 760, 60));
 
         alternativaDLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        alternativaDLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaDLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(alternativaDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, 740, 40));
 
         alternativaDButton.setBackground(new java.awt.Color(179, 73, 12));
-        alternativaDButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaDButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         alternativaDButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaDButtonActionPerformed(evt);
@@ -216,11 +217,11 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().add(alternativaDButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, 760, 60));
 
         alternativaELabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        alternativaELabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaELabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(alternativaELabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 660, 740, 40));
 
         alternativaEButton.setBackground(new java.awt.Color(179, 73, 12));
-        alternativaEButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alternativaEButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         alternativaEButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaEButtonActionPerformed(evt);
@@ -247,7 +248,7 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().add(escudoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, 130, 110));
 
         pularQuestaoButton.setContentAreaFilled(false);
-        pularQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pularQuestaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pularQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pularQuestaoButtonActionPerformed(evt);
@@ -256,7 +257,12 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().add(pularQuestaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 130, 110));
 
         ativarMusicaButton.setContentAreaFilled(false);
-        ativarMusicaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ativarMusicaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ativarMusicaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ativarMusicaButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(ativarMusicaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 890, 130, 110));
 
         pontuacaoAcumuladaLabel.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -269,7 +275,7 @@ public class TelaPergunta extends javax.swing.JFrame {
         getContentPane().add(enunciadoPerguntaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 190, 710, 560));
 
         pararJogarButton.setContentAreaFilled(false);
-        pararJogarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pararJogarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(pararJogarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1760, 10, 110, 110));
 
         imageLabel.setBackground(new java.awt.Color(255, 106, 19));
@@ -335,6 +341,10 @@ public class TelaPergunta extends javax.swing.JFrame {
         jogo.setDesejaUsarEscudo(true);
         JOptionPane.showMessageDialog(null, "Você ativou o escudo e terá mais uma chance, caso erre!!!!");
     }//GEN-LAST:event_escudoButtonActionPerformed
+
+    private void ativarMusicaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ativarMusicaButtonActionPerformed
+        Musica.alternarSom();
+    }//GEN-LAST:event_ativarMusicaButtonActionPerformed
 
     /**
      * @param args the command line arguments
