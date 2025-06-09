@@ -244,16 +244,11 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         try {
             dao.atualizarUsuario(identificador, nome, email, senha);
             JOptionPane.showMessageDialog(null, "Aluno atualizado com sucesso.");
+            carregarUsuarios();
         } catch (Exception ex) {
             Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            carregarUsuarios();
 
-            // TODO add your handling code here:
-        } catch (Exception ex) {
-            //Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_atualizarAlunoButton1ActionPerformed
 
     private void senhaAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaAlunoTextFieldActionPerformed
@@ -287,19 +282,12 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         try {
             dao.adicionarUsuario(usuario);
             JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso.");
+            carregarUsuarios();
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(
                 null, "Erro ao adicionar aluno:" + ex.getMessage()
             );
-            
-        }
-        try {
-            carregarUsuarios();
-            
-            // TODO add your handling code here:
-        } catch (Exception ex) {
-            //Logger.getLogger(TelaConsultarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_adicionarAlunoButton1ActionPerformed
 
