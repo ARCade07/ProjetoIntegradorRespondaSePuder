@@ -29,20 +29,20 @@ public class TelaOpcoes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lista de matérias");
         }
     }
-    public interface MateriaSelectionListener {
+    public interface MateriaListener {
 
         void onMateriaSelected(String materia);
     }
 
-        private final List<MateriaSelectionListener> listenersMateria = new ArrayList<>();
+        private final List<MateriaListener> listenersMateria = new ArrayList<>();
 
-        public void addMateriaSelectionListener(MateriaSelectionListener listener) {
+        public void addMateriaSelectionListener(MateriaListener listener) {
             listenersMateria.add(listener);
         }
         
         private void notificarMateriaAlterada() {
             String materiaSelecionada = opcaoMateriaSelecionada();
-            for (MateriaSelectionListener listener : listenersMateria) {
+            for (MateriaListener listener : listenersMateria) {
                 listener.onMateriaSelected(materiaSelecionada);
             }
         }
