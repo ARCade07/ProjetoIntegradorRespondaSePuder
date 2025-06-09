@@ -17,6 +17,8 @@ public class QuestaoDAO {
             //Obtém a conexão com o banco de dados
             var conexao = new ConnectionFactory().obterConexao();
             //método que prepara a query para ser executada
+            //O segundo argumento do método recupera as chaves primárias geradas
+            //automaticamente pelo banco de dados.
             var ps = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ){
             //Substitui os placeholders da query pelos atributos que foram
@@ -26,8 +28,11 @@ public class QuestaoDAO {
             ps.setInt(3, idMateria);
             ps.setInt(4, Usuario.getUsuarioLogado() - 1);
             ps.executeUpdate();
-            
+            //Utilização do try-with-resources para fechamento do recurso
+            // o método getGenereratedKeys acessa as keys que foram geradas
             try(ResultSet rs = ps.getGeneratedKeys()){
+                //Esse método move o cursor para a próxma linha: retorna true se
+                //existir uma tupla correspondente, false se não existir.
                 if (rs.next()){
                     int idQuestaoGerado = rs.getInt(1);
                     System.out.println("DEBUG: ID da questão gerada: " + idQuestaoGerado);
