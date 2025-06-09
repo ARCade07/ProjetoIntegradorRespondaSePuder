@@ -29,27 +29,42 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         configurarTabela();
         carregarUsuarios();
     }
+    //Configura a JTable
     private void configurarTabela() {
+        //Define os nomes das colunas da tabela
         String[] colunas = {"ID", "Nome", "Email", "Senha"};
+        //Constrói um objeto e passa como argumentos as colunas e o número de linhas.
         modeloTabela = new DefaultTableModel(colunas, 0);
+        //Define o modelo da tabela "consultarAlunosTable" como "modeloTabela".
         consultarAlunosTable.setModel(modeloTabela);
+        //Define o tamanho das linhas para 25 pixels.
         consultarAlunosTable.setRowHeight(25);
+        //Permite a seleção de uma linha por vez.
         consultarAlunosTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //Não permite que o usuário reordene as colunas da tabela.
         consultarAlunosTable.getTableHeader().setReorderingAllowed(false);
     }
+    //Método para carregar os usuários na tabela.
     public void carregarUsuarios() throws Exception {
+        //remove as linhas da tabela mantendo as colunas.
         modeloTabela.setRowCount(0);
         try {
+            // Instância um objeto do tipo UsuarioDAO.
             var dao = new UsuarioDAO();
+            //Chama o método consultarUsuario, passando como parâmetro um campo de texto
+            //e retorna para um array de objetos (usuarios).
             Object [] usuarios = dao.consultarUsuario(pesquisarAlunoTextField.getText());
+            //Utiliza o for-each para que a cada usuario em usuarios, o loop seja executado.
             for (Object objeto : usuarios) {
                 var usuario = (Usuario) objeto;
+                //Utiliza os atributos de usuario para adicionar ao array de objetos linha
                 Object[] linha = {
                     usuario.getIdentificador(),
                     usuario.getNome(),
                     usuario.getEmail(),
                     usuario.getSenha(),
                 };
+                //adiciona a linha na tabela
                 modeloTabela.addRow(linha);
             }
         }
@@ -59,13 +74,17 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         }
     }
     public Usuario getUsuarioSelecionado() {
+        // Esse método retorna o índice da primeira coluna selecionada.
         int linha = consultarAlunosTable.getSelectedRow();
+        // Retorna -1 se a linha estiver selecionada.
         if (linha != -1){
             try {
+                //Acessa os valores da linha selecionada.
                 int id = (int) modeloTabela.getValueAt(linha, 0);
                 String nome = (String) modeloTabela.getValueAt(linha, 1);
                 String email = (String) modeloTabela.getValueAt(linha, 2);
                 String senha = (String) modeloTabela.getValueAt(linha, 3);
+                //Retorna um objeto do tipo Usuario
                 return Usuario.builder()
                         .identificador(id)
                         .nome(nome)
@@ -207,18 +226,23 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removerAlunoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerAlunoButtonActionPerformed
+        //Inicializa as variáveis com os valores dos campos de texto correspondentes.
         var nome = nomeAlunoTextField.getText();
         var email = emailAlunoTextField.getText();
         var senha = senhaAlunoTextField.getText();
+        //Instãncia um objeto do tipo Usuario com o valor das variáveis.
         var usuario = Usuario.builder()
                 .nome(nome)
                 .email(email)
                 .senha(senha)
                 .build();
+        //Instãncia um objeto do tipo UsuarioDAO.
         var dao = new UsuarioDAO();
         try {
+            //chama o método removerUsuario passando usuario como parâmetro
             if (dao.removerUsuario(usuario)) {
                 JOptionPane.showMessageDialog(null, "Aluno removido com sucesso.");
+                //Chama o método carregarUsuarios para atualizar a tabela.
                 carregarUsuarios();
             }
         }
@@ -229,19 +253,25 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
             );
         }
     }//GEN-LAST:event_removerAlunoButtonActionPerformed
-
+    //Método é chamado com o botão de atulizar é apertado
     private void atualizarAlunoButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarAlunoButton1ActionPerformed
+        //Verifica se a tabela está sendo editada: retorna true ou false
         if(consultarAlunosTable.isEditing()){
+            //Para a edição feita na tabela
             consultarAlunosTable.getCellEditor().stopCellEditing();
         }
+        // Obtém o modelo da tabela como DefaultTableModel para poder utilizar o seus métodos.
         DefaultTableModel model = (DefaultTableModel) consultarAlunosTable.getModel();
+        //Instância um objeto do tipo UsuarioDAO.
         var dao = new UsuarioDAO();
+        //Realiza a conversão de tipo e inicializa as respectivas variáveis:
         var linha = (Integer) consultarAlunosTable.getSelectedRow();
         var identificador = (Integer) consultarAlunosTable.getValueAt(linha, 0);
         var nome = (String) consultarAlunosTable.getValueAt(linha, 1);
         var email = (String) consultarAlunosTable.getValueAt(linha, 2);
         var senha = (String) consultarAlunosTable.getValueAt(linha, 3);
         try {
+            //Chama o método atualizarUsuario passando como parâmetro o nome, emeail e senha
             dao.atualizarUsuario(identificador, nome, email, senha);
             JOptionPane.showMessageDialog(null, "Aluno atualizado com sucesso.");
             carregarUsuarios();
@@ -254,7 +284,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     private void senhaAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaAlunoTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_senhaAlunoTextFieldActionPerformed
-
+    // Esse método é chamado quando o usuário aperta a tecla "Enter":
     private void pesquisarAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarAlunoTextFieldActionPerformed
         // TODO add your handling code here:
         try {
@@ -270,18 +300,23 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_voltarConsultarAlunoButtonActionPerformed
 
     private void adicionarAlunoButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarAlunoButton1ActionPerformed
+        //Inicializa as variáveis com os valores dos campos de texto correspondentes.
         var nome = nomeAlunoTextField.getText();
         var email = emailAlunoTextField.getText();
         var senha = senhaAlunoTextField.getText();
+        //Instância um objeto do tipo Usuario com o valor das variáveis.
         var usuario = Usuario.builder()
                 .nome(nome)
                 .email(email)
                 .senha(senha)
                 .build();
+        //Instância um objeto do tipo UsuarioDAO.
         var dao = new UsuarioDAO();
         try {
+            // Chama o método adicionarUsuario passando usuario como parâmetro
             dao.adicionarUsuario(usuario);
             JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso.");
+            // Chama o método carregarUsuarios
             carregarUsuarios();
         }
         catch (Exception ex) {
@@ -289,20 +324,26 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
                 null, "Erro ao adicionar aluno:" + ex.getMessage()
             );
         }
+        
     }//GEN-LAST:event_adicionarAlunoButton1ActionPerformed
 
     private void nomeAlunoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                   
         
         
         // TODO add your handling code here:
-    }                                                     
+    }                                            
+    //Esse método é chamado com a tabela é clicada
     private void consultarAlunosTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarAlunosTableMouseClicked
+        //Inicializa uma variável recebendo o retorno do método
         var usuarioSelecionado = getUsuarioSelecionado();
+        //Se o retorno não for nulo, pega as informações do usuário e as exibi
+        //no campos de texto respectivos.
         if (usuarioSelecionado != null) {
             nomeAlunoTextField.setText(usuarioSelecionado.getNome());
             emailAlunoTextField.setText(usuarioSelecionado.getEmail());
             senhaAlunoTextField.setText(usuarioSelecionado.getSenha());
         }
+        //Caso seja nulo, não exibe nada nos campos de texto.
         else {
             nomeAlunoTextField.setText("");
             emailAlunoTextField.setText("");
