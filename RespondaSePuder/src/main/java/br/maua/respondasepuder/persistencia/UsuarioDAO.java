@@ -43,8 +43,7 @@ public class UsuarioDAO {
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getEmail());
             ps.setString(3, usuario.getSenha());
-            int linhaRemovida = ps.executeUpdate();
-            return linhaRemovida > 0;
+            return ps.executeUpdate() > 0;
         }
        
     }
