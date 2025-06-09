@@ -51,10 +51,7 @@ public class QuestaoDAO {
             var ps = conexao.prepareStatement(sql)
         ){
             ps.setInt(1, questao.getIdentificador());
-            ps.execute();
-            int linhaRemovida = ps.executeUpdate();
-            // O método ps.executeUpdate() retorna linhas alteradas
-            return linhaRemovida > 0;
+            return ps.executeUpdate() > 0;
         }
     }
     public List<Questao> consultarQuestao(String enunciado, String materia, String nivel) throws Exception{
