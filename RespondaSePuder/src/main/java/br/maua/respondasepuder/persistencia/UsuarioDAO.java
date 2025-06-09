@@ -61,8 +61,8 @@ public class UsuarioDAO {
                 var conexao = new ConnectionFactory().obterConexao(); 
                 var ps = conexao.prepareStatement(sql.toString());
             ){
-                for (int i = 0; i < parametrosConsulta.size(); i++) {
-                ps.setString(i + 1, parametrosConsulta.get(i));
+                if (!parametrosConsulta.isEmpty()) {
+                ps.setString(1, parametrosConsulta.get(0));
                 }
 
             try (
