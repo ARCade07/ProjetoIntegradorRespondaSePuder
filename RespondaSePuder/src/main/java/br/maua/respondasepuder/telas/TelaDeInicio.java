@@ -4,6 +4,7 @@
  */
 package br.maua.respondasepuder.telas;
 
+import Musica.Musica;
 import br.maua.respondasepuder.Jogo;
 import br.maua.respondasepuder.modelo.Questao;
 
@@ -18,6 +19,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
      */
     public TelaDeInicio() {
         initComponents();
+        Musica.tocarSom();
     }
 
     /**
@@ -106,7 +108,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_OpcoesButtonActionPerformed
 
     private void ativarMusicaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ativarMusicaButtonActionPerformed
-        // TODO add your handling code here:
+        Musica.alternarSom();
     }//GEN-LAST:event_ativarMusicaButtonActionPerformed
 
     private void sairDoJogoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairDoJogoButtonActionPerformed
