@@ -102,7 +102,7 @@ public class UsuarioDAO {
                 // Move o cursor, enquanto houver tuplas correspondestes a query
                 //, o loop é executado.
                 while (rs.next()) {
-                    // constrói um objeto do tipo usuário
+                    // constrói um objeto do tipo Usuário
                     var usuario = Usuario.builder()
                             .identificador(rs.getInt("id_usuario"))
                             .nome(rs.getString("nome"))
@@ -193,7 +193,7 @@ public class UsuarioDAO {
                 ps.setObject(i + 1, valores.get(i));
             }
             //Método para modificações no bd: retorna número de linhas afetadas
-            //retorno maior que zero: (true) remoção feita com sucesso
+            //retorno maior que zero: (true) atualização feita com sucesso
             return ps.executeUpdate() > 0;
         
         }
@@ -203,7 +203,7 @@ public class UsuarioDAO {
     }
     
     public int identificarID(String nome, String email, String senha) throws Exception {
-        //Query para a adição de usuarios
+        //Query para identificar o ID do usuário
         var sql = "SELECT id_usuario FROM Usuario WHERE nome = ?, email = ?, senha = ?";
         //Utilização do try-with-resources para fechamento da conexão com o bd
         try (
