@@ -58,6 +58,22 @@ public class TelaOpcoes extends javax.swing.JFrame {
         String n = (String) selecionarDificuldadeComboBox.getSelectedItem();
         return n;
     }
+    
+    public interface DificuldadeListener{
+        public void notificarDificuldade(String dificuldade);
+    }
+        private final List<DificuldadeListener> listenersDificuldade = new ArrayList<>();
+        
+        public void adicionarDificuldadeListener (DificuldadeListener listener){
+            listenersDificuldade.add(listener);
+        }
+        
+        private void notificarDificuldadeSelecionada(){
+            String dificuldadeSelecionada = opcaoDificuldadeSelecionada();
+            for (DificuldadeListener listener : listenersDificuldade){
+                listener.notificarDificuldade(dificuldadeSelecionada);
+            }
+        }
 
     /**
      * Creates new form TelaOpcoes
