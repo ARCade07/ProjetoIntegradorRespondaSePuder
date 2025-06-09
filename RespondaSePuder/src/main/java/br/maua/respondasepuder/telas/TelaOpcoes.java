@@ -36,7 +36,7 @@ public class TelaOpcoes extends javax.swing.JFrame {
 
         private final List<MateriaListener> listenersMateria = new ArrayList<>();
 
-        public void addMateriaSelectionListener(MateriaListener listener) {
+        public void adicionarMateriaListener(MateriaListener listener) {
             listenersMateria.add(listener);
         }
         
