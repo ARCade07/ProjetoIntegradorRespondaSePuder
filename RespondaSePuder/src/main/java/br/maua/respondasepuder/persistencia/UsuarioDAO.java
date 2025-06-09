@@ -153,10 +153,11 @@ public class UsuarioDAO {
             ps.setString(1, nome);
             ps.setString(2, email);
             ps.setString(3, senha);
-            var rs = ps.executeQuery();
-            int id = rs.getInt("id_usuario");
-            return id;
-            
+            try(var rs = ps.executeQuery();){
+                int id = rs.getInt("id_usuario");
+                return id;
+            }
+          
         }         
     }
 }
