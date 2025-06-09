@@ -27,8 +27,12 @@ import javax.swing.table.DefaultTableModel;
 public class TelaConsultarPergunta extends javax.swing.JFrame {
     private void obterMateriaComboBox() {
         try {
+            //Intancia um objeto do tipo MateriaDAO().
             var dao = new MateriaDAO();
+            //Chama o método obterMateria() e atribui o seu retorno a variável materias.
             var materias = dao.obterMateria();
+            // Converte a lista de matérias para um array e define como modelo do ComboBox 'filtrarMateriaComboBox'
+            // Preenche o combobox com as matérias obtidas.
             filtrarMateriaComboBox.setModel(
                     new DefaultComboBoxModel<Materia>(materias.toArray(new Materia[]{}))
             );
