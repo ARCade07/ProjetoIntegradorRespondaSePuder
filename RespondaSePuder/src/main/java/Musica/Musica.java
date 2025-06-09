@@ -17,3 +17,16 @@ public class Musica {
             e.printStackTrace();
         }
     }
+
+    public static void pararSom() {
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+            clip.close();
+        }
+        musicaAtivada = false;
+    }
+
+    public static boolean isamusicaAtivada() {
+        return musicaAtivada;
+    }
+}
