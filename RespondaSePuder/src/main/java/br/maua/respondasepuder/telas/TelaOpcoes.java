@@ -29,17 +29,18 @@ public class TelaOpcoes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lista de matérias");
         }
     }
+    //adiciona um listener
     public interface MateriaListener {
-
+        //notificar as mudanças detectadas para os listeners adicionados
         public void notificarMateria(String materia);
     }
-
+        //cria um array de listeners para serem notificados em caso de mudanças
         private final List<MateriaListener> listenersMateria = new ArrayList<>();
-
+        //adiciona listeners ao array
         public void adicionarMateriaListener(MateriaListener listener) {
             listenersMateria.add(listener);
         }
-        
+        //notificação que é enviada quando o método opacaoMateriaSelecionada é chamado
         private void notificarMateriaSelecionada() {
             String materiaSelecionada = opcaoMateriaSelecionada();
             for (MateriaListener listener : listenersMateria) {
