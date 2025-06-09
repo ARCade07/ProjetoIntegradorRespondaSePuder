@@ -199,23 +199,45 @@ public class Jogo implements MateriaListener, DificuldadeListener{
             }
         }
         else{
-            if(pergunta < 4){
-                Questao questaoAtual = listaQuestoesFaceis.get(r.nextInt(listaQuestoesFaceis.size()));
-                var index = listaQuestoesFaceis.indexOf(questaoAtual);
-                listaQuestoesFaceis.remove(index);
-                return questaoAtual;
-            }
-            else if(pergunta < 10){
-                Questao questaoAtual = listaQuestoesMedias.get(r.nextInt(listaQuestoesMedias.size()));
-                var index = listaQuestoesMedias.indexOf(questaoAtual);
-                listaQuestoesMedias.remove(index);
-                return questaoAtual;
+            if(dificuldadeSelecionada != null){
+                if(dificuldadeSelecionada.equals("fácil")){
+                    Questao questaoAtual = listaQuestoesFaceis.get(r.nextInt(listaQuestoesFaceis.size()));
+                    var index = listaQuestoesFaceis.indexOf(questaoAtual);
+                    listaQuestoesFaceis.remove(index);
+                    return questaoAtual;
+                }
+                else if(dificuldadeSelecionada.equals("médio")){
+                    Questao questaoAtual = listaQuestoesMedias.get(r.nextInt(listaQuestoesMedias.size()));
+                    var index = listaQuestoesMedias.indexOf(questaoAtual);
+                    listaQuestoesMedias.remove(index);
+                    return questaoAtual;
+                }
+                else if(dificuldadeSelecionada.equals("dificil")){
+                    Questao questaoAtual = listaQuestoesDificeis.get(r.nextInt(listaQuestoesDificeis.size()));
+                    var index = listaQuestoesDificeis.indexOf(questaoAtual);
+                    listaQuestoesDificeis.remove(index);
+                    return questaoAtual;
+                }
             }
             else{
-                Questao questaoAtual = listaQuestoesDificeis.get(r.nextInt(listaQuestoesDificeis.size()));
-                var index = listaQuestoesDificeis.indexOf(questaoAtual);
-                listaQuestoesDificeis.remove(index);
-                return questaoAtual;
+                if(pergunta < 4){
+                    Questao questaoAtual = listaQuestoesFaceis.get(r.nextInt(listaQuestoesFaceis.size()));
+                    var index = listaQuestoesFaceis.indexOf(questaoAtual);
+                    listaQuestoesFaceis.remove(index);
+                    return questaoAtual;
+                }
+                else if(pergunta < 10){
+                    Questao questaoAtual = listaQuestoesMedias.get(r.nextInt(listaQuestoesMedias.size()));
+                    var index = listaQuestoesMedias.indexOf(questaoAtual);
+                    listaQuestoesMedias.remove(index);
+                    return questaoAtual;
+                }
+                else{
+                    Questao questaoAtual = listaQuestoesDificeis.get(r.nextInt(listaQuestoesDificeis.size()));
+                    var index = listaQuestoesDificeis.indexOf(questaoAtual);
+                    listaQuestoesDificeis.remove(index);
+                    return questaoAtual;
+                } 
             }
         }
         return null;
