@@ -6,6 +6,7 @@ package br.maua.respondasepuder.telas;
 import br.maua.respondasepuder.modelo.Usuario;
 import br.maua.respondasepuder.persistencia.UsuarioDAO;
 import java.awt.event.MouseEvent;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -53,10 +54,9 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
             var dao = new UsuarioDAO();
             //Chama o método consultarUsuario, passando como parâmetro um campo de texto
             //e retorna para um array de objetos (usuarios).
-            Object [] usuarios = dao.consultarUsuario(pesquisarAlunoTextField.getText());
+            List <Usuario> usuarios = dao.consultarUsuario(pesquisarAlunoTextField.getText());
             //Utiliza o for-each para que a cada usuario em usuarios, o loop seja executado.
-            for (Object objeto : usuarios) {
-                var usuario = (Usuario) objeto;
+            for (Usuario usuario : usuarios) {
                 //Utiliza os atributos de usuario para adicionar ao array de objetos linha
                 Object[] linha = {
                     usuario.getIdentificador(),
