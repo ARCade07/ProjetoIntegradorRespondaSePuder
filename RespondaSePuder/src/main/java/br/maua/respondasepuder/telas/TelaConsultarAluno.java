@@ -22,7 +22,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
      */
     private DefaultTableModel modeloTabela;
     
-    public TelaConsultarAluno() throws Exception {
+    public TelaConsultarAluno() {
         super("Responda se puder");
         initComponents();
         setLocationRelativeTo(null);  
@@ -45,7 +45,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         consultarAlunosTable.getTableHeader().setReorderingAllowed(false);
     }
     //Método para carregar os usuários na tabela.
-    public void carregarUsuarios() throws Exception {
+    public void carregarUsuarios() {
         //remove as linhas da tabela mantendo as colunas.
         modeloTabela.setRowCount(0);
         try {
