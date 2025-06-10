@@ -353,7 +353,24 @@ public class TelaPergunta extends javax.swing.JFrame {
 
     private void eliminarDuasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarDuasButtonActionPerformed
         try {
-            jogo.eliminarDuas(this.questao);
+            List<Alternativa> eliminadas = jogo.eliminarDuas(this.questao);
+            for (Alternativa alternativaEliminada : eliminadas){
+                if(alternativaALabel.getText().equals(alternativaEliminada.getTexto())){
+                    alternativaALabel.setText("");
+                }
+                if(alternativaBLabel.getText().equals(alternativaEliminada.getTexto())){
+                    alternativaBLabel.setText("");
+                }
+                if(alternativaCLabel.getText().equals(alternativaEliminada.getTexto())){
+                    alternativaCLabel.setText("");
+                }
+                if(alternativaDLabel.getText().equals(alternativaEliminada.getTexto())){
+                    alternativaDLabel.setText("");
+                }
+                if(alternativaELabel.getText().equals(alternativaEliminada.getTexto())){
+                    alternativaELabel.setText("");
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
