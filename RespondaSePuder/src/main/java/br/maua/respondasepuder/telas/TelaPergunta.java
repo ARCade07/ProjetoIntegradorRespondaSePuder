@@ -4,6 +4,7 @@
  */
 package br.maua.respondasepuder.telas;
 
+import Musica.Musica;
 import br.maua.respondasepuder.Jogo;
 import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Questao;
@@ -257,6 +258,11 @@ public class TelaPergunta extends javax.swing.JFrame {
 
         ativarMusicaButton.setContentAreaFilled(false);
         ativarMusicaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ativarMusicaButton.addActionListener(new java.awt.event.ActionListener()) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ativarMusicaButtonActionPerformed(evt);
+            }
+        }
         getContentPane().add(ativarMusicaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 890, 130, 110));
 
         pontuacaoAcumuladaLabel.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -280,8 +286,10 @@ public class TelaPergunta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void alternativaCButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaCButtonActionPerformed
-        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
-        verificarAlternativa(alternativaC);
+        int confirmacao = JOptionPane.showConfirmDialog(null, "Você tem certeza?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if(confirmacao == JOptionPane.YES_OPTION){
+            verificarAlternativa(alternativaC);
+        }
     }//GEN-LAST:event_alternativaCButtonActionPerformed
 
     private void pularQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pularQuestaoButtonActionPerformed
@@ -296,23 +304,31 @@ public class TelaPergunta extends javax.swing.JFrame {
     }//GEN-LAST:event_pularQuestaoButtonActionPerformed
 
     private void alternativaAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaAButtonActionPerformed
-        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
-        verificarAlternativa(alternativaA);
+        int confirmacao = JOptionPane.showConfirmDialog(null, "Você tem certeza?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if(confirmacao == JOptionPane.YES_OPTION){
+            verificarAlternativa(alternativaA);
+        }
     }//GEN-LAST:event_alternativaAButtonActionPerformed
 
     private void alternativaBButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaBButtonActionPerformed
-        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
-        verificarAlternativa(alternativaB);
+        int confirmacao = JOptionPane.showConfirmDialog(null, "Você tem certeza?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if(confirmacao == JOptionPane.YES_OPTION){
+            verificarAlternativa(alternativaB);
+        }
     }//GEN-LAST:event_alternativaBButtonActionPerformed
 
     private void alternativaDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaDButtonActionPerformed
-        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
-        verificarAlternativa(alternativaD);
+       int confirmacao = JOptionPane.showConfirmDialog(null, "Você tem certeza?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if(confirmacao == JOptionPane.YES_OPTION){
+            verificarAlternativa(alternativaD);
+        }
     }//GEN-LAST:event_alternativaDButtonActionPerformed
 
     private void alternativaEButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaEButtonActionPerformed
-        JOptionPane.showConfirmDialog(null, "Você tem certeza?");
-        verificarAlternativa(alternativaE);
+        int confirmacao = JOptionPane.showConfirmDialog(null, "Você tem certeza?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if(confirmacao == JOptionPane.YES_OPTION){
+            verificarAlternativa(alternativaE);
+        }
     }//GEN-LAST:event_alternativaEButtonActionPerformed
 
     private void eliminarDuasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarDuasButtonActionPerformed
@@ -327,6 +343,10 @@ public class TelaPergunta extends javax.swing.JFrame {
         jogo.setDesejaUsarEscudo(true);
         JOptionPane.showMessageDialog(null, "Você ativou o escudo e terá mais uma chance, caso erre!!!!");
     }//GEN-LAST:event_escudoButtonActionPerformed
+
+    private void ativarMusicaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ativarMusicaButtonActionPerformed
+        Musica.alternarMusica();
+    }//GEN-LAST:event_ativarMusicaButtonActionPerformed
 
     /**
      * @param args the command line arguments
