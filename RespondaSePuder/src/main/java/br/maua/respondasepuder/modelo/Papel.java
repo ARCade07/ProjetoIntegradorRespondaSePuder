@@ -7,8 +7,6 @@ public class Papel {
 
     public static void setIdentificador(int identificador) {
         Papel.identificador = identificador;
-        
-    
     }
 
     public static int getIdentificador() {
