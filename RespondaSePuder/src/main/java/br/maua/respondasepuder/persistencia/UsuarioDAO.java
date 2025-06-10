@@ -1,5 +1,6 @@
 package br.maua.respondasepuder.persistencia;
 
+import br.maua.respondasepuder.modelo.Aluno;
 import br.maua.respondasepuder.modelo.Papel;
 import br.maua.respondasepuder.modelo.Usuario;
 import java.sql.PreparedStatement;
@@ -226,4 +227,37 @@ public class UsuarioDAO {
           
         }         
     }
+    public List<Aluno> consultarRanque () throws Exception {
+        // Lista que armazenará os resultados da consulta de alunos.
+        List<Aluno> ranqueAlunos = new ArrayList<>();
+        var sql = "SELECT u.id_usuario, u.nome, a.maior_pontuacao FROM Usuario u JOIN Aluno a USING (id_usuario) ORDER BY a.maior_pontuacao DESC";
+        //Utilização do try-with-resources para fechamento da conexão com o bd
+        try (
+                //Obtém a conexão com o banco de dados
+                var conexao = new ConnectionFactory().obterConexao();
+                //método que prepara a query para ser executada.
+                var ps = conexao.prepareStatement(sql);
+                var rs = ps.executeQuery();
+            ){
+                // Move o cursor, enquanto houver tuplas correspondestes a query
+                //, o loop é executado.
+                while (rs.next()) {
+                    //constrói um objeto do tipo Aluno
+                    Aluno aluno = Aluno.builder()
+                            .identificadorUsuario(
+                                   //Constrói um objeto do tipo Usuário
+                                   Usuario.builder()
+                                    .identificador(rs.getInt("id_usuario"))
+                                    .nome(rs.getString("nome"))
+                                    .build()
+                            )
+                            .maiorPontuacao(rs.getInt("maior_pontuacao"))
+                            .build();
+                    //Adicionana o aluno na lista
+                    ranqueAlunos.add(aluno);
+                }
+            }
+        //Retorna a lista (impotante para a JTable)
+        return ranqueAlunos;
+        }
 }
