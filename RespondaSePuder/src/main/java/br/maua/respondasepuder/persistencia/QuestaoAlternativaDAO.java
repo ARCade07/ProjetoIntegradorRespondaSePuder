@@ -110,7 +110,7 @@ public class QuestaoAlternativaDAO {
         return alternativaEhCorreta;
     }
     public Alternativa alternativaCorreta(Questao questao) throws Exception {
-        var sql = "SELECT a.texto FROM Alternativa a JOIN Questao_Alternativa USING(id_alternativa) JOIN Questao USING(id_questao) WHERE id_questao =?";
+        var sql = "SELECT * FROM Alternativa a JOIN Questao_Alternativa USING(id_alternativa) JOIN Questao USING(id_questao) WHERE id_questao =?";
         try (
             var conexao = new ConnectionFactory().obterConexao(); 
             var ps = conexao.prepareStatement(sql);
