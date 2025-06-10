@@ -58,13 +58,17 @@ public class QuestaoDAO {
     public boolean removerQuestao(Questao questao) throws Exception {
         //Query para a remoção de questões
         var sql = "DELETE FROM Questao WHERE id_questao = ?";
+        var sqlAlternativas = "DELETE FROM questao_alternativa WHERE id_questao = ?";
         //Utilização do try-with-resources para fechamento da conexão com o bd
         try(
             //Obtém a conexão com o banco de dados
             var conexao = new ConnectionFactory().obterConexao();
             //método que prepara a query para ser executada
-            var ps = conexao.prepareStatement(sql)
+            var ps = conexao.prepareStatement(sql);
+            var psAlt = conexao.prepareStatement(sqlAlternativas);
         ){
+            psAlt.setInt(1, questao.getIdentificador());
+            psAlt.executeUpdate();
             //Substitui o placeholder da query pelo atributo de questao que
             //foi passado como argumento do método
             ps.setInt(1, questao.getIdentificador());
