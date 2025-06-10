@@ -27,5 +27,27 @@ public class AlunoDAO {
             ps.execute();
         }
     }
+     public void atualizarAluno(int acertos, int respondidas, int ultimaPontuacao) throws Exception{
+         //Query para atuazalização de alunos
+         var sql = "UPDATE aluno SET acertos = acertos + ?, respondidas = respondidas + ?, pontuacao = pontuacao + ?, ultima_pontuacao = ultima_pontuacao + ? WHERE id_usuario = ?";
+         //Utilização do try-with-resources para fechamento da conexão com o bd
+         try(
+            //Obtém a conexão com o banco de dados
+            var conexao = new ConnectionFactory().obterConexao();
+            //método que prepara a query para ser executada
+            var ps = conexao.prepareStatement(sql);
+        ){
+             //Substitui os placeholders da query pelos atributos que foram
+            //passados como argumento do método
+             ps.setInt(1, acertos);
+             ps.setInt(2,respondidas);
+             ps.setInt(3, ultimaPontuacao);
+             ps.setInt(4, ultimaPontuacao);
+             ps.setInt(5, Usuario.getUsuarioLogado());
+             //executa a query
+             ps.executeUpdate();
+         }
+     }
+     
     
 }
