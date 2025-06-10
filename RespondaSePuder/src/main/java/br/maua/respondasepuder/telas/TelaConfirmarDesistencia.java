@@ -4,6 +4,8 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.Jogo;
+import javax.swing.JFrame;
 /**
  *
  * @author Arthur
@@ -13,10 +15,21 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
     /**
      * Creates new form TelaConfirmarDesistencia
      */
-    public TelaConfirmarDesistencia() {
+    private Jogo jogo;
+    private int numeroQuestaoInt;
+    private JFrame telaAnterior;
+    public TelaConfirmarDesistencia(Jogo jogo, int numeroQuestaoInt, JFrame telaAnterior){
+        this.jogo = jogo;
+        this.numeroQuestaoInt = numeroQuestaoInt;
+        this.telaAnterior = telaAnterior;
         Transparencia t = new Transparencia();
         t.aplicarTransparencia(this);
         initComponents();
+        pontuacaoAtualLabel.setText(String.valueOf(jogo.receberPontuacao(jogo.pergunta, false)));
+    }
+
+    private TelaConfirmarDesistencia() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
