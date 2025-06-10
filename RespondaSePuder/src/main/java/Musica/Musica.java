@@ -37,7 +37,7 @@ public class Musica {
         musicaAtivada = false;
     }
 
-    public static boolean isamusicaAtivada() {
+    public static boolean isMusicaAtivada() {
         return musicaAtivada;
     }
 }
