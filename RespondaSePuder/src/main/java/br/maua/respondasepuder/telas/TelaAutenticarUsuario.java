@@ -98,7 +98,6 @@ public class TelaAutenticarUsuario extends javax.swing.JFrame {
                 if (dao.autenticarUsuario(u)) {
                     var usuarioCompleto = dao.buscarPorEmail(email);
                     Usuario.setUsuarioLogadoObj(usuarioCompleto);
-                    System.out.println(usuarioCompleto);
                     if (Papel.getIdentificador() == 1) {
                         var telaInicio = new TelaDeInicio();
                         telaInicio.setVisible(true);
