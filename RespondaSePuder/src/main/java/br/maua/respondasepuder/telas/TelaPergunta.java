@@ -343,7 +343,7 @@ public class TelaPergunta extends javax.swing.JFrame {
     }//GEN-LAST:event_escudoButtonActionPerformed
 
     private void ativarMusicaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ativarMusicaButtonActionPerformed
-        Musica.alternarSom();
+        Musica.alternarMusica();
     }//GEN-LAST:event_ativarMusicaButtonActionPerformed
 
     /**

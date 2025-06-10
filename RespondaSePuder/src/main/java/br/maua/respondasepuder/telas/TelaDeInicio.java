@@ -19,7 +19,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
      */
     public TelaDeInicio() {
         initComponents();
-        Musica.tocarSom();
+        Musica.tocarMusica();
     }
 
     /**
@@ -108,7 +108,7 @@ public class TelaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_OpcoesButtonActionPerformed
 
     private void ativarMusicaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ativarMusicaButtonActionPerformed
-        Musica.alternarSom();
+        Musica.alternarMusica();
     }//GEN-LAST:event_ativarMusicaButtonActionPerformed
 
     private void sairDoJogoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairDoJogoButtonActionPerformed
