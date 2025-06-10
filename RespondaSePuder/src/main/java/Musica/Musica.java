@@ -21,7 +21,7 @@ public class Musica {
     }
 
     public static void tocarMusica() {
-        if (!musicaAtivada){
+        if (!musicaAtivada || (clip!= null && clip.isRunning())){
             return;
         }
         try {
@@ -49,6 +49,7 @@ public class Musica {
             clip.stop();
             //fecha o recurso
             clip.close();
+            clip = null;
         }
     }
 }
