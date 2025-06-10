@@ -124,6 +124,7 @@ public class TelaDeADM extends javax.swing.JFrame {
 
     private void ranqueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ranqueButtonActionPerformed
         new TelaRanque().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_ranqueButtonActionPerformed
 
     private void adicionarProfessorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarProfessorButtonActionPerformed
