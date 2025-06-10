@@ -31,7 +31,7 @@ public class TelaRanque extends javax.swing.JFrame {
     
     private void configurarTabela() {
         //Define os nomes das colunas da tabela
-        String[] colunas = {"Nome", "Maior potuação"};
+        String[] colunas = {"Nome", "Pontuação", "Questões Respondidas", "Questões corretas"};
         //Constrói um objeto e passa como argumentos as colunas e o número de linhas.
         modeloTabela = new DefaultTableModel(colunas, 0);
         //Define o modelo da tabela "ranqueTable" como "modeloTabela".
@@ -58,7 +58,9 @@ public class TelaRanque extends javax.swing.JFrame {
                 //Utiliza os atributos de aluno para adicionar ao array de objetos linha
                 Object[] linha = {
                     aluno.getIdentificadorUsuario().getNome(),
-                    aluno.getMaiorPontuacao()
+                    aluno.getMaiorPontuacao(),
+                    aluno.getRespondidas(),
+                    aluno.getAcertos()
                 };
                 //adiciona a linha na tabela
                 modeloTabela.addRow(linha);
