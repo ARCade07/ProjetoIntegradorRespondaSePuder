@@ -258,11 +258,11 @@ public class TelaPergunta extends javax.swing.JFrame {
 
         ativarMusicaButton.setContentAreaFilled(false);
         ativarMusicaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        ativarMusicaButton.addActionListener(new java.awt.event.ActionListener()) {
+        ativarMusicaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ativarMusicaButtonActionPerformed(evt);
             }
-        }
+        });
         getContentPane().add(ativarMusicaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 890, 130, 110));
 
         pontuacaoAcumuladaLabel.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
