@@ -314,7 +314,7 @@ public class TelaConsultarAluno extends javax.swing.JFrame {
         var dao = new UsuarioDAO();
         try {
             // Chama o método adicionarUsuario passando usuario como parâmetro
-            dao.adicionarUsuario(usuario);
+            dao.adicionarUsuario(usuario, false);
             JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso.");
             // Chama o método carregarUsuarios
             carregarUsuarios();
