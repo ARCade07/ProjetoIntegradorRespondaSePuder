@@ -315,26 +315,33 @@ public class Jogo implements MateriaListener, DificuldadeListener{
     }
     
     public List<Alternativa> eliminarDuas (Questao questao) throws Exception {
+        List<Alternativa> eliminadas = new ArrayList<>();
         if(eliminaDuas > 0 && pergunta != 12){
             var adao = new AlternativaDAO();
             var qadao = new QuestaoAlternativaDAO();
             var r = new Random();
             var alternativaCorreta = qadao.alternativaCorreta(questao);
             List<Alternativa> listaAlternativasQuestao = (ArrayList<Alternativa>) adao.consultarAlternativa(questao);
-            var indexCorreto = listaAlternativasQuestao.indexOf(alternativaCorreta);
+            String textoCorreto = alternativaCorreta.getTexto();
+            int indexCorreto = -1;
+            for (int i = 0; i < listaAlternativasQuestao.size(); i++) {
+                if (listaAlternativasQuestao.get(i).getTexto().equals(textoCorreto)) {
+                    indexCorreto = i;
+                    break;
+                }
+            }
             listaAlternativasQuestao.remove(indexCorreto);
             for (int i = 0; i < 2; i++) {
-                Alternativa alternativaEliminada = listaAlternativasQuestao.get(r.nextInt(listaAlternativasQuestao.size()));
-                var index = listaAlternativasQuestao.indexOf(alternativaEliminada);
-                listaAlternativasQuestao.remove(index);
-            return listaAlternativasQuestao;
+                int index = r.nextInt(listaAlternativasQuestao.size());
+                Alternativa alternativaEliminada = listaAlternativasQuestao.remove(index); 
+                eliminadas.add(alternativaEliminada);
             }
         }
         else{
             JOptionPane.showMessageDialog(null, "Você não pode mais utilizar essa ajuda!");
         }
         eliminaDuas -= 1;
-        return null;
+        return eliminadas;
     }
 }   
     
