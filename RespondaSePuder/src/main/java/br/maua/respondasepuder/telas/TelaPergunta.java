@@ -9,6 +9,7 @@ import br.maua.respondasepuder.modelo.Alternativa;
 import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.modelo.QuestaoAlternativa;
 import br.maua.respondasepuder.persistencia.AlternativaDAO;
+import br.maua.respondasepuder.persistencia.AlunoDAO;
 import br.maua.respondasepuder.persistencia.QuestaoAlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.util.*;
@@ -78,6 +79,7 @@ public class TelaPergunta extends javax.swing.JFrame {
         this.pontuacaoAcumulada = jogo.receberPontuacao(numeroPergunta, true);
     }
     private void verificarAlternativa(Alternativa alternativa) {
+        var alunoDAO = new AlunoDAO();
         var dao = new QuestaoAlternativaDAO();
         try {
             var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
@@ -87,6 +89,12 @@ public class TelaPergunta extends javax.swing.JFrame {
                 if (jogo.jogoAcabou()){
                     new TelaResultadosPartida(pontuacaoAcumulada * 2, this.numeroQuestaoInt).setVisible(true);
                     telaAtual.dispose();
+                    if (alunoDAO.alunoCadastrado()){
+                        alunoDAO.atualizarAluno(this.numeroQuestaoInt, this.numeroQuestaoInt, pontuacaoAcumulada * 2);
+                    }
+                    else{
+                        alunoDAO.adicionarAluno(this.numeroQuestaoInt, this.numeroQuestaoInt, pontuacaoAcumulada * 2);
+                    }
                 }
                 else{
                     int pontuacao = jogo.receberPontuacao(jogo.pergunta, verificarResposta);
@@ -109,6 +117,13 @@ public class TelaPergunta extends javax.swing.JFrame {
                     return;
                 }
                 JOptionPane.showMessageDialog(null, "Errou!");
+                if (alunoDAO.alunoCadastrado()){
+                    alunoDAO.atualizarAluno(this.numeroQuestaoInt - 1, this.numeroQuestaoInt, jogo.receberPontuacao(jogo.pergunta, false));    
+                    
+                    }
+                    else{
+                        alunoDAO.adicionarAluno(this.numeroQuestaoInt - 1, this.numeroQuestaoInt, jogo.receberPontuacao(jogo.pergunta, false));
+                    }
                 new TelaResultadosPartida(jogo.receberPontuacao(jogo.pergunta, false), this.numeroQuestaoInt - 1).setVisible(true);
                 telaAtual.dispose();
             }
