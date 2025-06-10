@@ -35,7 +35,6 @@ public class Musica {
             clip.open(audio);
             //responsável pelo loop da reprodução da música
             clip.loop(Clip.LOOP_CONTINUOUSLY);
-            // indica que a música está tocando
         } catch (Exception e) {
             e.printStackTrace();
             
