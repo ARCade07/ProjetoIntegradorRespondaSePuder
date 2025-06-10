@@ -300,6 +300,8 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
     }//GEN-LAST:event_filtrarDificuldadeComboBoxActionPerformed
 
     private void voltarPerguntaQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarPerguntaQuestaoButtonActionPerformed
+        var telaADM = new TelaDeADM();
+        telaADM.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_voltarPerguntaQuestaoButtonActionPerformed
 
