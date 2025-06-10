@@ -8,7 +8,7 @@ public class Musica {
     private static boolean musicaAtivada = false;
 
     public static void alternarSom() {
-        if (musicaAtivada) {
+        if (isMusicaAtivada()) {
             pararSom();
         } else {
             tocarSom();
