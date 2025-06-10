@@ -35,8 +35,8 @@ public class TelaAdicionarProfessor extends javax.swing.JFrame {
         emailProfessorTextField = new javax.swing.JTextField();
         senhaProfessorTextField = new javax.swing.JTextField();
         adicionarProfessorButton = new javax.swing.JButton();
-        voltarAddProfessorButton = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
+        voltarAddProfessorButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,17 +75,16 @@ public class TelaAdicionarProfessor extends javax.swing.JFrame {
         });
         getContentPane().add(adicionarProfessorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 720, 480, 100));
 
-        voltarAddProfessorButton.setContentAreaFilled(false);
-        voltarAddProfessorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela adicionar professor.png"))); // NOI18N
+        getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, -1, -1));
+
+        voltarAddProfessorButton.setText("jButton1");
         voltarAddProfessorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 voltarAddProfessorButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(voltarAddProfessorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 23, 130, 120));
-
-        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela adicionar professor.png"))); // NOI18N
-        getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, -1, -1));
+        getContentPane().add(voltarAddProfessorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 150, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -118,9 +117,13 @@ public class TelaAdicionarProfessor extends javax.swing.JFrame {
             );
         }
     }//GEN-LAST:event_adicionarProfessorButtonActionPerformed
-    private void voltarAddProfessorButtonActionPerformed(java.awt.event.ActionEvent evt){
-        
-    }
+
+    private void voltarAddProfessorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarAddProfessorButtonActionPerformed
+        var telaAdm = new TelaDeADM();
+        telaAdm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_voltarAddProfessorButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
