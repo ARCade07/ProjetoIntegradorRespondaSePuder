@@ -276,6 +276,11 @@ public class TelaPergunta extends javax.swing.JFrame {
 
         pararJogarButton.setContentAreaFilled(false);
         pararJogarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pararJogarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pararJogarButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(pararJogarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1760, 10, 110, 110));
 
         imageLabel.setBackground(new java.awt.Color(255, 106, 19));
@@ -345,6 +350,11 @@ public class TelaPergunta extends javax.swing.JFrame {
     private void ativarMusicaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ativarMusicaButtonActionPerformed
         Musica.alternarMusica();
     }//GEN-LAST:event_ativarMusicaButtonActionPerformed
+
+    private void pararJogarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pararJogarButtonActionPerformed
+        var telaConfirmarDesistencia = new TelaConfirmarDesistencia(jogo, numeroQuestaoInt, telaAtual);
+        telaConfirmarDesistencia.setVisible(true);
+    }//GEN-LAST:event_pararJogarButtonActionPerformed
 
     /**
      * @param args the command line arguments
