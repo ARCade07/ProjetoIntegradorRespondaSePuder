@@ -218,7 +218,7 @@ public class UsuarioDAO {
     public List<Aluno> consultarRanque () throws Exception {
         // Lista que armazenará os resultados da consulta de alunos.
         List<Aluno> ranqueAlunos = new ArrayList<>();
-        var sql = "SELECT u.id_usuario, u.nome, a.maior_pontuacao FROM Usuario u JOIN Aluno a USING (id_usuario) ORDER BY a.maior_pontuacao DESC";
+        var sql = "SELECT u.id_usuario, u.nome, a.pontuacao, a.acertos, a.respondidas FROM Usuario u JOIN Aluno a USING (id_usuario) ORDER BY a.pontuacao DESC";
         //Utilização do try-with-resources para fechamento da conexão com o bd
         try (
                 //Obtém a conexão com o banco de dados
@@ -239,7 +239,9 @@ public class UsuarioDAO {
                                     .nome(rs.getString("nome"))
                                     .build()
                             )
-                            .maiorPontuacao(rs.getInt("maior_pontuacao"))
+                            .maiorPontuacao(rs.getInt("pontuacao"))
+                            .acertos(rs.getInt("acertos"))
+                            .respondidas(rs.getInt("respondidas"))
                             .build();
                     //Adicionana o aluno na lista
                     ranqueAlunos.add(aluno);
