@@ -10,6 +10,7 @@ import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Arthur
@@ -23,8 +24,11 @@ public class TelaRanque extends javax.swing.JFrame {
     public TelaRanque() {
         super("Responda se puder");
         initComponents();
-        setLocationRelativeTo(null);    }
-
+        setLocationRelativeTo(null);    
+        configurarTabela();
+        carregarRanque();
+    }
+    
     private void configurarTabela() {
         //Define os nomes das colunas da tabela
         String[] colunas = {"Nome", "Maior potuação"};
