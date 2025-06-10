@@ -4,6 +4,8 @@
  */
 package br.maua.respondasepuder.telas;
 
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Arthur
@@ -13,11 +15,26 @@ public class TelaRanque extends javax.swing.JFrame {
     /**
      * Creates new form TelaRanque
      */
+    private DefaultTableModel modeloTabela;
     public TelaRanque() {
         super("Responda se puder");
         initComponents();
         setLocationRelativeTo(null);    }
 
+    private void configurarTabela() {
+        //Define os nomes das colunas da tabela
+        String[] colunas = {"Nome", "Maior potuação"};
+        //Constrói um objeto e passa como argumentos as colunas e o número de linhas.
+        modeloTabela = new DefaultTableModel(colunas, 0);
+        //Define o modelo da tabela "ranqueTable" como "modeloTabela".
+        ranqueTable.setModel(modeloTabela);
+        //Define o tamanho das linhas para 25 pixels.
+        ranqueTable.setRowHeight(25);
+        //Permite a seleção de uma linha por vez.
+        ranqueTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //Não permite que o usuário reordene as colunas da tabela.
+        ranqueTable.getTableHeader().setReorderingAllowed(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
