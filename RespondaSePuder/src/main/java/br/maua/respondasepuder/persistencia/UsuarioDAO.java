@@ -41,7 +41,7 @@ public class UsuarioDAO {
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getEmail());
             ps.setString(3, usuario.getSenha());
-            //Substitui o placeholder por 1 que corresponde ao papel Aluno
+            //Substitui o placeholder por 2 que corresponde ao papel Professor
             ps.setInt(4, 2);
             ps.execute();
         }
