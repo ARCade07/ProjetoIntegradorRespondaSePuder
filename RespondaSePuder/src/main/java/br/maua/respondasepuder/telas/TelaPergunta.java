@@ -10,6 +10,7 @@ import br.maua.respondasepuder.modelo.Questao;
 import br.maua.respondasepuder.modelo.QuestaoAlternativa;
 import br.maua.respondasepuder.persistencia.AlternativaDAO;
 import br.maua.respondasepuder.persistencia.AlunoDAO;
+import br.maua.respondasepuder.persistencia.PartidaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoAlternativaDAO;
 import br.maua.respondasepuder.persistencia.QuestaoDAO;
 import java.util.*;
@@ -80,6 +81,7 @@ public class TelaPergunta extends javax.swing.JFrame {
     }
     private void verificarAlternativa(Alternativa alternativa) {
         var alunoDAO = new AlunoDAO();
+        var partidaDAO = new PartidaDAO();
         var dao = new QuestaoAlternativaDAO();
         try {
             var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
@@ -95,6 +97,7 @@ public class TelaPergunta extends javax.swing.JFrame {
                     else{
                         alunoDAO.adicionarAluno(this.numeroQuestaoInt, this.numeroQuestaoInt, pontuacaoAcumulada * 2);
                     }
+                partidaDAO.adicionarPartida();
                 }
                 else{
                     int pontuacao = jogo.receberPontuacao(jogo.pergunta, verificarResposta);
@@ -124,6 +127,7 @@ public class TelaPergunta extends javax.swing.JFrame {
                     else{
                         alunoDAO.adicionarAluno(this.numeroQuestaoInt - 1, this.numeroQuestaoInt, jogo.receberPontuacao(jogo.pergunta, false));
                     }
+                partidaDAO.adicionarPartida();
                 new TelaResultadosPartida(jogo.receberPontuacao(jogo.pergunta, false), this.numeroQuestaoInt - 1).setVisible(true);
                 telaAtual.dispose();
             }
