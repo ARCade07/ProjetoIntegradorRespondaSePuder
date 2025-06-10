@@ -87,6 +87,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
                 }
                 linha[6] = q.getMateria();
                 linha[7] = q.getNivel();
+                linha[8] = q.getIdentificador();
                 model.addRow(linha);
             }
         } catch (Exception e) {
@@ -112,6 +113,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
                 }
                 linha[6] = q.getMateria();
                 linha[7] = q.getNivel();
+                linha[8] = q.getIdentificador();
                 model.addRow(linha);
             }
         } catch (Exception e) {
@@ -137,6 +139,7 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
                 }
                 linha[6] = q.getMateria();
                 linha[7] = q.getNivel();
+                linha[8] = q.getIdentificador();
                 model.addRow(linha);
             }
         }
