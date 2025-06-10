@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.util.*;
 
 public class UsuarioDAO {
-    public void adicionarUsuario(Usuario usuario) throws Exception {
+    public void adicionarUsuario(Usuario usuario, boolean professor) throws Exception {
         //Query para a adição de usuarios
         var sql = "INSERT INTO Usuario(nome, email, senha, id_papel)"
                 + "VALUES (?, ?, ?, ?)";
@@ -23,8 +23,14 @@ public class UsuarioDAO {
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getEmail());
             ps.setString(3, usuario.getSenha());
-            // Substitui o placeholder por 1 que corresponde ao papel Aluno
-            ps.setInt(4, 1);
+            if (professor){
+                //Substitui o placeholder por 2 que corersponde ao papel Professor
+                ps.setInt(4, 2);
+            }
+            else {
+                // Substitui o placeholder por 1 que corresponde ao papel Aluno
+                ps.setInt(4, 1);
+            }
             // Executa a query
             ps.execute();
         }
