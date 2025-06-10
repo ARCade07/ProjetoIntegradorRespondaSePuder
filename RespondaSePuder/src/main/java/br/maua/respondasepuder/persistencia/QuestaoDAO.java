@@ -18,7 +18,7 @@ public class QuestaoDAO {
             ps.setString(1, questao.getEnunciado());
             ps.setString(2, questao.getNivel());
             ps.setInt(3, idMateria);
-            ps.setInt(4, Usuario.getUsuarioLogado() - 1);
+            ps.setInt(4, Usuario.getUsuarioLogado());
             ps.executeUpdate();
             
             try(ResultSet rs = ps.getGeneratedKeys()){
