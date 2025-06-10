@@ -68,9 +68,9 @@ public class UsuarioDAO {
        
     }
     //Método utilizado para consultar usuarios em uma Jtable
-    public Object[] consultarUsuario(String nome) throws Exception {
+    public List<Usuario> consultarUsuario(String nome) throws Exception {
         // Lista que armazenará os resultados da consulta de usuários.
-        List<Object> listaUsuarioConsulta = new ArrayList<>();
+        List<Usuario> listaUsuarioConsulta = new ArrayList<>();
         // Utilização da classe StringBuilder para criar a query dinamicamente
         // id_papel está recebendo 1 para que consulte apenas alunos
         var sql = new StringBuilder("SELECT id_usuario, nome, email, senha, id_papel FROM Usuario WHERE id_papel = 1 AND 1=1");
@@ -114,8 +114,8 @@ public class UsuarioDAO {
                 }
             }
         }
-        //Retorna a lista convertendo em um array (impotante para a JTable)
-        return listaUsuarioConsulta.toArray();
+        //Retorna a lista (impotante para a JTable)
+        return listaUsuarioConsulta;
     }
     public boolean autenticarUsuario(Usuario usuario) throws Exception {
         var sql = "SELECT id_usuario, id_papel, email, senha FROM Usuario JOIN Papel USING (id_papel) WHERE email = ? AND senha = ?";
