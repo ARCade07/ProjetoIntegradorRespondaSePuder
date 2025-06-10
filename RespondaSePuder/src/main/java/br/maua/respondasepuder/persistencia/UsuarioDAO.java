@@ -250,4 +250,32 @@ public class UsuarioDAO {
         //Retorna a lista (impotante para a JTable)
         return ranqueAlunos;
         }
+    public Usuario buscarPorEmail(String email) {
+        var sql = "SELECT * FROM Usuario WHERE email = ?";
+
+        try (
+            var conexao = new ConnectionFactory().obterConexao();
+            var ps = conexao.prepareStatement(sql);
+        ) {
+
+            ps.setString(1, email);
+            
+            try (var rs = ps.executeQuery()){
+                if (rs.next()) {
+                    var usuario = Usuario.builder()
+                            .identificador(rs.getInt("id_usuario"))
+                            .nome(rs.getString("nome"))
+                            .email(rs.getString("email"))
+                            .senha(rs.getString("senha"))
+                            .build();
+                    return usuario;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

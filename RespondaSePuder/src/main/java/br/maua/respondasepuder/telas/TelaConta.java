@@ -4,19 +4,26 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.modelo.Usuario;
+
 /**
  *
  * @author Arthur
  */
 public class TelaConta extends javax.swing.JFrame {
-
+    public void montarTela(){
+        usuarioLabel.setText(Usuario.getUsuarioLogadoObj().getEmail());
+        senhaLabel.setText(Usuario.getUsuarioLogadoObj().getSenha());
+    }
     /**
      * Creates new form TelaConta
      */
     public TelaConta() {
         super("Responda se puder");
         initComponents();
-        setLocationRelativeTo(null);    }
+        setLocationRelativeTo(null);    
+        montarTela();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,15 +34,15 @@ public class TelaConta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ususrioLabel = new javax.swing.JLabel();
+        usuarioLabel = new javax.swing.JLabel();
         senhaLabel = new javax.swing.JLabel();
         voltarContaButton = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ususrioLabel.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        ususrioLabel.setForeground(new java.awt.Color(255, 255, 255));
+        usuarioLabel.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        usuarioLabel.setForeground(new java.awt.Color(255, 255, 255));
 
         senhaLabel.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         senhaLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -59,7 +66,7 @@ public class TelaConta extends javax.swing.JFrame {
                 .addComponent(voltarContaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(850, 850, 850)
-                .addComponent(ususrioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(usuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(850, 850, 850)
                 .addComponent(senhaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -71,7 +78,7 @@ public class TelaConta extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addComponent(voltarContaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(317, 317, 317)
-                .addComponent(ususrioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(usuarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(650, 650, 650)
                 .addComponent(senhaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -123,7 +130,7 @@ public class TelaConta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel senhaLabel;
-    private javax.swing.JLabel ususrioLabel;
+    private javax.swing.JLabel usuarioLabel;
     private javax.swing.JButton voltarContaButton;
     // End of variables declaration//GEN-END:variables
 }

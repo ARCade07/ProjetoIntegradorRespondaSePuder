@@ -29,7 +29,7 @@
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="850" pref="850" max="-2" attributes="0"/>
-              <Component id="ususrioLabel" min="-2" pref="320" max="-2" attributes="0"/>
+              <Component id="usuarioLabel" min="-2" pref="320" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="850" pref="850" max="-2" attributes="0"/>
@@ -44,7 +44,7 @@
               <EmptySpace min="63" pref="63" max="-2" attributes="0"/>
               <Component id="voltarContaButton" min="-2" pref="120" max="-2" attributes="0"/>
               <EmptySpace min="317" pref="317" max="-2" attributes="0"/>
-              <Component id="ususrioLabel" min="-2" pref="60" max="-2" attributes="0"/>
+              <Component id="usuarioLabel" min="-2" pref="60" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="650" pref="650" max="-2" attributes="0"/>
@@ -55,7 +55,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="ususrioLabel">
+    <Component class="javax.swing.JLabel" name="usuarioLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="24" style="1"/>

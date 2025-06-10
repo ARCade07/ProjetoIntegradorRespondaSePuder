@@ -157,7 +157,9 @@ public class TelaConsultarPergunta extends javax.swing.JFrame {
             String enunciado = (String) model.getValueAt(linhaSelecionada, 0);
             List<Questao> questao = dao.consultarQuestao(enunciado, null, null);
             var questaoRemovida = questao.get(0);
-            dao.removerQuestao(questaoRemovida);
+            if(dao.removerQuestao(questaoRemovida)){
+                JOptionPane.showMessageDialog(null, "Questão removida com sucesso!!");
+            }
             model.removeRow(linhaSelecionada);
         }
         catch (Exception e) {

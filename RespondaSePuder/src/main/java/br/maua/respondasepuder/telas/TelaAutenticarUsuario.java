@@ -94,20 +94,28 @@ public class TelaAutenticarUsuario extends javax.swing.JFrame {
                 .build();
         var dao = new UsuarioDAO();
         try {
-            if (dao.autenticarUsuario(u)) {
-                if (Papel.getIdentificador() == 1) {
-                    var telaInicio = new TelaDeInicio();
-                    telaInicio.setVisible(true);
-                    this.dispose();
+            if(email.length() > 0 || senha.length() > 0){
+                if (dao.autenticarUsuario(u)) {
+                    var usuarioCompleto = dao.buscarPorEmail(email);
+                    Usuario.setUsuarioLogadoObj(usuarioCompleto);
+                    System.out.println(usuarioCompleto);
+                    if (Papel.getIdentificador() == 1) {
+                        var telaInicio = new TelaDeInicio();
+                        telaInicio.setVisible(true);
+                        this.dispose();
+                    }
+                    else if (Papel.getIdentificador() == 2) {
+                        var telaAdm = new TelaDeADM();
+                        telaAdm.setVisible(true);
+                        this.dispose();
+                    }
                 }
-                else if (Papel.getIdentificador() == 2) {
-                    var telaAdm = new TelaDeADM();
-                    telaAdm.setVisible(true);
-                    this.dispose();
+                else{
+                    JOptionPane.showMessageDialog(null, "Email ou senha inválidos");
                 }
             }
             else{
-                JOptionPane.showMessageDialog(null, "Insira e-mail e senha");
+                JOptionPane.showMessageDialog(null, "Insira email e senha");
             }
         } catch (Exception e) {
             e.printStackTrace();
