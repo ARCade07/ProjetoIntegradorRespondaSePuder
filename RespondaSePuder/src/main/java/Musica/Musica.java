@@ -21,6 +21,7 @@ public class Musica {
     }
 
     public static void tocarMusica() {
+        // Se a música está desativada ou já está tocando:
         if (!musicaAtivada || (clip!= null && clip.isRunning())){
             return;
         }
@@ -49,6 +50,7 @@ public class Musica {
             clip.stop();
             //fecha o recurso
             clip.close();
+            // Libera o Clip para ser recriado
             clip = null;
         }
     }
