@@ -8,11 +8,12 @@ public class Musica {
     //objeto responsável pela reprodução do áudio
     private static Clip clip;
     //variavel que indica se a música está tocando ou não
-    private static boolean musicaAtivada = false;
+    private static boolean musicaAtivada = true;
 
     //método para ativação/desativação da música
     public static void alternarMusica() {
-        if (isMusicaAtivada()) {
+        musicaAtivada = !musicaAtivada;
+        if (!musicaAtivada) {
             pararMusica();
         } else {
             tocarMusica();
@@ -20,6 +21,9 @@ public class Musica {
     }
 
     public static void tocarMusica() {
+        if (!musicaAtivada){
+            return;
+        }
         try {
             // Lê o arquivo .wav da pasta resources
             InputStream is = Musica.class.getResourceAsStream("/songs/musica1.wav");
@@ -32,10 +36,11 @@ public class Musica {
             //responsável pelo loop da reprodução da música
             clip.loop(Clip.LOOP_CONTINUOUSLY);
             // indica que a música está tocando
-            musicaAtivada = true;
         } catch (Exception e) {
             e.printStackTrace();
+            
         }
+        
     }
 
     public static void pararMusica() {
@@ -46,11 +51,5 @@ public class Musica {
             //fecha o recurso
             clip.close();
         }
-        // indica que a música já não está mais tocando
-        musicaAtivada = false;
-    }
-
-    public static boolean isMusicaAtivada() {
-        return musicaAtivada;
     }
 }
