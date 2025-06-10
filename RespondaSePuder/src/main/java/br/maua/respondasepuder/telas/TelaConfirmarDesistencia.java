@@ -56,6 +56,11 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
 
         confirmarDesistenciaButton.setContentAreaFilled(false);
         confirmarDesistenciaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        confirmarDesistenciaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarDesistenciaButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(confirmarDesistenciaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 513, 300, 280));
 
         cancelarDesistenciaButton.setContentAreaFilled(false);
@@ -67,6 +72,11 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void confirmarDesistenciaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarDesistenciaButtonActionPerformed
+        telaAnterior.dispose();
+        new TelaResultadosPartida(jogo.receberPontuacao(jogo.pergunta, false), this.numeroQuestaoInt - 1).setVisible(true);
+    }//GEN-LAST:event_confirmarDesistenciaButtonActionPerformed
 
     /**
      * @param args the command line arguments
