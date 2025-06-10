@@ -28,6 +28,9 @@ public class Musica {
         try {
             // Lê o arquivo .wav da pasta resources
             InputStream is = Musica.class.getResourceAsStream("/songs/musica1.wav");
+            if (is == null) {
+                System.out.println("Arquivo de música não encontrado");
+            }
             // Cria fluxo de áudio à partir da variável is
             AudioInputStream audio = AudioSystem.getAudioInputStream(is);
             // Obtém um Clip de áudio (responsável por tocar e parar a música)
