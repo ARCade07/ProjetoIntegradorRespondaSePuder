@@ -7,15 +7,15 @@ public class Musica {
     private static Clip clip;
     private static boolean musicaAtivada = false;
 
-    public static void alternarSom() {
+    public static void alternarMusica() {
         if (isMusicaAtivada()) {
-            pararSom();
+            pararMusica();
         } else {
-            tocarSom();
+            tocarMusica();
         }
     }
 
-    public static void tocarSom() {
+    public static void tocarMusica() {
         try {
             // Lê o arquivo .wav da pasta resources
             InputStream is = Musica.class.getResourceAsStream("/songs/musica.wav");
@@ -29,7 +29,7 @@ public class Musica {
         }
     }
 
-    public static void pararSom() {
+    public static void pararMusica() {
         if (clip != null && clip.isRunning()) {
             clip.stop();
             clip.close();
