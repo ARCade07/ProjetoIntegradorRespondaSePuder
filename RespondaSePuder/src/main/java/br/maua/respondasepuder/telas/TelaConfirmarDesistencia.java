@@ -4,6 +4,9 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.Jogo;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Arthur
@@ -13,11 +16,24 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
     /**
      * Creates new form TelaConfirmarDesistencia
      */
-    public TelaConfirmarDesistencia() {
+    private Jogo jogo;
+    private int numeroQuestaoInt;
+    private JFrame telaAnterior;
+    public TelaConfirmarDesistencia(Jogo jogo, int numeroQuestaoInt, JFrame telaAnterior){
+        this.jogo = jogo;
+        this.numeroQuestaoInt = numeroQuestaoInt;
+        this.telaAnterior = telaAnterior;
         Transparencia t = new Transparencia();
         t.aplicarTransparencia(this);
         initComponents();
+        pontuacaoAtualLabel.setText(String.valueOf(jogo.receberPontuacao(jogo.pergunta, false)));
     }
+
+    private TelaConfirmarDesistencia() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,10 +59,20 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
 
         confirmarDesistenciaButton.setContentAreaFilled(false);
         confirmarDesistenciaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        confirmarDesistenciaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarDesistenciaButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(confirmarDesistenciaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 513, 300, 280));
 
         cancelarDesistenciaButton.setContentAreaFilled(false);
         cancelarDesistenciaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarDesistenciaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarDesistenciaButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(cancelarDesistenciaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 513, 300, 270));
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Deseja desistir.png"))); // NOI18N
@@ -54,6 +80,15 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelarDesistenciaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarDesistenciaButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelarDesistenciaButtonActionPerformed
+
+    private void confirmarDesistenciaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarDesistenciaButtonActionPerformed
+        telaAnterior.dispose();
+        new TelaResultadosPartida(jogo.receberPontuacao(jogo.pergunta, false), this.numeroQuestaoInt - 1).setVisible(true);
+    }//GEN-LAST:event_confirmarDesistenciaButtonActionPerformed
 
     /**
      * @param args the command line arguments
