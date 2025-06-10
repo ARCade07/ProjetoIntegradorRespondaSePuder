@@ -4,6 +4,13 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.modelo.Aluno;
+import br.maua.respondasepuder.persistencia.UsuarioDAO;
+import java.util.*;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Arthur
@@ -13,11 +20,55 @@ public class TelaRanque extends javax.swing.JFrame {
     /**
      * Creates new form TelaRanque
      */
+    private DefaultTableModel modeloTabela;
     public TelaRanque() {
         super("Responda se puder");
         initComponents();
-        setLocationRelativeTo(null);    }
-
+        setLocationRelativeTo(null);    
+        configurarTabela();
+        carregarRanque();
+    }
+    
+    private void configurarTabela() {
+        //Define os nomes das colunas da tabela
+        String[] colunas = {"Nome", "Maior potuação"};
+        //Constrói um objeto e passa como argumentos as colunas e o número de linhas.
+        modeloTabela = new DefaultTableModel(colunas, 0);
+        //Define o modelo da tabela "ranqueTable" como "modeloTabela".
+        ranqueTable.setModel(modeloTabela);
+        //Define o tamanho das linhas para 25 pixels.
+        ranqueTable.setRowHeight(25);
+        //Permite a seleção de uma linha por vez.
+        ranqueTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //Não permite que o usuário reordene as colunas da tabela.
+        ranqueTable.getTableHeader().setReorderingAllowed(false);
+    }
+    //Método para carregar os alunos na tabela.
+    public void carregarRanque() {
+        //remove as linhas da tabela mantendo as colunas.
+        modeloTabela.setRowCount(0);
+        try {
+            // Instancia um objeto do tipo UsuarioDAO.
+            var dao = new UsuarioDAO();
+            //Chama o método consultaraluno, passando como parâmetro um campo de texto
+            //e retorna para um array de objetos (alunos).
+            List <Aluno> alunos = dao.consultarRanque();
+            //Utiliza o for-each para que a cada aluno em alunos, o loop seja executado.
+            for (Aluno aluno : alunos) {
+                //Utiliza os atributos de aluno para adicionar ao array de objetos linha
+                Object[] linha = {
+                    aluno.getIdentificadorUsuario().getNome(),
+                    aluno.getMaiorPontuacao()
+                };
+                //adiciona a linha na tabela
+                modeloTabela.addRow(linha);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar usuários");
+        }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

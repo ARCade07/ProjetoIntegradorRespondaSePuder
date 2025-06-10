@@ -26,7 +26,7 @@ public class QuestaoDAO {
             ps.setString(1, questao.getEnunciado());
             ps.setString(2, questao.getNivel());
             ps.setInt(3, idMateria);
-            ps.setInt(4, Usuario.getUsuarioLogado() - 1);
+            ps.setInt(4, Usuario.getUsuarioLogado());
             ps.executeUpdate();
             //Utilização do try-with-resources para fechamento do recurso
             // o método getGenereratedKeys acessa as keys que foram geradas

@@ -1,12 +1,13 @@
 package br.maua.respondasepuder.persistencia;
 
+import br.maua.respondasepuder.modelo.Aluno;
 import br.maua.respondasepuder.modelo.Papel;
 import br.maua.respondasepuder.modelo.Usuario;
 import java.sql.PreparedStatement;
 import java.util.*;
 
 public class UsuarioDAO {
-    public void adicionarUsuario(Usuario usuario) throws Exception {
+    public void adicionarUsuario(Usuario usuario, boolean professor) throws Exception {
         //Query para a adição de usuarios
         var sql = "INSERT INTO Usuario(nome, email, senha, id_papel)"
                 + "VALUES (?, ?, ?, ?)";
@@ -22,27 +23,15 @@ public class UsuarioDAO {
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getEmail());
             ps.setString(3, usuario.getSenha());
-            // Substitui o placeholder por 1 que corresponde ao papel Aluno
-            ps.setInt(4, 1);
+            if (professor){
+                //Substitui o placeholder por 2 que corersponde ao papel Professor
+                ps.setInt(4, 2);
+            }
+            else {
+                // Substitui o placeholder por 1 que corresponde ao papel Aluno
+                ps.setInt(4, 1);
+            }
             // Executa a query
-            ps.execute();
-        }
-    }
-    //Método para adição de Professor
-    public void adicionarProfessor(Usuario usuario) throws Exception {
-        var sql = "INSERT INTO Usuario(nome, email, senha, id_papel)"
-                + "VALUES (?, ?, ?, ?)";
-        
-        try(
-                var conexao = new ConnectionFactory().obterConexao();
-                //método que prepara a query para ser executada
-                var ps = conexao.prepareStatement(sql);
-        ){
-            ps.setString(1, usuario.getNome());
-            ps.setString(2, usuario.getEmail());
-            ps.setString(3, usuario.getSenha());
-            //Substitui o placeholder por 2 que corresponde ao papel Professor
-            ps.setInt(4, 2);
             ps.execute();
         }
     }
@@ -68,9 +57,9 @@ public class UsuarioDAO {
        
     }
     //Método utilizado para consultar usuarios em uma Jtable
-    public Object[] consultarUsuario(String nome) throws Exception {
+    public List<Usuario> consultarUsuario(String nome) throws Exception {
         // Lista que armazenará os resultados da consulta de usuários.
-        List<Object> listaUsuarioConsulta = new ArrayList<>();
+        List<Usuario> listaUsuarioConsulta = new ArrayList<>();
         // Utilização da classe StringBuilder para criar a query dinamicamente
         // id_papel está recebendo 1 para que consulte apenas alunos
         var sql = new StringBuilder("SELECT id_usuario, nome, email, senha, id_papel FROM Usuario WHERE id_papel = 1 AND 1=1");
@@ -114,8 +103,8 @@ public class UsuarioDAO {
                 }
             }
         }
-        //Retorna a lista convertendo em um array (impotante para a JTable)
-        return listaUsuarioConsulta.toArray();
+        //Retorna a lista (impotante para a JTable)
+        return listaUsuarioConsulta;
     }
     public boolean autenticarUsuario(Usuario usuario) throws Exception {
         var sql = "SELECT id_usuario, id_papel, email, senha FROM Usuario JOIN Papel USING (id_papel) WHERE email = ? AND senha = ?";
@@ -226,4 +215,37 @@ public class UsuarioDAO {
           
         }         
     }
+    public List<Aluno> consultarRanque () throws Exception {
+        // Lista que armazenará os resultados da consulta de alunos.
+        List<Aluno> ranqueAlunos = new ArrayList<>();
+        var sql = "SELECT u.id_usuario, u.nome, a.maior_pontuacao FROM Usuario u JOIN Aluno a USING (id_usuario) ORDER BY a.maior_pontuacao DESC";
+        //Utilização do try-with-resources para fechamento da conexão com o bd
+        try (
+                //Obtém a conexão com o banco de dados
+                var conexao = new ConnectionFactory().obterConexao();
+                //método que prepara a query para ser executada.
+                var ps = conexao.prepareStatement(sql);
+                var rs = ps.executeQuery();
+            ){
+                // Move o cursor, enquanto houver tuplas correspondestes a query
+                //, o loop é executado.
+                while (rs.next()) {
+                    //constrói um objeto do tipo Aluno
+                    Aluno aluno = Aluno.builder()
+                            .identificadorUsuario(
+                                   //Constrói um objeto do tipo Usuário
+                                   Usuario.builder()
+                                    .identificador(rs.getInt("id_usuario"))
+                                    .nome(rs.getString("nome"))
+                                    .build()
+                            )
+                            .maiorPontuacao(rs.getInt("maior_pontuacao"))
+                            .build();
+                    //Adicionana o aluno na lista
+                    ranqueAlunos.add(aluno);
+                }
+            }
+        //Retorna a lista (impotante para a JTable)
+        return ranqueAlunos;
+        }
 }
