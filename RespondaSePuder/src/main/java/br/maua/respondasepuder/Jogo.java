@@ -34,7 +34,7 @@ public class Jogo implements MateriaListener, DificuldadeListener{
     List<Questao> listaQuestoesCienciasM;
     List<Questao> listaQuestoesCienciasD;
     public int pergunta;
-    int pulos;
+    public int pulos;
     int escudo;
     int eliminaDuas;
     private boolean desejaUsarEscudo = false;
@@ -287,9 +287,8 @@ public class Jogo implements MateriaListener, DificuldadeListener{
     
     public Questao pularQuestao() throws Exception{
         if(pulos > 0 && pergunta != 12){
-            var j = new Jogo();
             pulos -= 1;
-            var novaPergunta = j.randomizarPergunta();
+            var novaPergunta = randomizarPergunta();
             return novaPergunta;
         }
         else{
