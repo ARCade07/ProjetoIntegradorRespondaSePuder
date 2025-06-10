@@ -108,7 +108,7 @@ public class TelaAdicionarProfessor extends javax.swing.JFrame {
                 .build();
         var dao = new UsuarioDAO();
         try {
-            dao.adicionarProfessor(usuario);   
+            dao.adicionarUsuario(usuario, true);   
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(
