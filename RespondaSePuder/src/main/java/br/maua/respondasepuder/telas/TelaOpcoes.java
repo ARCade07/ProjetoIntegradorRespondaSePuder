@@ -102,7 +102,6 @@ public class TelaOpcoes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         selecionarMateriaComboBox.setBackground(new java.awt.Color(0, 176, 185));
         selecionarMateriaComboBox.setBorder(null);
@@ -111,12 +110,15 @@ public class TelaOpcoes extends javax.swing.JFrame {
                 selecionarMateriaComboBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(selecionarMateriaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 1230, 60));
 
         selecionarDificuldadeComboBox.setBackground(new java.awt.Color(0, 176, 185));
         selecionarDificuldadeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Fácil", "Médio", "Difícil" }));
         selecionarDificuldadeComboBox.setBorder(null);
-        getContentPane().add(selecionarDificuldadeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 590, 1230, 60));
+        selecionarDificuldadeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selecionarDificuldadeComboBoxActionPerformed(evt);
+            }
+        });
 
         voltarOpcoesButton.setContentAreaFilled(false);
         voltarOpcoesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -125,10 +127,35 @@ public class TelaOpcoes extends javax.swing.JFrame {
                 voltarOpcoesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(voltarOpcoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 120, 120));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tela opcoes.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(voltarOpcoesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(380, 380, 380)
+                .addComponent(selecionarMateriaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 1230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(380, 380, 380)
+                .addComponent(selecionarDificuldadeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 1230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(voltarOpcoesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170)
+                .addComponent(selecionarMateriaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190)
+                .addComponent(selecionarDificuldadeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,8 +165,12 @@ public class TelaOpcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_voltarOpcoesButtonActionPerformed
 
     private void selecionarMateriaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarMateriaComboBoxActionPerformed
-        // TODO add your handling code here:
+        notificarMateriaSelecionada();
     }//GEN-LAST:event_selecionarMateriaComboBoxActionPerformed
+
+    private void selecionarDificuldadeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarDificuldadeComboBoxActionPerformed
+        notificarDificuldadeSelecionada();
+    }//GEN-LAST:event_selecionarDificuldadeComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
