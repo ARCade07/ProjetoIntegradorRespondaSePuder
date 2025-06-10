@@ -4,6 +4,10 @@
  */
 package br.maua.respondasepuder.telas;
 
+import br.maua.respondasepuder.persistencia.AlunoDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -17,6 +21,15 @@ public class TelaPontuacaoAluno extends javax.swing.JFrame {
      */
     public TelaPontuacaoAluno() {
         initComponents();
+        var dao = new AlunoDAO();
+        try {
+            var aluno = dao.alunoPontuacao();
+            pontuacaoAlunoLabel.setText(String.valueOf(aluno.getMaiorPontuacao()));
+            questoesCorretasTotalLabel.setText(String.valueOf(aluno.getAcertos()));
+            totalQuestoesLabel.setText(String.valueOf(aluno.getRespondidas()));
+        } catch (Exception ex) {
+            Logger.getLogger(TelaPontuacaoAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 
