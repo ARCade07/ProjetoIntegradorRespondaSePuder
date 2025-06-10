@@ -35,24 +35,6 @@ public class UsuarioDAO {
             ps.execute();
         }
     }
-    //Método para adição de Professor
-    public void adicionarProfessor(Usuario usuario) throws Exception {
-        var sql = "INSERT INTO Usuario(nome, email, senha, id_papel)"
-                + "VALUES (?, ?, ?, ?)";
-        
-        try(
-                var conexao = new ConnectionFactory().obterConexao();
-                //método que prepara a query para ser executada
-                var ps = conexao.prepareStatement(sql);
-        ){
-            ps.setString(1, usuario.getNome());
-            ps.setString(2, usuario.getEmail());
-            ps.setString(3, usuario.getSenha());
-            //Substitui o placeholder por 2 que corresponde ao papel Professor
-            ps.setInt(4, 2);
-            ps.execute();
-        }
-    }
     public boolean removerUsuario(Usuario usuario) throws Exception {
         //Query para a remoção de usuarios
         var sql = "DELETE FROM Usuario WHERE nome = ? AND email = ? AND senha = ?";
