@@ -5,6 +5,9 @@
 package br.maua.respondasepuder.telas;
 
 import br.maua.respondasepuder.Jogo;
+import br.maua.respondasepuder.persistencia.AlunoDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -32,6 +35,7 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
     private TelaConfirmarDesistencia() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    AlunoDAO dao = new AlunoDAO();
 
  
 
@@ -87,7 +91,18 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
 
     private void confirmarDesistenciaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarDesistenciaButtonActionPerformed
         telaAnterior.dispose();
-        new TelaResultadosPartida(jogo.receberPontuacao(jogo.pergunta, false), this.numeroQuestaoInt - 1).setVisible(true);
+        new TelaResultadosPartida(jogo.receberPontuacao(jogo.pergunta - 1, true), this.numeroQuestaoInt - 1).setVisible(true);
+        try {
+            if (dao.alunoCadastrado()){
+                dao.atualizarAluno(this.numeroQuestaoInt - 1, this.numeroQuestaoInt, jogo.receberPontuacao(jogo.pergunta -1, true));
+                
+            }
+            else{
+                dao.adicionarAluno(this.numeroQuestaoInt - 1, this.numeroQuestaoInt, jogo.receberPontuacao(jogo.pergunta -1, true));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaConfirmarDesistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_confirmarDesistenciaButtonActionPerformed
 
