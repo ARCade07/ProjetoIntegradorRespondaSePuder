@@ -34,3 +34,4 @@ A música de fundo utilizada no projeto é:
 **"Hope 2"** por **Julian_Eftei**  
 Disponível em: [https://freesound.org/s/760079/](https://freesound.org/s/760079/)  
 Licença: [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) 
+> Alterações foram feitas para adequar a musica ao estilo do jogo.
