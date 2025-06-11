@@ -89,28 +89,39 @@ public class QuestaoAlternativaDAO {
         }
         return listaQuestaoAlternativaConsulta;
     }
+    
     public boolean consultarQuestaoAlternativaID(Questao questao, Alternativa alternativa) throws Exception {
+        //Query que retorna se a alternativa é correta 
         var sql = "SELECT alternativa_correta FROM Questao_Alternativa WHERE id_questao = ? AND id_alternativa = ?";
-
+        //Inicializa a variável como false
         boolean alternativaEhCorreta = false;
+        //Utilização do try-with-resources para fechamento da conexão com o bd
         try (
+            //Obtém a conexão com o banco de dados
             var conexao = new ConnectionFactory().obterConexao(); var ps = conexao.prepareStatement(sql);
         ) {
+            //Substituição dos placeholders
             ps.setInt(1, questao.getIdentificador());
             ps.setInt(2, alternativa.getIdentificador());
-
+            //Utilização do try-with-resources para fechamento do recurso
             try (
+                //preparação da query
                 var rs = ps.executeQuery()
             ){
+                //Esse método move o cursor para a próxma linha: retorna true se
+                //existir uma tupla correspondente, false se não existir.
                 if (rs.next()) {
+                    //atribui o booleano que consta no banco de dados para a variável alternativaEhCorreta
                     alternativaEhCorreta = rs.getBoolean("alternativa_correta");
                 }
             }
         }
+        //Retorna true caso a alternativa correta e false caso não seja
         return alternativaEhCorreta;
     }
+    
     public Alternativa alternativaCorreta(Questao questao) throws Exception {
-        var sql = "SELECT * FROM Alternativa a JOIN Questao_Alternativa USING(id_alternativa) JOIN Questao USING(id_questao) WHERE id_questao =?";
+        var sql = "SELECT * FROM Alternativa a JOIN Questao_Alternativa USING(id_alternativa) JOIN Questao USING(id_questao) WHERE id_questao =? AND alternativa_correta = 1";
         try (
             var conexao = new ConnectionFactory().obterConexao(); 
             var ps = conexao.prepareStatement(sql);
