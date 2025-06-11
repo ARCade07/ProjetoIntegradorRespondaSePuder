@@ -26,7 +26,7 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
         Transparencia t = new Transparencia();
         t.aplicarTransparencia(this);
         initComponents();
-        pontuacaoAtualLabel.setText(String.valueOf(jogo.receberPontuacao(jogo.pergunta, false)));
+        pontuacaoAtualLabel.setText(String.valueOf(jogo.receberPontuacao(jogo.pergunta - 1, true)));
     }
 
     private TelaConfirmarDesistencia() {
@@ -88,6 +88,7 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
     private void confirmarDesistenciaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarDesistenciaButtonActionPerformed
         telaAnterior.dispose();
         new TelaResultadosPartida(jogo.receberPontuacao(jogo.pergunta, false), this.numeroQuestaoInt - 1).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_confirmarDesistenciaButtonActionPerformed
 
     /**
