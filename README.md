@@ -27,3 +27,10 @@ Projeto Integrador Interdisciplinar feito por alunos do Instituto Mauá de Tecno
 # :bust_in_silhouette: Autores
 [<br><sub>Alexandre Rios Cazzaniga</sub>](https://github.com/ARCade07) | [<br><sub>Arthur Heráclio de Freitas Cunha</sub>](https://github.com/ahfcunha) | [<br><sub>Arthur Monteiro</sub>](https://github.com/AhCamoes) | [<br><sub>Daniel Cruz Santana</sub>](https://github.com/danielcruz604) | [<br><sub>Nicolas Aragão Loccatto</sub>](https://github.com/NicolasLocatto) | [<br><sub>Nycolas Antony de Almeida Pardo Valverde</sub>](https://github.com/Nyckvalverde) |
 | :---: | :---: | :---: | :---: | :---: | :---: |
+
+# 🎵 Créditos da música
+A música de fundo utilizada no projeto é:
+
+**"Hope 2"** por **Julian_Eftei**  
+Disponível em: [https://freesound.org/s/760079/](https://freesound.org/s/760079/)  
+Licença: [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) 
