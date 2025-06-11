@@ -360,25 +360,32 @@ public class Jogo implements MateriaListener, DificuldadeListener{
             var alternativaCorreta = qadao.alternativaCorreta(questao);
             List<Alternativa> listaAlternativasQuestao = (ArrayList<Alternativa>) adao.consultarAlternativa(questao);
             String textoCorreto = alternativaCorreta.getTexto();
-            int indexCorreto = -1;
-            for (int i = 0; i < listaAlternativasQuestao.size(); i++) {
-                if (listaAlternativasQuestao.get(i).getTexto().equals(textoCorreto)) {
-                    indexCorreto = i;
-                    break;
-                }
-            }
-            listaAlternativasQuestao.remove(indexCorreto);
+            listaAlternativasQuestao.removeIf(a -> a.getTexto().equals(textoCorreto));
+//            int indexCorreto = -1;
+//            for(Alternativa alt : listaAlternativasQuestao){
+//                if(alt.getTexto().equals(textoCorreto)){
+//                    listaAlternativasQuestao.remove(listaAlternativasQuestao.indexOf(alt));
+//                }
+//            }
+//            for (int i = 0; i < listaAlternativasQuestao.size(); i++) {
+//                if (listaAlternativasQuestao.get(i).getTexto().equals(textoCorreto)) {
+//                    indexCorreto = i;
+//                    break;
+//                }
+//            }
+//            listaAlternativasQuestao.remove(indexCorreto);
             for (int i = 0; i < 2; i++) {
                 int index = r.nextInt(listaAlternativasQuestao.size());
                 Alternativa alternativaEliminada = listaAlternativasQuestao.remove(index); 
                 eliminadas.add(alternativaEliminada);
             }
+            return eliminadas;
         }
         else{
             JOptionPane.showMessageDialog(null, "Você não pode mais utilizar essa ajuda!");
         }
         eliminaDuas -= 1;
-        return eliminadas;
+        return null;
     }
 }   
     
