@@ -6,6 +6,7 @@ package br.maua.respondasepuder.telas;
 
 import br.maua.respondasepuder.Jogo;
 import br.maua.respondasepuder.persistencia.AlunoDAO;
+import br.maua.respondasepuder.persistencia.PartidaDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -94,11 +95,13 @@ public class TelaConfirmarDesistencia extends javax.swing.JFrame {
         new TelaResultadosPartida(jogo.receberPontuacao(jogo.pergunta - 1, true), this.numeroQuestaoInt - 1).setVisible(true);
         try {
             if (dao.alunoCadastrado()){
-                dao.atualizarAluno(this.numeroQuestaoInt - 1, this.numeroQuestaoInt, jogo.receberPontuacao(jogo.pergunta -1, true));
+                dao.atualizarAluno(this.numeroQuestaoInt - 1, this.numeroQuestaoInt - 1, jogo.receberPontuacao(jogo.pergunta -1, true));
                 
             }
             else{
-                dao.adicionarAluno(this.numeroQuestaoInt - 1, this.numeroQuestaoInt, jogo.receberPontuacao(jogo.pergunta -1, true));
+                dao.adicionarAluno(this.numeroQuestaoInt - 1, this.numeroQuestaoInt - 1, jogo.receberPontuacao(jogo.pergunta, false));
+            var pdao = new PartidaDAO();
+            pdao.adicionarPartida();
             }
         } catch (Exception ex) {
             Logger.getLogger(TelaConfirmarDesistencia.class.getName()).log(Level.SEVERE, null, ex);
