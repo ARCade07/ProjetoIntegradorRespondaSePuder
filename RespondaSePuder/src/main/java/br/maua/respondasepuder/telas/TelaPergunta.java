@@ -81,35 +81,53 @@ public class TelaPergunta extends javax.swing.JFrame {
         this.pontuacaoAcumulada = jogo.receberPontuacao(numeroPergunta, true);
     }
     private void verificarAlternativa(Alternativa alternativa) {
+        //Instância um objeto do tipo AlunoDAO
         var alunoDAO = new AlunoDAO();
+        //Instância um objeto do tipo PartidaDAO
         var partidaDAO = new PartidaDAO();
+        //Instância um objeto do tipo QuestaoALternativaDAO
         var dao = new QuestaoAlternativaDAO();
         try {
+            //Verifica a alternativa escolhida
             var verificarResposta = jogo.verificarResposta(this.questao, alternativa);
-
+            //Caso a alternativa esteja correta
             if (verificarResposta) {
+                //Imprime a mensagem "Acertou"
                 JOptionPane.showMessageDialog(null, "Acertou!");
+                //Caso seja a última questão
                 if (jogo.jogoAcabou()){
+                    //Exibe a TelaResultadosPartida e destrói a atual
                     new TelaResultadosPartida(pontuacaoAcumulada * 2, this.numeroQuestaoInt).setVisible(true);
                     telaAtual.dispose();
+                    //Insere no banco os dados do aluno na partida
                     if (alunoDAO.alunoCadastrado()){
                         alunoDAO.atualizarAluno(this.numeroQuestaoInt, this.numeroQuestaoInt, pontuacaoAcumulada * 2);
                     }
                     else{
                         alunoDAO.adicionarAluno(this.numeroQuestaoInt, this.numeroQuestaoInt, pontuacaoAcumulada * 2);
                     }
+                    //Insere os dados da partida no banco
                 partidaDAO.adicionarPartida();
                 }
+                //Caso não seja a última questão
                 else{
+                    //Atualiza a pontuação da questão
                     int pontuacao = jogo.receberPontuacao(jogo.pergunta, verificarResposta);
+                    //Exibe a pontuação da nova questão
                     pontuacaoQuestaoLabel.setText(String.valueOf(pontuacao));
+                    //Atualiza a pontuação acumulada pelo jogador
                     atualizarPontuacaoAcumulada(jogo.pergunta);
+                    //Seleciona uma nova pergunta no banco de dados conforme o número da pergunta
                     var novaQuestao = jogo.randomizarPergunta();
+                    //Exibe uma tela com a nova pergunta e destrói a atual
                     new TelaPergunta(jogo, novaQuestao).setVisible(true);
                     telaAtual.dispose();
                 }
                 
             } else {
+                //Caso o jogador tenha selecionado a ajuda do escudo
+                //terá mais uma chance de responder a questão,
+                //se sua primeira alternativa escolhida estiver incorreta
                 if(jogo.isDesejaUsarEscudo()){
                     jogo.ativarEscudo(false);
                     jogo.setDesejaUsarEscudo(false);
@@ -120,7 +138,9 @@ public class TelaPergunta extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Você errou, mas o escudo te protegeu!!!");
                     return;
                 }
+                //Exibe uma mensagem de "Errou!" caso a alternativa escolhida esteja incorreta
                 JOptionPane.showMessageDialog(null, "Errou!");
+                
                 if (alunoDAO.alunoCadastrado()){
                     alunoDAO.atualizarAluno(this.numeroQuestaoInt - 1, this.numeroQuestaoInt, jogo.receberPontuacao(jogo.pergunta, false));    
                     
