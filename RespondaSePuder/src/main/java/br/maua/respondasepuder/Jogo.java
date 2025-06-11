@@ -79,11 +79,12 @@ public class Jogo implements MateriaListener, DificuldadeListener{
                 listaQuestoesCienciasF = (ArrayList<Questao>) dao.consultarQuestao(null, "Ciências", "fácil");
                 listaQuestoesCienciasM = (ArrayList<Questao>) dao.consultarQuestao(null, "Ciências", "médio");
                 listaQuestoesCienciasD = (ArrayList<Questao>) dao.consultarQuestao(null, "Ciências", "difícil");
-            } else {
-                listaQuestoesFaceis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "fácil");
-                listaQuestoesMedias = (ArrayList<Questao>) dao.consultarQuestao(null, null, "médio");
-                listaQuestoesDificeis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "difícil");
-            }
+            } 
+        }
+        else {
+            listaQuestoesFaceis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "fácil");
+            listaQuestoesMedias = (ArrayList<Questao>) dao.consultarQuestao(null, null, "médio");
+            listaQuestoesDificeis = (ArrayList<Questao>) dao.consultarQuestao(null, null, "difícil");
         }
         // inicializa as variáveis do jogo
         pergunta = 1;
@@ -262,38 +263,55 @@ public class Jogo implements MateriaListener, DificuldadeListener{
         return null;
     }
     public boolean verificarResposta(Questao questao, Alternativa alternativaEscolhida) throws Exception {
+        //instância um objeto da classe QuestaoAlternativaDAO
         var dao = new QuestaoAlternativaDAO();
+        //chama o método que consulta se alternativa escolhida é a que cosnta como correta no bd
         if (dao.consultarQuestaoAlternativaID(questao, alternativaEscolhida)) {
             if (pergunta <= 12) {
+                //caso não seja a última questão adiciona 1 a pergunta atual
                 pergunta += 1; 
             }
+            //retorna true se a alternativa escolhida é a correta
             return true;
         } else {
+            //retorna falso se a alternativa escolhida for incorreta
             return false;
         }
     }
     
     public int receberPontuacao (int pergunta, boolean acertou) {
+        //Criação de um array com os respectivos valores de cada pergunta
         int [] valorPergunta = {1000, 5000, 10000, 25000, 50000, 75000, 100000, 150000, 250000, 400000, 500000, 1000000};
+        //Criação de um array com os valores das perguntas que contém checkpoint
         int [] valorCheckPoint = {0, 10000, 100000, 400000};
         
         if (pergunta < 1){
+            //Retorna 0 caso a pergunta seja menor que 1
             return 0;
         }
         
         if (acertou){
+            //Em caso de acerto da resosta, retorna seu respectivo valor no array valorPergunta
             return valorPergunta[pergunta - 1];
         }
         else{
+            //Em caso de resposta incorreta antes do primeiro checkpoint ou na última questão,
+            //retorna 0
             if (pergunta <= 3 || pergunta == 12){
                 return valorCheckPoint[0];
             }
+            //Em caso de resposta incorreta entre as perguntas 4 e 7,
+            //retorna o valor do primeiro checkpoint
             else if (pergunta <= 7){
                 return valorCheckPoint[1];
             }
+            //Em caso de resposta incorreta entre as perguntas 7 e 10,
+            //retorna o valor do segundo checkpoint
             else if (pergunta <= 10) {
                 return valorCheckPoint[2];
             }
+            //Em caso de resposta incorreta para as perguntas 10 ou 11,
+            //retorna o valor do último checkpoint
             else{
                 return valorCheckPoint[3];
             }
